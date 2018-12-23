@@ -3,12 +3,10 @@
 
 package matcher
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -43,17 +41,16 @@ func (m *ValueMatcher) Reset()         { *m = ValueMatcher{} }
 func (m *ValueMatcher) String() string { return proto.CompactTextString(m) }
 func (*ValueMatcher) ProtoMessage()    {}
 func (*ValueMatcher) Descriptor() ([]byte, []int) {
-	return fileDescriptor_145b36501d266253, []int{0}
+	return fileDescriptor_value_deca01aa73c5a3cc, []int{0}
 }
-
 func (m *ValueMatcher) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ValueMatcher.Unmarshal(m, b)
 }
 func (m *ValueMatcher) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ValueMatcher.Marshal(b, m, deterministic)
 }
-func (m *ValueMatcher) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ValueMatcher.Merge(m, src)
+func (dst *ValueMatcher) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ValueMatcher.Merge(dst, src)
 }
 func (m *ValueMatcher) XXX_Size() int {
 	return xxx_messageInfo_ValueMatcher.Size(m)
@@ -312,17 +309,16 @@ func (m *ValueMatcher_NullMatch) Reset()         { *m = ValueMatcher_NullMatch{}
 func (m *ValueMatcher_NullMatch) String() string { return proto.CompactTextString(m) }
 func (*ValueMatcher_NullMatch) ProtoMessage()    {}
 func (*ValueMatcher_NullMatch) Descriptor() ([]byte, []int) {
-	return fileDescriptor_145b36501d266253, []int{0, 0}
+	return fileDescriptor_value_deca01aa73c5a3cc, []int{0, 0}
 }
-
 func (m *ValueMatcher_NullMatch) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ValueMatcher_NullMatch.Unmarshal(m, b)
 }
 func (m *ValueMatcher_NullMatch) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ValueMatcher_NullMatch.Marshal(b, m, deterministic)
 }
-func (m *ValueMatcher_NullMatch) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ValueMatcher_NullMatch.Merge(m, src)
+func (dst *ValueMatcher_NullMatch) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ValueMatcher_NullMatch.Merge(dst, src)
 }
 func (m *ValueMatcher_NullMatch) XXX_Size() int {
 	return xxx_messageInfo_ValueMatcher_NullMatch.Size(m)
@@ -347,17 +343,16 @@ func (m *ListMatcher) Reset()         { *m = ListMatcher{} }
 func (m *ListMatcher) String() string { return proto.CompactTextString(m) }
 func (*ListMatcher) ProtoMessage()    {}
 func (*ListMatcher) Descriptor() ([]byte, []int) {
-	return fileDescriptor_145b36501d266253, []int{1}
+	return fileDescriptor_value_deca01aa73c5a3cc, []int{1}
 }
-
 func (m *ListMatcher) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListMatcher.Unmarshal(m, b)
 }
 func (m *ListMatcher) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ListMatcher.Marshal(b, m, deterministic)
 }
-func (m *ListMatcher) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListMatcher.Merge(m, src)
+func (dst *ListMatcher) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListMatcher.Merge(dst, src)
 }
 func (m *ListMatcher) XXX_Size() int {
 	return xxx_messageInfo_ListMatcher.Size(m)
@@ -453,9 +448,11 @@ func init() {
 	proto.RegisterType((*ListMatcher)(nil), "envoy.type.matcher.ListMatcher")
 }
 
-func init() { proto.RegisterFile("envoy/type/matcher/value.proto", fileDescriptor_145b36501d266253) }
+func init() {
+	proto.RegisterFile("envoy/type/matcher/value.proto", fileDescriptor_value_deca01aa73c5a3cc)
+}
 
-var fileDescriptor_145b36501d266253 = []byte{
+var fileDescriptor_value_deca01aa73c5a3cc = []byte{
 	// 335 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x92, 0x4f, 0x4b, 0xfb, 0x30,
 	0x18, 0xc7, 0xd7, 0xdf, 0x7e, 0x9b, 0xf6, 0xe9, 0x76, 0xc9, 0x41, 0x65, 0x07, 0x37, 0x07, 0xc2,

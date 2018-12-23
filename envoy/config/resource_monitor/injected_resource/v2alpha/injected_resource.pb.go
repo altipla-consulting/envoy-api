@@ -3,12 +3,10 @@
 
 package v2alpha
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -36,17 +34,16 @@ func (m *InjectedResourceConfig) Reset()         { *m = InjectedResourceConfig{}
 func (m *InjectedResourceConfig) String() string { return proto.CompactTextString(m) }
 func (*InjectedResourceConfig) ProtoMessage()    {}
 func (*InjectedResourceConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_de2fb4e1cfb2f415, []int{0}
+	return fileDescriptor_injected_resource_82563bbb12d6452e, []int{0}
 }
-
 func (m *InjectedResourceConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_InjectedResourceConfig.Unmarshal(m, b)
 }
 func (m *InjectedResourceConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_InjectedResourceConfig.Marshal(b, m, deterministic)
 }
-func (m *InjectedResourceConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_InjectedResourceConfig.Merge(m, src)
+func (dst *InjectedResourceConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InjectedResourceConfig.Merge(dst, src)
 }
 func (m *InjectedResourceConfig) XXX_Size() int {
 	return xxx_messageInfo_InjectedResourceConfig.Size(m)
@@ -69,10 +66,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/resource_monitor/injected_resource/v2alpha/injected_resource.proto", fileDescriptor_de2fb4e1cfb2f415)
+	proto.RegisterFile("envoy/config/resource_monitor/injected_resource/v2alpha/injected_resource.proto", fileDescriptor_injected_resource_82563bbb12d6452e)
 }
 
-var fileDescriptor_de2fb4e1cfb2f415 = []byte{
+var fileDescriptor_injected_resource_82563bbb12d6452e = []byte{
 	// 170 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xf2, 0x4f, 0xcd, 0x2b, 0xcb,
 	0xaf, 0xd4, 0x4f, 0xce, 0xcf, 0x4b, 0xcb, 0x4c, 0xd7, 0x2f, 0x4a, 0x2d, 0xce, 0x2f, 0x2d, 0x4a,

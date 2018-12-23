@@ -3,11 +3,9 @@
 
 package v2alpha
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -34,17 +32,16 @@ func (m *FixedHeapConfig) Reset()         { *m = FixedHeapConfig{} }
 func (m *FixedHeapConfig) String() string { return proto.CompactTextString(m) }
 func (*FixedHeapConfig) ProtoMessage()    {}
 func (*FixedHeapConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_141ee15b3c15e2df, []int{0}
+	return fileDescriptor_fixed_heap_597624118e75827d, []int{0}
 }
-
 func (m *FixedHeapConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FixedHeapConfig.Unmarshal(m, b)
 }
 func (m *FixedHeapConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_FixedHeapConfig.Marshal(b, m, deterministic)
 }
-func (m *FixedHeapConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FixedHeapConfig.Merge(m, src)
+func (dst *FixedHeapConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FixedHeapConfig.Merge(dst, src)
 }
 func (m *FixedHeapConfig) XXX_Size() int {
 	return xxx_messageInfo_FixedHeapConfig.Size(m)
@@ -67,10 +64,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/resource_monitor/fixed_heap/v2alpha/fixed_heap.proto", fileDescriptor_141ee15b3c15e2df)
+	proto.RegisterFile("envoy/config/resource_monitor/fixed_heap/v2alpha/fixed_heap.proto", fileDescriptor_fixed_heap_597624118e75827d)
 }
 
-var fileDescriptor_141ee15b3c15e2df = []byte{
+var fileDescriptor_fixed_heap_597624118e75827d = []byte{
 	// 163 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x72, 0x4c, 0xcd, 0x2b, 0xcb,
 	0xaf, 0xd4, 0x4f, 0xce, 0xcf, 0x4b, 0xcb, 0x4c, 0xd7, 0x2f, 0x4a, 0x2d, 0xce, 0x2f, 0x2d, 0x4a,

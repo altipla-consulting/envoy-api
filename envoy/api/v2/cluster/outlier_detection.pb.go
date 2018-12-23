@@ -3,14 +3,12 @@
 
 package cluster
 
-import (
-	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/gogo/protobuf/gogoproto"
+import types "github.com/gogo/protobuf/types"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -84,17 +82,16 @@ func (m *OutlierDetection) Reset()         { *m = OutlierDetection{} }
 func (m *OutlierDetection) String() string { return proto.CompactTextString(m) }
 func (*OutlierDetection) ProtoMessage()    {}
 func (*OutlierDetection) Descriptor() ([]byte, []int) {
-	return fileDescriptor_56cd87362a3f00c9, []int{0}
+	return fileDescriptor_outlier_detection_35470c6804ebd24d, []int{0}
 }
-
 func (m *OutlierDetection) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_OutlierDetection.Unmarshal(m, b)
 }
 func (m *OutlierDetection) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_OutlierDetection.Marshal(b, m, deterministic)
 }
-func (m *OutlierDetection) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_OutlierDetection.Merge(m, src)
+func (dst *OutlierDetection) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OutlierDetection.Merge(dst, src)
 }
 func (m *OutlierDetection) XXX_Size() int {
 	return xxx_messageInfo_OutlierDetection.Size(m)
@@ -187,10 +184,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/api/v2/cluster/outlier_detection.proto", fileDescriptor_56cd87362a3f00c9)
+	proto.RegisterFile("envoy/api/v2/cluster/outlier_detection.proto", fileDescriptor_outlier_detection_35470c6804ebd24d)
 }
 
-var fileDescriptor_56cd87362a3f00c9 = []byte{
+var fileDescriptor_outlier_detection_35470c6804ebd24d = []byte{
 	// 520 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x94, 0xdb, 0x6a, 0x13, 0x41,
 	0x18, 0xc7, 0x4d, 0x7a, 0x9e, 0x82, 0x96, 0x21, 0x24, 0x93, 0x56, 0x8b, 0x14, 0x04, 0x29, 0xb2,

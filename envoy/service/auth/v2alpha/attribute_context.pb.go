@@ -3,13 +3,11 @@
 
 package v2alpha
 
-import (
-	fmt "fmt"
-	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
+import types "github.com/gogo/protobuf/types"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -53,17 +51,16 @@ func (m *AttributeContext) Reset()         { *m = AttributeContext{} }
 func (m *AttributeContext) String() string { return proto.CompactTextString(m) }
 func (*AttributeContext) ProtoMessage()    {}
 func (*AttributeContext) Descriptor() ([]byte, []int) {
-	return fileDescriptor_df3b25e3374eb3d1, []int{0}
+	return fileDescriptor_attribute_context_8dd39e33b53d559c, []int{0}
 }
-
 func (m *AttributeContext) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AttributeContext.Unmarshal(m, b)
 }
 func (m *AttributeContext) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AttributeContext.Marshal(b, m, deterministic)
 }
-func (m *AttributeContext) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AttributeContext.Merge(m, src)
+func (dst *AttributeContext) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AttributeContext.Merge(dst, src)
 }
 func (m *AttributeContext) XXX_Size() int {
 	return xxx_messageInfo_AttributeContext.Size(m)
@@ -139,17 +136,16 @@ func (m *AttributeContext_Peer) Reset()         { *m = AttributeContext_Peer{} }
 func (m *AttributeContext_Peer) String() string { return proto.CompactTextString(m) }
 func (*AttributeContext_Peer) ProtoMessage()    {}
 func (*AttributeContext_Peer) Descriptor() ([]byte, []int) {
-	return fileDescriptor_df3b25e3374eb3d1, []int{0, 0}
+	return fileDescriptor_attribute_context_8dd39e33b53d559c, []int{0, 0}
 }
-
 func (m *AttributeContext_Peer) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AttributeContext_Peer.Unmarshal(m, b)
 }
 func (m *AttributeContext_Peer) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AttributeContext_Peer.Marshal(b, m, deterministic)
 }
-func (m *AttributeContext_Peer) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AttributeContext_Peer.Merge(m, src)
+func (dst *AttributeContext_Peer) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AttributeContext_Peer.Merge(dst, src)
 }
 func (m *AttributeContext_Peer) XXX_Size() int {
 	return xxx_messageInfo_AttributeContext_Peer.Size(m)
@@ -203,17 +199,16 @@ func (m *AttributeContext_Request) Reset()         { *m = AttributeContext_Reque
 func (m *AttributeContext_Request) String() string { return proto.CompactTextString(m) }
 func (*AttributeContext_Request) ProtoMessage()    {}
 func (*AttributeContext_Request) Descriptor() ([]byte, []int) {
-	return fileDescriptor_df3b25e3374eb3d1, []int{0, 1}
+	return fileDescriptor_attribute_context_8dd39e33b53d559c, []int{0, 1}
 }
-
 func (m *AttributeContext_Request) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AttributeContext_Request.Unmarshal(m, b)
 }
 func (m *AttributeContext_Request) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AttributeContext_Request.Marshal(b, m, deterministic)
 }
-func (m *AttributeContext_Request) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AttributeContext_Request.Merge(m, src)
+func (dst *AttributeContext_Request) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AttributeContext_Request.Merge(dst, src)
 }
 func (m *AttributeContext_Request) XXX_Size() int {
 	return xxx_messageInfo_AttributeContext_Request.Size(m)
@@ -277,17 +272,16 @@ func (m *AttributeContext_HttpRequest) Reset()         { *m = AttributeContext_H
 func (m *AttributeContext_HttpRequest) String() string { return proto.CompactTextString(m) }
 func (*AttributeContext_HttpRequest) ProtoMessage()    {}
 func (*AttributeContext_HttpRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_df3b25e3374eb3d1, []int{0, 2}
+	return fileDescriptor_attribute_context_8dd39e33b53d559c, []int{0, 2}
 }
-
 func (m *AttributeContext_HttpRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AttributeContext_HttpRequest.Unmarshal(m, b)
 }
 func (m *AttributeContext_HttpRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AttributeContext_HttpRequest.Marshal(b, m, deterministic)
 }
-func (m *AttributeContext_HttpRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AttributeContext_HttpRequest.Merge(m, src)
+func (dst *AttributeContext_HttpRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AttributeContext_HttpRequest.Merge(dst, src)
 }
 func (m *AttributeContext_HttpRequest) XXX_Size() int {
 	return xxx_messageInfo_AttributeContext_HttpRequest.Size(m)
@@ -379,10 +373,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/service/auth/v2alpha/attribute_context.proto", fileDescriptor_df3b25e3374eb3d1)
+	proto.RegisterFile("envoy/service/auth/v2alpha/attribute_context.proto", fileDescriptor_attribute_context_8dd39e33b53d559c)
 }
 
-var fileDescriptor_df3b25e3374eb3d1 = []byte{
+var fileDescriptor_attribute_context_8dd39e33b53d559c = []byte{
 	// 563 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0x51, 0x6b, 0xdb, 0x3c,
 	0x14, 0x25, 0x4e, 0x1a, 0xd7, 0x37, 0x1f, 0x1f, 0x9d, 0x18, 0x45, 0x98, 0x41, 0xcb, 0x9e, 0xfa,

@@ -3,15 +3,13 @@
 
 package endpoint
 
-import (
-	fmt "fmt"
-	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
-	_ "github.com/gogo/protobuf/gogoproto"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
+import _ "github.com/gogo/protobuf/gogoproto"
+import types "github.com/gogo/protobuf/types"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -53,17 +51,16 @@ func (m *Endpoint) Reset()         { *m = Endpoint{} }
 func (m *Endpoint) String() string { return proto.CompactTextString(m) }
 func (*Endpoint) ProtoMessage()    {}
 func (*Endpoint) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a9d2a3e4ee06324f, []int{0}
+	return fileDescriptor_endpoint_995be682be5dbaa5, []int{0}
 }
-
 func (m *Endpoint) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Endpoint.Unmarshal(m, b)
 }
 func (m *Endpoint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Endpoint.Marshal(b, m, deterministic)
 }
-func (m *Endpoint) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Endpoint.Merge(m, src)
+func (dst *Endpoint) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Endpoint.Merge(dst, src)
 }
 func (m *Endpoint) XXX_Size() int {
 	return xxx_messageInfo_Endpoint.Size(m)
@@ -106,17 +103,16 @@ func (m *Endpoint_HealthCheckConfig) Reset()         { *m = Endpoint_HealthCheck
 func (m *Endpoint_HealthCheckConfig) String() string { return proto.CompactTextString(m) }
 func (*Endpoint_HealthCheckConfig) ProtoMessage()    {}
 func (*Endpoint_HealthCheckConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a9d2a3e4ee06324f, []int{0, 0}
+	return fileDescriptor_endpoint_995be682be5dbaa5, []int{0, 0}
 }
-
 func (m *Endpoint_HealthCheckConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Endpoint_HealthCheckConfig.Unmarshal(m, b)
 }
 func (m *Endpoint_HealthCheckConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Endpoint_HealthCheckConfig.Marshal(b, m, deterministic)
 }
-func (m *Endpoint_HealthCheckConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Endpoint_HealthCheckConfig.Merge(m, src)
+func (dst *Endpoint_HealthCheckConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Endpoint_HealthCheckConfig.Merge(dst, src)
 }
 func (m *Endpoint_HealthCheckConfig) XXX_Size() int {
 	return xxx_messageInfo_Endpoint_HealthCheckConfig.Size(m)
@@ -172,17 +168,16 @@ func (m *LbEndpoint) Reset()         { *m = LbEndpoint{} }
 func (m *LbEndpoint) String() string { return proto.CompactTextString(m) }
 func (*LbEndpoint) ProtoMessage()    {}
 func (*LbEndpoint) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a9d2a3e4ee06324f, []int{1}
+	return fileDescriptor_endpoint_995be682be5dbaa5, []int{1}
 }
-
 func (m *LbEndpoint) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_LbEndpoint.Unmarshal(m, b)
 }
 func (m *LbEndpoint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_LbEndpoint.Marshal(b, m, deterministic)
 }
-func (m *LbEndpoint) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_LbEndpoint.Merge(m, src)
+func (dst *LbEndpoint) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LbEndpoint.Merge(dst, src)
 }
 func (m *LbEndpoint) XXX_Size() int {
 	return xxx_messageInfo_LbEndpoint.Size(m)
@@ -266,17 +261,16 @@ func (m *LocalityLbEndpoints) Reset()         { *m = LocalityLbEndpoints{} }
 func (m *LocalityLbEndpoints) String() string { return proto.CompactTextString(m) }
 func (*LocalityLbEndpoints) ProtoMessage()    {}
 func (*LocalityLbEndpoints) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a9d2a3e4ee06324f, []int{2}
+	return fileDescriptor_endpoint_995be682be5dbaa5, []int{2}
 }
-
 func (m *LocalityLbEndpoints) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_LocalityLbEndpoints.Unmarshal(m, b)
 }
 func (m *LocalityLbEndpoints) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_LocalityLbEndpoints.Marshal(b, m, deterministic)
 }
-func (m *LocalityLbEndpoints) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_LocalityLbEndpoints.Merge(m, src)
+func (dst *LocalityLbEndpoints) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LocalityLbEndpoints.Merge(dst, src)
 }
 func (m *LocalityLbEndpoints) XXX_Size() int {
 	return xxx_messageInfo_LocalityLbEndpoints.Size(m)
@@ -323,10 +317,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/api/v2/endpoint/endpoint.proto", fileDescriptor_a9d2a3e4ee06324f)
+	proto.RegisterFile("envoy/api/v2/endpoint/endpoint.proto", fileDescriptor_endpoint_995be682be5dbaa5)
 }
 
-var fileDescriptor_a9d2a3e4ee06324f = []byte{
+var fileDescriptor_endpoint_995be682be5dbaa5 = []byte{
 	// 519 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x52, 0x41, 0x6f, 0xd3, 0x30,
 	0x14, 0x26, 0x4d, 0xbb, 0x15, 0xb7, 0x9b, 0xb4, 0x94, 0x89, 0xa8, 0x4c, 0x2b, 0x54, 0x13, 0xaa,

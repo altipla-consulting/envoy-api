@@ -3,12 +3,10 @@
 
 package v2alpha
 
-import (
-	fmt "fmt"
-	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -40,17 +38,16 @@ func (m *FileBasedMetadataConfig) Reset()         { *m = FileBasedMetadataConfig
 func (m *FileBasedMetadataConfig) String() string { return proto.CompactTextString(m) }
 func (*FileBasedMetadataConfig) ProtoMessage()    {}
 func (*FileBasedMetadataConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0f2b21de9d357383, []int{0}
+	return fileDescriptor_file_based_metadata_0669002d9f030116, []int{0}
 }
-
 func (m *FileBasedMetadataConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FileBasedMetadataConfig.Unmarshal(m, b)
 }
 func (m *FileBasedMetadataConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_FileBasedMetadataConfig.Marshal(b, m, deterministic)
 }
-func (m *FileBasedMetadataConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FileBasedMetadataConfig.Merge(m, src)
+func (dst *FileBasedMetadataConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FileBasedMetadataConfig.Merge(dst, src)
 }
 func (m *FileBasedMetadataConfig) XXX_Size() int {
 	return xxx_messageInfo_FileBasedMetadataConfig.Size(m)
@@ -87,10 +84,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/grpc_credential/v2alpha/file_based_metadata.proto", fileDescriptor_0f2b21de9d357383)
+	proto.RegisterFile("envoy/config/grpc_credential/v2alpha/file_based_metadata.proto", fileDescriptor_file_based_metadata_0669002d9f030116)
 }
 
-var fileDescriptor_0f2b21de9d357383 = []byte{
+var fileDescriptor_file_based_metadata_0669002d9f030116 = []byte{
 	// 237 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x8f, 0x3f, 0x4b, 0xc4, 0x30,
 	0x1c, 0x86, 0xa9, 0x82, 0xd2, 0x9c, 0x2e, 0x5d, 0x2c, 0xe2, 0xc1, 0xa1, 0x0e, 0x37, 0x25, 0x50,

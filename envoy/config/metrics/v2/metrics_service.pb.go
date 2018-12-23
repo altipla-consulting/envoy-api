@@ -3,13 +3,11 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -37,17 +35,16 @@ func (m *MetricsServiceConfig) Reset()         { *m = MetricsServiceConfig{} }
 func (m *MetricsServiceConfig) String() string { return proto.CompactTextString(m) }
 func (*MetricsServiceConfig) ProtoMessage()    {}
 func (*MetricsServiceConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_81ac893a597f6d53, []int{0}
+	return fileDescriptor_metrics_service_09fd5cb0a8a6dba0, []int{0}
 }
-
 func (m *MetricsServiceConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_MetricsServiceConfig.Unmarshal(m, b)
 }
 func (m *MetricsServiceConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_MetricsServiceConfig.Marshal(b, m, deterministic)
 }
-func (m *MetricsServiceConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MetricsServiceConfig.Merge(m, src)
+func (dst *MetricsServiceConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MetricsServiceConfig.Merge(dst, src)
 }
 func (m *MetricsServiceConfig) XXX_Size() int {
 	return xxx_messageInfo_MetricsServiceConfig.Size(m)
@@ -70,10 +67,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/metrics/v2/metrics_service.proto", fileDescriptor_81ac893a597f6d53)
+	proto.RegisterFile("envoy/config/metrics/v2/metrics_service.proto", fileDescriptor_metrics_service_09fd5cb0a8a6dba0)
 }
 
-var fileDescriptor_81ac893a597f6d53 = []byte{
+var fileDescriptor_metrics_service_09fd5cb0a8a6dba0 = []byte{
 	// 182 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xd2, 0x4d, 0xcd, 0x2b, 0xcb,
 	0xaf, 0xd4, 0x4f, 0xce, 0xcf, 0x4b, 0xcb, 0x4c, 0xd7, 0xcf, 0x4d, 0x2d, 0x29, 0xca, 0x4c, 0x2e,

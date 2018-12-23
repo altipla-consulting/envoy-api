@@ -3,12 +3,10 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -36,17 +34,16 @@ func (m *Lua) Reset()         { *m = Lua{} }
 func (m *Lua) String() string { return proto.CompactTextString(m) }
 func (*Lua) ProtoMessage()    {}
 func (*Lua) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f59dca3e63e33613, []int{0}
+	return fileDescriptor_lua_177e1774d95bf133, []int{0}
 }
-
 func (m *Lua) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Lua.Unmarshal(m, b)
 }
 func (m *Lua) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Lua.Marshal(b, m, deterministic)
 }
-func (m *Lua) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Lua.Merge(m, src)
+func (dst *Lua) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Lua.Merge(dst, src)
 }
 func (m *Lua) XXX_Size() int {
 	return xxx_messageInfo_Lua.Size(m)
@@ -69,10 +66,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/http/lua/v2/lua.proto", fileDescriptor_f59dca3e63e33613)
+	proto.RegisterFile("envoy/config/filter/http/lua/v2/lua.proto", fileDescriptor_lua_177e1774d95bf133)
 }
 
-var fileDescriptor_f59dca3e63e33613 = []byte{
+var fileDescriptor_lua_177e1774d95bf133 = []byte{
 	// 156 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xd2, 0x4c, 0xcd, 0x2b, 0xcb,
 	0xaf, 0xd4, 0x4f, 0xce, 0xcf, 0x4b, 0xcb, 0x4c, 0xd7, 0x4f, 0xcb, 0xcc, 0x29, 0x49, 0x2d, 0xd2,

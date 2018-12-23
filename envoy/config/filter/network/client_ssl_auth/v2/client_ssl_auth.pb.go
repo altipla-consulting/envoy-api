@@ -3,15 +3,13 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
-	_ "github.com/gogo/protobuf/gogoproto"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
+import _ "github.com/gogo/protobuf/gogoproto"
+import types "github.com/gogo/protobuf/types"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -51,17 +49,16 @@ func (m *ClientSSLAuth) Reset()         { *m = ClientSSLAuth{} }
 func (m *ClientSSLAuth) String() string { return proto.CompactTextString(m) }
 func (*ClientSSLAuth) ProtoMessage()    {}
 func (*ClientSSLAuth) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2c05e9c9b57da130, []int{0}
+	return fileDescriptor_client_ssl_auth_d8f361c1cb5dfc87, []int{0}
 }
-
 func (m *ClientSSLAuth) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ClientSSLAuth.Unmarshal(m, b)
 }
 func (m *ClientSSLAuth) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ClientSSLAuth.Marshal(b, m, deterministic)
 }
-func (m *ClientSSLAuth) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClientSSLAuth.Merge(m, src)
+func (dst *ClientSSLAuth) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ClientSSLAuth.Merge(dst, src)
 }
 func (m *ClientSSLAuth) XXX_Size() int {
 	return xxx_messageInfo_ClientSSLAuth.Size(m)
@@ -105,10 +102,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/network/client_ssl_auth/v2/client_ssl_auth.proto", fileDescriptor_2c05e9c9b57da130)
+	proto.RegisterFile("envoy/config/filter/network/client_ssl_auth/v2/client_ssl_auth.proto", fileDescriptor_client_ssl_auth_d8f361c1cb5dfc87)
 }
 
-var fileDescriptor_2c05e9c9b57da130 = []byte{
+var fileDescriptor_client_ssl_auth_d8f361c1cb5dfc87 = []byte{
 	// 350 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x90, 0x4f, 0x6a, 0xeb, 0x30,
 	0x10, 0xc6, 0x71, 0x62, 0x1e, 0xc4, 0x7e, 0x79, 0x3c, 0x4c, 0xa1, 0x6e, 0x28, 0x8d, 0xe9, 0x2a,

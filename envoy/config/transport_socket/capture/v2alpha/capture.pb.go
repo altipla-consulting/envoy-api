@@ -3,12 +3,10 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -37,7 +35,6 @@ var FileSink_Format_name = map[int32]string{
 	0: "PROTO_BINARY",
 	1: "PROTO_TEXT",
 }
-
 var FileSink_Format_value = map[string]int32{
 	"PROTO_BINARY": 0,
 	"PROTO_TEXT":   1,
@@ -46,9 +43,8 @@ var FileSink_Format_value = map[string]int32{
 func (x FileSink_Format) String() string {
 	return proto.EnumName(FileSink_Format_name, int32(x))
 }
-
 func (FileSink_Format) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_c451da3beeddae0d, []int{0, 0}
+	return fileDescriptor_capture_9e4e130c1058485a, []int{0, 0}
 }
 
 // File sink.
@@ -73,17 +69,16 @@ func (m *FileSink) Reset()         { *m = FileSink{} }
 func (m *FileSink) String() string { return proto.CompactTextString(m) }
 func (*FileSink) ProtoMessage()    {}
 func (*FileSink) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c451da3beeddae0d, []int{0}
+	return fileDescriptor_capture_9e4e130c1058485a, []int{0}
 }
-
 func (m *FileSink) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FileSink.Unmarshal(m, b)
 }
 func (m *FileSink) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_FileSink.Marshal(b, m, deterministic)
 }
-func (m *FileSink) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FileSink.Merge(m, src)
+func (dst *FileSink) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FileSink.Merge(dst, src)
 }
 func (m *FileSink) XXX_Size() int {
 	return xxx_messageInfo_FileSink.Size(m)
@@ -125,17 +120,16 @@ func (m *Capture) Reset()         { *m = Capture{} }
 func (m *Capture) String() string { return proto.CompactTextString(m) }
 func (*Capture) ProtoMessage()    {}
 func (*Capture) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c451da3beeddae0d, []int{1}
+	return fileDescriptor_capture_9e4e130c1058485a, []int{1}
 }
-
 func (m *Capture) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Capture.Unmarshal(m, b)
 }
 func (m *Capture) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Capture.Marshal(b, m, deterministic)
 }
-func (m *Capture) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Capture.Merge(m, src)
+func (dst *Capture) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Capture.Merge(dst, src)
 }
 func (m *Capture) XXX_Size() int {
 	return xxx_messageInfo_Capture.Size(m)
@@ -233,16 +227,16 @@ func _Capture_OneofSizer(msg proto.Message) (n int) {
 }
 
 func init() {
-	proto.RegisterEnum("envoy.config.transport_socket.capture.v2alpha.FileSink_Format", FileSink_Format_name, FileSink_Format_value)
 	proto.RegisterType((*FileSink)(nil), "envoy.config.transport_socket.capture.v2alpha.FileSink")
 	proto.RegisterType((*Capture)(nil), "envoy.config.transport_socket.capture.v2alpha.Capture")
+	proto.RegisterEnum("envoy.config.transport_socket.capture.v2alpha.FileSink_Format", FileSink_Format_name, FileSink_Format_value)
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/transport_socket/capture/v2alpha/capture.proto", fileDescriptor_c451da3beeddae0d)
+	proto.RegisterFile("envoy/config/transport_socket/capture/v2alpha/capture.proto", fileDescriptor_capture_9e4e130c1058485a)
 }
 
-var fileDescriptor_c451da3beeddae0d = []byte{
+var fileDescriptor_capture_9e4e130c1058485a = []byte{
 	// 312 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x91, 0xc1, 0x4b, 0xc3, 0x30,
 	0x14, 0xc6, 0xd7, 0x21, 0x73, 0x7b, 0xd3, 0xad, 0xe4, 0x34, 0x44, 0x70, 0xf4, 0x34, 0x04, 0x13,

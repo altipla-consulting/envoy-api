@@ -3,12 +3,10 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -32,7 +30,6 @@ var Config_ValueType_name = map[int32]string{
 	0: "STRING",
 	1: "NUMBER",
 }
-
 var Config_ValueType_value = map[string]int32{
 	"STRING": 0,
 	"NUMBER": 1,
@@ -41,9 +38,8 @@ var Config_ValueType_value = map[string]int32{
 func (x Config_ValueType) String() string {
 	return proto.EnumName(Config_ValueType_name, int32(x))
 }
-
 func (Config_ValueType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_5891b90c2f7c1ebe, []int{0, 0}
+	return fileDescriptor_header_to_metadata_afb78781fa45aebd, []int{0, 0}
 }
 
 type Config struct {
@@ -60,17 +56,16 @@ func (m *Config) Reset()         { *m = Config{} }
 func (m *Config) String() string { return proto.CompactTextString(m) }
 func (*Config) ProtoMessage()    {}
 func (*Config) Descriptor() ([]byte, []int) {
-	return fileDescriptor_5891b90c2f7c1ebe, []int{0}
+	return fileDescriptor_header_to_metadata_afb78781fa45aebd, []int{0}
 }
-
 func (m *Config) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Config.Unmarshal(m, b)
 }
 func (m *Config) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Config.Marshal(b, m, deterministic)
 }
-func (m *Config) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Config.Merge(m, src)
+func (dst *Config) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Config.Merge(dst, src)
 }
 func (m *Config) XXX_Size() int {
 	return xxx_messageInfo_Config.Size(m)
@@ -119,17 +114,16 @@ func (m *Config_KeyValuePair) Reset()         { *m = Config_KeyValuePair{} }
 func (m *Config_KeyValuePair) String() string { return proto.CompactTextString(m) }
 func (*Config_KeyValuePair) ProtoMessage()    {}
 func (*Config_KeyValuePair) Descriptor() ([]byte, []int) {
-	return fileDescriptor_5891b90c2f7c1ebe, []int{0, 0}
+	return fileDescriptor_header_to_metadata_afb78781fa45aebd, []int{0, 0}
 }
-
 func (m *Config_KeyValuePair) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Config_KeyValuePair.Unmarshal(m, b)
 }
 func (m *Config_KeyValuePair) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Config_KeyValuePair.Marshal(b, m, deterministic)
 }
-func (m *Config_KeyValuePair) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Config_KeyValuePair.Merge(m, src)
+func (dst *Config_KeyValuePair) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Config_KeyValuePair.Merge(dst, src)
 }
 func (m *Config_KeyValuePair) XXX_Size() int {
 	return xxx_messageInfo_Config_KeyValuePair.Size(m)
@@ -195,17 +189,16 @@ func (m *Config_Rule) Reset()         { *m = Config_Rule{} }
 func (m *Config_Rule) String() string { return proto.CompactTextString(m) }
 func (*Config_Rule) ProtoMessage()    {}
 func (*Config_Rule) Descriptor() ([]byte, []int) {
-	return fileDescriptor_5891b90c2f7c1ebe, []int{0, 1}
+	return fileDescriptor_header_to_metadata_afb78781fa45aebd, []int{0, 1}
 }
-
 func (m *Config_Rule) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Config_Rule.Unmarshal(m, b)
 }
 func (m *Config_Rule) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Config_Rule.Marshal(b, m, deterministic)
 }
-func (m *Config_Rule) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Config_Rule.Merge(m, src)
+func (dst *Config_Rule) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Config_Rule.Merge(dst, src)
 }
 func (m *Config_Rule) XXX_Size() int {
 	return xxx_messageInfo_Config_Rule.Size(m)
@@ -245,17 +238,17 @@ func (m *Config_Rule) GetRemove() bool {
 }
 
 func init() {
-	proto.RegisterEnum("envoy.config.filter.http.header_to_metadata.v2.Config_ValueType", Config_ValueType_name, Config_ValueType_value)
 	proto.RegisterType((*Config)(nil), "envoy.config.filter.http.header_to_metadata.v2.Config")
 	proto.RegisterType((*Config_KeyValuePair)(nil), "envoy.config.filter.http.header_to_metadata.v2.Config.KeyValuePair")
 	proto.RegisterType((*Config_Rule)(nil), "envoy.config.filter.http.header_to_metadata.v2.Config.Rule")
+	proto.RegisterEnum("envoy.config.filter.http.header_to_metadata.v2.Config_ValueType", Config_ValueType_name, Config_ValueType_value)
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/http/header_to_metadata/v2/header_to_metadata.proto", fileDescriptor_5891b90c2f7c1ebe)
+	proto.RegisterFile("envoy/config/filter/http/header_to_metadata/v2/header_to_metadata.proto", fileDescriptor_header_to_metadata_afb78781fa45aebd)
 }
 
-var fileDescriptor_5891b90c2f7c1ebe = []byte{
+var fileDescriptor_header_to_metadata_afb78781fa45aebd = []byte{
 	// 410 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x92, 0xbf, 0x6e, 0xd4, 0x40,
 	0x10, 0xc6, 0xf1, 0x9f, 0x58, 0xdc, 0xe4, 0x0f, 0xc9, 0x0a, 0x81, 0x75, 0x34, 0x26, 0x34, 0xd7,

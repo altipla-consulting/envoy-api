@@ -3,14 +3,12 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/gogo/protobuf/gogoproto"
+import types "github.com/gogo/protobuf/types"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -38,7 +36,6 @@ var Gzip_CompressionStrategy_name = map[int32]string{
 	2: "HUFFMAN",
 	3: "RLE",
 }
-
 var Gzip_CompressionStrategy_value = map[string]int32{
 	"DEFAULT":  0,
 	"FILTERED": 1,
@@ -49,9 +46,8 @@ var Gzip_CompressionStrategy_value = map[string]int32{
 func (x Gzip_CompressionStrategy) String() string {
 	return proto.EnumName(Gzip_CompressionStrategy_name, int32(x))
 }
-
 func (Gzip_CompressionStrategy) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_e2b7bd5745a19167, []int{0, 0}
+	return fileDescriptor_gzip_1822cfb028fca124, []int{0, 0}
 }
 
 type Gzip_CompressionLevel_Enum int32
@@ -67,7 +63,6 @@ var Gzip_CompressionLevel_Enum_name = map[int32]string{
 	1: "BEST",
 	2: "SPEED",
 }
-
 var Gzip_CompressionLevel_Enum_value = map[string]int32{
 	"DEFAULT": 0,
 	"BEST":    1,
@@ -77,9 +72,8 @@ var Gzip_CompressionLevel_Enum_value = map[string]int32{
 func (x Gzip_CompressionLevel_Enum) String() string {
 	return proto.EnumName(Gzip_CompressionLevel_Enum_name, int32(x))
 }
-
 func (Gzip_CompressionLevel_Enum) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_e2b7bd5745a19167, []int{0, 0, 0}
+	return fileDescriptor_gzip_1822cfb028fca124, []int{0, 0, 0}
 }
 
 type Gzip struct {
@@ -126,17 +120,16 @@ func (m *Gzip) Reset()         { *m = Gzip{} }
 func (m *Gzip) String() string { return proto.CompactTextString(m) }
 func (*Gzip) ProtoMessage()    {}
 func (*Gzip) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e2b7bd5745a19167, []int{0}
+	return fileDescriptor_gzip_1822cfb028fca124, []int{0}
 }
-
 func (m *Gzip) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Gzip.Unmarshal(m, b)
 }
 func (m *Gzip) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Gzip.Marshal(b, m, deterministic)
 }
-func (m *Gzip) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Gzip.Merge(m, src)
+func (dst *Gzip) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Gzip.Merge(dst, src)
 }
 func (m *Gzip) XXX_Size() int {
 	return xxx_messageInfo_Gzip.Size(m)
@@ -213,17 +206,16 @@ func (m *Gzip_CompressionLevel) Reset()         { *m = Gzip_CompressionLevel{} }
 func (m *Gzip_CompressionLevel) String() string { return proto.CompactTextString(m) }
 func (*Gzip_CompressionLevel) ProtoMessage()    {}
 func (*Gzip_CompressionLevel) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e2b7bd5745a19167, []int{0, 0}
+	return fileDescriptor_gzip_1822cfb028fca124, []int{0, 0}
 }
-
 func (m *Gzip_CompressionLevel) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Gzip_CompressionLevel.Unmarshal(m, b)
 }
 func (m *Gzip_CompressionLevel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Gzip_CompressionLevel.Marshal(b, m, deterministic)
 }
-func (m *Gzip_CompressionLevel) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Gzip_CompressionLevel.Merge(m, src)
+func (dst *Gzip_CompressionLevel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Gzip_CompressionLevel.Merge(dst, src)
 }
 func (m *Gzip_CompressionLevel) XXX_Size() int {
 	return xxx_messageInfo_Gzip_CompressionLevel.Size(m)
@@ -235,17 +227,17 @@ func (m *Gzip_CompressionLevel) XXX_DiscardUnknown() {
 var xxx_messageInfo_Gzip_CompressionLevel proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterEnum("envoy.config.filter.http.gzip.v2.Gzip_CompressionStrategy", Gzip_CompressionStrategy_name, Gzip_CompressionStrategy_value)
-	proto.RegisterEnum("envoy.config.filter.http.gzip.v2.Gzip_CompressionLevel_Enum", Gzip_CompressionLevel_Enum_name, Gzip_CompressionLevel_Enum_value)
 	proto.RegisterType((*Gzip)(nil), "envoy.config.filter.http.gzip.v2.Gzip")
 	proto.RegisterType((*Gzip_CompressionLevel)(nil), "envoy.config.filter.http.gzip.v2.Gzip.CompressionLevel")
+	proto.RegisterEnum("envoy.config.filter.http.gzip.v2.Gzip_CompressionStrategy", Gzip_CompressionStrategy_name, Gzip_CompressionStrategy_value)
+	proto.RegisterEnum("envoy.config.filter.http.gzip.v2.Gzip_CompressionLevel_Enum", Gzip_CompressionLevel_Enum_name, Gzip_CompressionLevel_Enum_value)
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/http/gzip/v2/gzip.proto", fileDescriptor_e2b7bd5745a19167)
+	proto.RegisterFile("envoy/config/filter/http/gzip/v2/gzip.proto", fileDescriptor_gzip_1822cfb028fca124)
 }
 
-var fileDescriptor_e2b7bd5745a19167 = []byte{
+var fileDescriptor_gzip_1822cfb028fca124 = []byte{
 	// 538 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x92, 0xd1, 0x8e, 0x93, 0x4c,
 	0x14, 0xc7, 0x3f, 0x28, 0xdb, 0x2d, 0xc3, 0x7e, 0x2b, 0xce, 0x6e, 0x94, 0x34, 0xba, 0x69, 0x7a,

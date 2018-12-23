@@ -3,14 +3,12 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/gogo/protobuf/gogoproto"
+import types "github.com/gogo/protobuf/types"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -64,17 +62,16 @@ func (m *Squash) Reset()         { *m = Squash{} }
 func (m *Squash) String() string { return proto.CompactTextString(m) }
 func (*Squash) ProtoMessage()    {}
 func (*Squash) Descriptor() ([]byte, []int) {
-	return fileDescriptor_63fc8434388b1e13, []int{0}
+	return fileDescriptor_squash_d05f57b83943934b, []int{0}
 }
-
 func (m *Squash) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Squash.Unmarshal(m, b)
 }
 func (m *Squash) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Squash.Marshal(b, m, deterministic)
 }
-func (m *Squash) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Squash.Merge(m, src)
+func (dst *Squash) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Squash.Merge(dst, src)
 }
 func (m *Squash) XXX_Size() int {
 	return xxx_messageInfo_Squash.Size(m)
@@ -125,10 +122,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/http/squash/v2/squash.proto", fileDescriptor_63fc8434388b1e13)
+	proto.RegisterFile("envoy/config/filter/http/squash/v2/squash.proto", fileDescriptor_squash_d05f57b83943934b)
 }
 
-var fileDescriptor_63fc8434388b1e13 = []byte{
+var fileDescriptor_squash_d05f57b83943934b = []byte{
 	// 322 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x90, 0xc1, 0x4e, 0xc2, 0x30,
 	0x1c, 0xc6, 0xb3, 0x31, 0x31, 0xd4, 0x44, 0x63, 0x25, 0x32, 0x89, 0x51, 0x82, 0x17, 0x4e, 0x6d,

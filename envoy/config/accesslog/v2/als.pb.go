@@ -3,13 +3,11 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -46,17 +44,16 @@ func (m *HttpGrpcAccessLogConfig) Reset()         { *m = HttpGrpcAccessLogConfig
 func (m *HttpGrpcAccessLogConfig) String() string { return proto.CompactTextString(m) }
 func (*HttpGrpcAccessLogConfig) ProtoMessage()    {}
 func (*HttpGrpcAccessLogConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e7b431652a309a2e, []int{0}
+	return fileDescriptor_als_58af27603741cadb, []int{0}
 }
-
 func (m *HttpGrpcAccessLogConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HttpGrpcAccessLogConfig.Unmarshal(m, b)
 }
 func (m *HttpGrpcAccessLogConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_HttpGrpcAccessLogConfig.Marshal(b, m, deterministic)
 }
-func (m *HttpGrpcAccessLogConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HttpGrpcAccessLogConfig.Merge(m, src)
+func (dst *HttpGrpcAccessLogConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HttpGrpcAccessLogConfig.Merge(dst, src)
 }
 func (m *HttpGrpcAccessLogConfig) XXX_Size() int {
 	return xxx_messageInfo_HttpGrpcAccessLogConfig.Size(m)
@@ -109,17 +106,16 @@ func (m *TcpGrpcAccessLogConfig) Reset()         { *m = TcpGrpcAccessLogConfig{}
 func (m *TcpGrpcAccessLogConfig) String() string { return proto.CompactTextString(m) }
 func (*TcpGrpcAccessLogConfig) ProtoMessage()    {}
 func (*TcpGrpcAccessLogConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e7b431652a309a2e, []int{1}
+	return fileDescriptor_als_58af27603741cadb, []int{1}
 }
-
 func (m *TcpGrpcAccessLogConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TcpGrpcAccessLogConfig.Unmarshal(m, b)
 }
 func (m *TcpGrpcAccessLogConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TcpGrpcAccessLogConfig.Marshal(b, m, deterministic)
 }
-func (m *TcpGrpcAccessLogConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TcpGrpcAccessLogConfig.Merge(m, src)
+func (dst *TcpGrpcAccessLogConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TcpGrpcAccessLogConfig.Merge(dst, src)
 }
 func (m *TcpGrpcAccessLogConfig) XXX_Size() int {
 	return xxx_messageInfo_TcpGrpcAccessLogConfig.Size(m)
@@ -154,17 +150,16 @@ func (m *CommonGrpcAccessLogConfig) Reset()         { *m = CommonGrpcAccessLogCo
 func (m *CommonGrpcAccessLogConfig) String() string { return proto.CompactTextString(m) }
 func (*CommonGrpcAccessLogConfig) ProtoMessage()    {}
 func (*CommonGrpcAccessLogConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e7b431652a309a2e, []int{2}
+	return fileDescriptor_als_58af27603741cadb, []int{2}
 }
-
 func (m *CommonGrpcAccessLogConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CommonGrpcAccessLogConfig.Unmarshal(m, b)
 }
 func (m *CommonGrpcAccessLogConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CommonGrpcAccessLogConfig.Marshal(b, m, deterministic)
 }
-func (m *CommonGrpcAccessLogConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CommonGrpcAccessLogConfig.Merge(m, src)
+func (dst *CommonGrpcAccessLogConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CommonGrpcAccessLogConfig.Merge(dst, src)
 }
 func (m *CommonGrpcAccessLogConfig) XXX_Size() int {
 	return xxx_messageInfo_CommonGrpcAccessLogConfig.Size(m)
@@ -196,10 +191,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/accesslog/v2/als.proto", fileDescriptor_e7b431652a309a2e)
+	proto.RegisterFile("envoy/config/accesslog/v2/als.proto", fileDescriptor_als_58af27603741cadb)
 }
 
-var fileDescriptor_e7b431652a309a2e = []byte{
+var fileDescriptor_als_58af27603741cadb = []byte{
 	// 373 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x92, 0xbd, 0x4e, 0xeb, 0x30,
 	0x14, 0xc7, 0x95, 0xb4, 0xf7, 0xa3, 0x6e, 0xaf, 0x74, 0x95, 0xe1, 0xf6, 0x43, 0xba, 0xbd, 0xbd,

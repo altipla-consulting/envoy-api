@@ -3,13 +3,11 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	v2 "github.com/altipla-consulting/envoy-api/envoy/config/filter/accesslog/v2"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import v2 "github.com/altipla-consulting/envoy-api/envoy/config/filter/accesslog/v2"
+import types "github.com/gogo/protobuf/types"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -50,17 +48,16 @@ func (m *Router) Reset()         { *m = Router{} }
 func (m *Router) String() string { return proto.CompactTextString(m) }
 func (*Router) ProtoMessage()    {}
 func (*Router) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc1f525510d06eb8, []int{0}
+	return fileDescriptor_router_d127622f01c90417, []int{0}
 }
-
 func (m *Router) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Router.Unmarshal(m, b)
 }
 func (m *Router) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Router.Marshal(b, m, deterministic)
 }
-func (m *Router) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Router.Merge(m, src)
+func (dst *Router) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Router.Merge(dst, src)
 }
 func (m *Router) XXX_Size() int {
 	return xxx_messageInfo_Router.Size(m)
@@ -104,10 +101,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/http/router/v2/router.proto", fileDescriptor_cc1f525510d06eb8)
+	proto.RegisterFile("envoy/config/filter/http/router/v2/router.proto", fileDescriptor_router_d127622f01c90417)
 }
 
-var fileDescriptor_cc1f525510d06eb8 = []byte{
+var fileDescriptor_router_d127622f01c90417 = []byte{
 	// 294 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x90, 0xc1, 0x4b, 0xc3, 0x30,
 	0x14, 0x87, 0xe9, 0x36, 0x86, 0x74, 0x53, 0xa4, 0x88, 0x94, 0x1d, 0x64, 0xec, 0x54, 0x10, 0x12,

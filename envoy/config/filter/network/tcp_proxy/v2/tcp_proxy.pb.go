@@ -3,16 +3,14 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
-	v2 "github.com/altipla-consulting/envoy-api/envoy/config/filter/accesslog/v2"
-	_ "github.com/gogo/protobuf/gogoproto"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
+import v2 "github.com/altipla-consulting/envoy-api/envoy/config/filter/accesslog/v2"
+import _ "github.com/gogo/protobuf/gogoproto"
+import types "github.com/gogo/protobuf/types"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -76,17 +74,16 @@ func (m *TcpProxy) Reset()         { *m = TcpProxy{} }
 func (m *TcpProxy) String() string { return proto.CompactTextString(m) }
 func (*TcpProxy) ProtoMessage()    {}
 func (*TcpProxy) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1f6b35dbcbad27ba, []int{0}
+	return fileDescriptor_tcp_proxy_2064cb021a3cd086, []int{0}
 }
-
 func (m *TcpProxy) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TcpProxy.Unmarshal(m, b)
 }
 func (m *TcpProxy) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TcpProxy.Marshal(b, m, deterministic)
 }
-func (m *TcpProxy) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TcpProxy.Merge(m, src)
+func (dst *TcpProxy) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TcpProxy.Merge(dst, src)
 }
 func (m *TcpProxy) XXX_Size() int {
 	return xxx_messageInfo_TcpProxy.Size(m)
@@ -277,17 +274,16 @@ func (m *TcpProxy_DeprecatedV1) Reset()         { *m = TcpProxy_DeprecatedV1{} }
 func (m *TcpProxy_DeprecatedV1) String() string { return proto.CompactTextString(m) }
 func (*TcpProxy_DeprecatedV1) ProtoMessage()    {}
 func (*TcpProxy_DeprecatedV1) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1f6b35dbcbad27ba, []int{0, 0}
+	return fileDescriptor_tcp_proxy_2064cb021a3cd086, []int{0, 0}
 }
-
 func (m *TcpProxy_DeprecatedV1) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TcpProxy_DeprecatedV1.Unmarshal(m, b)
 }
 func (m *TcpProxy_DeprecatedV1) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TcpProxy_DeprecatedV1.Marshal(b, m, deterministic)
 }
-func (m *TcpProxy_DeprecatedV1) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TcpProxy_DeprecatedV1.Merge(m, src)
+func (dst *TcpProxy_DeprecatedV1) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TcpProxy_DeprecatedV1.Merge(dst, src)
 }
 func (m *TcpProxy_DeprecatedV1) XXX_Size() int {
 	return xxx_messageInfo_TcpProxy_DeprecatedV1.Size(m)
@@ -354,17 +350,16 @@ func (m *TcpProxy_DeprecatedV1_TCPRoute) Reset()         { *m = TcpProxy_Depreca
 func (m *TcpProxy_DeprecatedV1_TCPRoute) String() string { return proto.CompactTextString(m) }
 func (*TcpProxy_DeprecatedV1_TCPRoute) ProtoMessage()    {}
 func (*TcpProxy_DeprecatedV1_TCPRoute) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1f6b35dbcbad27ba, []int{0, 0, 0}
+	return fileDescriptor_tcp_proxy_2064cb021a3cd086, []int{0, 0, 0}
 }
-
 func (m *TcpProxy_DeprecatedV1_TCPRoute) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TcpProxy_DeprecatedV1_TCPRoute.Unmarshal(m, b)
 }
 func (m *TcpProxy_DeprecatedV1_TCPRoute) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TcpProxy_DeprecatedV1_TCPRoute.Marshal(b, m, deterministic)
 }
-func (m *TcpProxy_DeprecatedV1_TCPRoute) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TcpProxy_DeprecatedV1_TCPRoute.Merge(m, src)
+func (dst *TcpProxy_DeprecatedV1_TCPRoute) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TcpProxy_DeprecatedV1_TCPRoute.Merge(dst, src)
 }
 func (m *TcpProxy_DeprecatedV1_TCPRoute) XXX_Size() int {
 	return xxx_messageInfo_TcpProxy_DeprecatedV1_TCPRoute.Size(m)
@@ -425,17 +420,16 @@ func (m *TcpProxy_WeightedCluster) Reset()         { *m = TcpProxy_WeightedClust
 func (m *TcpProxy_WeightedCluster) String() string { return proto.CompactTextString(m) }
 func (*TcpProxy_WeightedCluster) ProtoMessage()    {}
 func (*TcpProxy_WeightedCluster) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1f6b35dbcbad27ba, []int{0, 1}
+	return fileDescriptor_tcp_proxy_2064cb021a3cd086, []int{0, 1}
 }
-
 func (m *TcpProxy_WeightedCluster) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TcpProxy_WeightedCluster.Unmarshal(m, b)
 }
 func (m *TcpProxy_WeightedCluster) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TcpProxy_WeightedCluster.Marshal(b, m, deterministic)
 }
-func (m *TcpProxy_WeightedCluster) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TcpProxy_WeightedCluster.Merge(m, src)
+func (dst *TcpProxy_WeightedCluster) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TcpProxy_WeightedCluster.Merge(dst, src)
 }
 func (m *TcpProxy_WeightedCluster) XXX_Size() int {
 	return xxx_messageInfo_TcpProxy_WeightedCluster.Size(m)
@@ -471,17 +465,16 @@ func (m *TcpProxy_WeightedCluster_ClusterWeight) Reset() {
 func (m *TcpProxy_WeightedCluster_ClusterWeight) String() string { return proto.CompactTextString(m) }
 func (*TcpProxy_WeightedCluster_ClusterWeight) ProtoMessage()    {}
 func (*TcpProxy_WeightedCluster_ClusterWeight) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1f6b35dbcbad27ba, []int{0, 1, 0}
+	return fileDescriptor_tcp_proxy_2064cb021a3cd086, []int{0, 1, 0}
 }
-
 func (m *TcpProxy_WeightedCluster_ClusterWeight) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TcpProxy_WeightedCluster_ClusterWeight.Unmarshal(m, b)
 }
 func (m *TcpProxy_WeightedCluster_ClusterWeight) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TcpProxy_WeightedCluster_ClusterWeight.Marshal(b, m, deterministic)
 }
-func (m *TcpProxy_WeightedCluster_ClusterWeight) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TcpProxy_WeightedCluster_ClusterWeight.Merge(m, src)
+func (dst *TcpProxy_WeightedCluster_ClusterWeight) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TcpProxy_WeightedCluster_ClusterWeight.Merge(dst, src)
 }
 func (m *TcpProxy_WeightedCluster_ClusterWeight) XXX_Size() int {
 	return xxx_messageInfo_TcpProxy_WeightedCluster_ClusterWeight.Size(m)
@@ -515,10 +508,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/network/tcp_proxy/v2/tcp_proxy.proto", fileDescriptor_1f6b35dbcbad27ba)
+	proto.RegisterFile("envoy/config/filter/network/tcp_proxy/v2/tcp_proxy.proto", fileDescriptor_tcp_proxy_2064cb021a3cd086)
 }
 
-var fileDescriptor_1f6b35dbcbad27ba = []byte{
+var fileDescriptor_tcp_proxy_2064cb021a3cd086 = []byte{
 	// 780 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x54, 0xdd, 0x6e, 0xdb, 0x36,
 	0x14, 0x8e, 0xe4, 0x9f, 0xda, 0xb4, 0xdd, 0x35, 0x6c, 0x8b, 0x6a, 0x5a, 0xb6, 0xba, 0xdb, 0x8d,

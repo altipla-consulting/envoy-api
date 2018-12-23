@@ -3,14 +3,12 @@
 
 package core
 
-import (
-	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/gogo/protobuf/gogoproto"
+import types "github.com/gogo/protobuf/types"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -53,17 +51,16 @@ func (m *HttpUri) Reset()         { *m = HttpUri{} }
 func (m *HttpUri) String() string { return proto.CompactTextString(m) }
 func (*HttpUri) ProtoMessage()    {}
 func (*HttpUri) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1660b946db74c078, []int{0}
+	return fileDescriptor_http_uri_e3c3e5ccc53ae916, []int{0}
 }
-
 func (m *HttpUri) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HttpUri.Unmarshal(m, b)
 }
 func (m *HttpUri) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_HttpUri.Marshal(b, m, deterministic)
 }
-func (m *HttpUri) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HttpUri.Merge(m, src)
+func (dst *HttpUri) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HttpUri.Merge(dst, src)
 }
 func (m *HttpUri) XXX_Size() int {
 	return xxx_messageInfo_HttpUri.Size(m)
@@ -167,9 +164,11 @@ func init() {
 	proto.RegisterType((*HttpUri)(nil), "envoy.api.v2.core.HttpUri")
 }
 
-func init() { proto.RegisterFile("envoy/api/v2/core/http_uri.proto", fileDescriptor_1660b946db74c078) }
+func init() {
+	proto.RegisterFile("envoy/api/v2/core/http_uri.proto", fileDescriptor_http_uri_e3c3e5ccc53ae916)
+}
 
-var fileDescriptor_1660b946db74c078 = []byte{
+var fileDescriptor_http_uri_e3c3e5ccc53ae916 = []byte{
 	// 261 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x90, 0x4f, 0x4a, 0x03, 0x31,
 	0x14, 0xc6, 0x9b, 0x19, 0xeb, 0xd8, 0xb8, 0x32, 0x08, 0x8e, 0x2d, 0xe8, 0x20, 0x08, 0x5d, 0x25,

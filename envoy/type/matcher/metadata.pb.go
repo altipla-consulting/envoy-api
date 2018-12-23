@@ -3,12 +3,10 @@
 
 package matcher
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -95,17 +93,16 @@ func (m *MetadataMatcher) Reset()         { *m = MetadataMatcher{} }
 func (m *MetadataMatcher) String() string { return proto.CompactTextString(m) }
 func (*MetadataMatcher) ProtoMessage()    {}
 func (*MetadataMatcher) Descriptor() ([]byte, []int) {
-	return fileDescriptor_865eaf6a1e9e266d, []int{0}
+	return fileDescriptor_metadata_3741065d9b6bd88f, []int{0}
 }
-
 func (m *MetadataMatcher) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_MetadataMatcher.Unmarshal(m, b)
 }
 func (m *MetadataMatcher) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_MetadataMatcher.Marshal(b, m, deterministic)
 }
-func (m *MetadataMatcher) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MetadataMatcher.Merge(m, src)
+func (dst *MetadataMatcher) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MetadataMatcher.Merge(dst, src)
 }
 func (m *MetadataMatcher) XXX_Size() int {
 	return xxx_messageInfo_MetadataMatcher.Size(m)
@@ -153,17 +150,16 @@ func (m *MetadataMatcher_PathSegment) Reset()         { *m = MetadataMatcher_Pat
 func (m *MetadataMatcher_PathSegment) String() string { return proto.CompactTextString(m) }
 func (*MetadataMatcher_PathSegment) ProtoMessage()    {}
 func (*MetadataMatcher_PathSegment) Descriptor() ([]byte, []int) {
-	return fileDescriptor_865eaf6a1e9e266d, []int{0, 0}
+	return fileDescriptor_metadata_3741065d9b6bd88f, []int{0, 0}
 }
-
 func (m *MetadataMatcher_PathSegment) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_MetadataMatcher_PathSegment.Unmarshal(m, b)
 }
 func (m *MetadataMatcher_PathSegment) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_MetadataMatcher_PathSegment.Marshal(b, m, deterministic)
 }
-func (m *MetadataMatcher_PathSegment) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MetadataMatcher_PathSegment.Merge(m, src)
+func (dst *MetadataMatcher_PathSegment) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MetadataMatcher_PathSegment.Merge(dst, src)
 }
 func (m *MetadataMatcher_PathSegment) XXX_Size() int {
 	return xxx_messageInfo_MetadataMatcher_PathSegment.Size(m)
@@ -254,9 +250,11 @@ func init() {
 	proto.RegisterType((*MetadataMatcher_PathSegment)(nil), "envoy.type.matcher.MetadataMatcher.PathSegment")
 }
 
-func init() { proto.RegisterFile("envoy/type/matcher/metadata.proto", fileDescriptor_865eaf6a1e9e266d) }
+func init() {
+	proto.RegisterFile("envoy/type/matcher/metadata.proto", fileDescriptor_metadata_3741065d9b6bd88f)
+}
 
-var fileDescriptor_865eaf6a1e9e266d = []byte{
+var fileDescriptor_metadata_3741065d9b6bd88f = []byte{
 	// 262 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x4c, 0xcd, 0x2b, 0xcb,
 	0xaf, 0xd4, 0x2f, 0xa9, 0x2c, 0x48, 0xd5, 0xcf, 0x4d, 0x2c, 0x49, 0xce, 0x48, 0x2d, 0xd2, 0xcf,

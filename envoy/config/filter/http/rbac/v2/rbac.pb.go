@@ -3,14 +3,12 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	v2alpha "github.com/altipla-consulting/envoy-api/envoy/config/rbac/v2alpha"
-	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import v2alpha "github.com/altipla-consulting/envoy-api/envoy/config/rbac/v2alpha"
+import _ "github.com/gogo/protobuf/gogoproto"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -41,17 +39,16 @@ func (m *RBAC) Reset()         { *m = RBAC{} }
 func (m *RBAC) String() string { return proto.CompactTextString(m) }
 func (*RBAC) ProtoMessage()    {}
 func (*RBAC) Descriptor() ([]byte, []int) {
-	return fileDescriptor_15d628c6558085a7, []int{0}
+	return fileDescriptor_rbac_dc6febb26256334b, []int{0}
 }
-
 func (m *RBAC) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RBAC.Unmarshal(m, b)
 }
 func (m *RBAC) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RBAC.Marshal(b, m, deterministic)
 }
-func (m *RBAC) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RBAC.Merge(m, src)
+func (dst *RBAC) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RBAC.Merge(dst, src)
 }
 func (m *RBAC) XXX_Size() int {
 	return xxx_messageInfo_RBAC.Size(m)
@@ -89,17 +86,16 @@ func (m *RBACPerRoute) Reset()         { *m = RBACPerRoute{} }
 func (m *RBACPerRoute) String() string { return proto.CompactTextString(m) }
 func (*RBACPerRoute) ProtoMessage()    {}
 func (*RBACPerRoute) Descriptor() ([]byte, []int) {
-	return fileDescriptor_15d628c6558085a7, []int{1}
+	return fileDescriptor_rbac_dc6febb26256334b, []int{1}
 }
-
 func (m *RBACPerRoute) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RBACPerRoute.Unmarshal(m, b)
 }
 func (m *RBACPerRoute) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RBACPerRoute.Marshal(b, m, deterministic)
 }
-func (m *RBACPerRoute) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RBACPerRoute.Merge(m, src)
+func (dst *RBACPerRoute) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RBACPerRoute.Merge(dst, src)
 }
 func (m *RBACPerRoute) XXX_Size() int {
 	return xxx_messageInfo_RBACPerRoute.Size(m)
@@ -123,10 +119,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/http/rbac/v2/rbac.proto", fileDescriptor_15d628c6558085a7)
+	proto.RegisterFile("envoy/config/filter/http/rbac/v2/rbac.proto", fileDescriptor_rbac_dc6febb26256334b)
 }
 
-var fileDescriptor_15d628c6558085a7 = []byte{
+var fileDescriptor_rbac_dc6febb26256334b = []byte{
 	// 243 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x90, 0xbf, 0x4b, 0x03, 0x31,
 	0x14, 0xc7, 0xb9, 0xe3, 0x94, 0x92, 0x76, 0x90, 0x20, 0x28, 0x5d, 0x2c, 0x45, 0x44, 0x10, 0x5e,

@@ -3,11 +3,9 @@
 
 package v2alpha1
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -30,17 +28,16 @@ func (m *Router) Reset()         { *m = Router{} }
 func (m *Router) String() string { return proto.CompactTextString(m) }
 func (*Router) ProtoMessage()    {}
 func (*Router) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9621417e977323f2, []int{0}
+	return fileDescriptor_router_027bcbf3aaf7672c, []int{0}
 }
-
 func (m *Router) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Router.Unmarshal(m, b)
 }
 func (m *Router) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Router.Marshal(b, m, deterministic)
 }
-func (m *Router) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Router.Merge(m, src)
+func (dst *Router) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Router.Merge(dst, src)
 }
 func (m *Router) XXX_Size() int {
 	return xxx_messageInfo_Router.Size(m)
@@ -56,10 +53,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/thrift/router/v2alpha1/router.proto", fileDescriptor_9621417e977323f2)
+	proto.RegisterFile("envoy/config/filter/thrift/router/v2alpha1/router.proto", fileDescriptor_router_027bcbf3aaf7672c)
 }
 
-var fileDescriptor_9621417e977323f2 = []byte{
+var fileDescriptor_router_027bcbf3aaf7672c = []byte{
 	// 109 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x32, 0x4f, 0xcd, 0x2b, 0xcb,
 	0xaf, 0xd4, 0x4f, 0xce, 0xcf, 0x4b, 0xcb, 0x4c, 0xd7, 0x4f, 0xcb, 0xcc, 0x29, 0x49, 0x2d, 0xd2,

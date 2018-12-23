@@ -3,16 +3,14 @@
 
 package v2
 
-import (
-	fmt "fmt"
-	route "github.com/altipla-consulting/envoy-api/envoy/api/v2/route"
-	_type "github.com/altipla-consulting/envoy-api/envoy/type"
-	_ "github.com/gogo/protobuf/gogoproto"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import route "github.com/altipla-consulting/envoy-api/envoy/api/v2/route"
+import _type "github.com/altipla-consulting/envoy-api/envoy/type"
+import _ "github.com/gogo/protobuf/gogoproto"
+import types "github.com/gogo/protobuf/types"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -48,17 +46,16 @@ func (m *HealthCheck) Reset()         { *m = HealthCheck{} }
 func (m *HealthCheck) String() string { return proto.CompactTextString(m) }
 func (*HealthCheck) ProtoMessage()    {}
 func (*HealthCheck) Descriptor() ([]byte, []int) {
-	return fileDescriptor_75439d7b4d98e201, []int{0}
+	return fileDescriptor_health_check_33ce9ae90e5aeab9, []int{0}
 }
-
 func (m *HealthCheck) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HealthCheck.Unmarshal(m, b)
 }
 func (m *HealthCheck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_HealthCheck.Marshal(b, m, deterministic)
 }
-func (m *HealthCheck) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HealthCheck.Merge(m, src)
+func (dst *HealthCheck) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HealthCheck.Merge(dst, src)
 }
 func (m *HealthCheck) XXX_Size() int {
 	return xxx_messageInfo_HealthCheck.Size(m)
@@ -103,10 +100,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/http/health_check/v2/health_check.proto", fileDescriptor_75439d7b4d98e201)
+	proto.RegisterFile("envoy/config/filter/http/health_check/v2/health_check.proto", fileDescriptor_health_check_33ce9ae90e5aeab9)
 }
 
-var fileDescriptor_75439d7b4d98e201 = []byte{
+var fileDescriptor_health_check_33ce9ae90e5aeab9 = []byte{
 	// 454 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x52, 0xc1, 0x8a, 0xd4, 0x30,
 	0x18, 0xa6, 0xed, 0x8c, 0xee, 0x66, 0x0e, 0x8e, 0x55, 0xb0, 0x0e, 0xe2, 0xee, 0x7a, 0x1a, 0x2f,

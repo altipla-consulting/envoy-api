@@ -20,6 +20,7 @@ git clone git@github.com:envoyproxy/envoy.git
 git clone git@github.com:lyft/protoc-gen-validate.git
 git clone git@github.com:gogo/protobuf.git
 git clone git@github.com:istio/gogo-genproto.git
+git clone git@github.com:census-instrumentation/opencensus-proto.git
 
 echo " [*] Checkout tag"
 cd envoy
@@ -50,7 +51,7 @@ mappings=(
 
   'gogoproto/gogo.proto=github.com/gogo/protobuf/gogoproto'
   
-  'trace.proto=istio.io/gogo-genproto/opencensus/proto/trace'
+  'trace.proto=github.com/census-instrumentation/opencensus-proto/gen-go/trace/v1'
   'metrics.proto=istio.io/gogo-genproto/prometheus'
 )
 for mapping in "${mappings[@]}"
@@ -81,7 +82,7 @@ do
     -Itmp/protoc-gen-validate \
     -Itmp/gogo-genproto/prometheus \
     -Itmp/gogo-genproto/googleapis \
-    -Itmp/gogo-genproto/opencensus/proto/trace \
+    -Itmp/opencensus-proto/src/opencensus/proto/trace/v1 \
     -Itmp/protobuf \
     -I/opt/googleapis \
     --go_out=plugins=grpc,paths=source_relative${arg}:. \

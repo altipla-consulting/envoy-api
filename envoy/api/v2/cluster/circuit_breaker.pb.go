@@ -3,14 +3,12 @@
 
 package cluster
 
-import (
-	fmt "fmt"
-	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
-	_ "github.com/gogo/protobuf/gogoproto"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
+import _ "github.com/gogo/protobuf/gogoproto"
+import types "github.com/gogo/protobuf/types"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -41,17 +39,16 @@ func (m *CircuitBreakers) Reset()         { *m = CircuitBreakers{} }
 func (m *CircuitBreakers) String() string { return proto.CompactTextString(m) }
 func (*CircuitBreakers) ProtoMessage()    {}
 func (*CircuitBreakers) Descriptor() ([]byte, []int) {
-	return fileDescriptor_89bc8d4e21efdd79, []int{0}
+	return fileDescriptor_circuit_breaker_b5d755925794a0b5, []int{0}
 }
-
 func (m *CircuitBreakers) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CircuitBreakers.Unmarshal(m, b)
 }
 func (m *CircuitBreakers) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CircuitBreakers.Marshal(b, m, deterministic)
 }
-func (m *CircuitBreakers) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CircuitBreakers.Merge(m, src)
+func (dst *CircuitBreakers) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CircuitBreakers.Merge(dst, src)
 }
 func (m *CircuitBreakers) XXX_Size() int {
 	return xxx_messageInfo_CircuitBreakers.Size(m)
@@ -98,17 +95,16 @@ func (m *CircuitBreakers_Thresholds) Reset()         { *m = CircuitBreakers_Thre
 func (m *CircuitBreakers_Thresholds) String() string { return proto.CompactTextString(m) }
 func (*CircuitBreakers_Thresholds) ProtoMessage()    {}
 func (*CircuitBreakers_Thresholds) Descriptor() ([]byte, []int) {
-	return fileDescriptor_89bc8d4e21efdd79, []int{0, 0}
+	return fileDescriptor_circuit_breaker_b5d755925794a0b5, []int{0, 0}
 }
-
 func (m *CircuitBreakers_Thresholds) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CircuitBreakers_Thresholds.Unmarshal(m, b)
 }
 func (m *CircuitBreakers_Thresholds) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CircuitBreakers_Thresholds.Marshal(b, m, deterministic)
 }
-func (m *CircuitBreakers_Thresholds) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CircuitBreakers_Thresholds.Merge(m, src)
+func (dst *CircuitBreakers_Thresholds) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CircuitBreakers_Thresholds.Merge(dst, src)
 }
 func (m *CircuitBreakers_Thresholds) XXX_Size() int {
 	return xxx_messageInfo_CircuitBreakers_Thresholds.Size(m)
@@ -160,10 +156,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/api/v2/cluster/circuit_breaker.proto", fileDescriptor_89bc8d4e21efdd79)
+	proto.RegisterFile("envoy/api/v2/cluster/circuit_breaker.proto", fileDescriptor_circuit_breaker_b5d755925794a0b5)
 }
 
-var fileDescriptor_89bc8d4e21efdd79 = []byte{
+var fileDescriptor_circuit_breaker_b5d755925794a0b5 = []byte{
 	// 369 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x91, 0xcf, 0x6e, 0xe2, 0x30,
 	0x10, 0x87, 0x15, 0xd8, 0x7f, 0x72, 0x56, 0x20, 0x45, 0x68, 0x15, 0x21, 0x84, 0x10, 0x87, 0x15,

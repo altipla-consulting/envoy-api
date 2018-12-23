@@ -3,14 +3,12 @@
 
 package core
 
-import (
-	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	types "github.com/gogo/protobuf/types"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/gogo/protobuf/gogoproto"
+import types "github.com/gogo/protobuf/types"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -35,7 +33,6 @@ var SocketAddress_Protocol_name = map[int32]string{
 	0: "TCP",
 	1: "UDP",
 }
-
 var SocketAddress_Protocol_value = map[string]int32{
 	"TCP": 0,
 	"UDP": 1,
@@ -44,9 +41,8 @@ var SocketAddress_Protocol_value = map[string]int32{
 func (x SocketAddress_Protocol) String() string {
 	return proto.EnumName(SocketAddress_Protocol_name, int32(x))
 }
-
 func (SocketAddress_Protocol) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_6906417f87bcce55, []int{1, 0}
+	return fileDescriptor_address_60ef22df5e919b6f, []int{1, 0}
 }
 
 type Pipe struct {
@@ -64,17 +60,16 @@ func (m *Pipe) Reset()         { *m = Pipe{} }
 func (m *Pipe) String() string { return proto.CompactTextString(m) }
 func (*Pipe) ProtoMessage()    {}
 func (*Pipe) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6906417f87bcce55, []int{0}
+	return fileDescriptor_address_60ef22df5e919b6f, []int{0}
 }
-
 func (m *Pipe) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Pipe.Unmarshal(m, b)
 }
 func (m *Pipe) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Pipe.Marshal(b, m, deterministic)
 }
-func (m *Pipe) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Pipe.Merge(m, src)
+func (dst *Pipe) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Pipe.Merge(dst, src)
 }
 func (m *Pipe) XXX_Size() int {
 	return xxx_messageInfo_Pipe.Size(m)
@@ -129,17 +124,16 @@ func (m *SocketAddress) Reset()         { *m = SocketAddress{} }
 func (m *SocketAddress) String() string { return proto.CompactTextString(m) }
 func (*SocketAddress) ProtoMessage()    {}
 func (*SocketAddress) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6906417f87bcce55, []int{1}
+	return fileDescriptor_address_60ef22df5e919b6f, []int{1}
 }
-
 func (m *SocketAddress) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SocketAddress.Unmarshal(m, b)
 }
 func (m *SocketAddress) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_SocketAddress.Marshal(b, m, deterministic)
 }
-func (m *SocketAddress) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SocketAddress.Merge(m, src)
+func (dst *SocketAddress) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SocketAddress.Merge(dst, src)
 }
 func (m *SocketAddress) XXX_Size() int {
 	return xxx_messageInfo_SocketAddress.Size(m)
@@ -301,17 +295,16 @@ func (m *TcpKeepalive) Reset()         { *m = TcpKeepalive{} }
 func (m *TcpKeepalive) String() string { return proto.CompactTextString(m) }
 func (*TcpKeepalive) ProtoMessage()    {}
 func (*TcpKeepalive) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6906417f87bcce55, []int{2}
+	return fileDescriptor_address_60ef22df5e919b6f, []int{2}
 }
-
 func (m *TcpKeepalive) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TcpKeepalive.Unmarshal(m, b)
 }
 func (m *TcpKeepalive) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TcpKeepalive.Marshal(b, m, deterministic)
 }
-func (m *TcpKeepalive) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TcpKeepalive.Merge(m, src)
+func (dst *TcpKeepalive) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TcpKeepalive.Merge(dst, src)
 }
 func (m *TcpKeepalive) XXX_Size() int {
 	return xxx_messageInfo_TcpKeepalive.Size(m)
@@ -366,17 +359,16 @@ func (m *BindConfig) Reset()         { *m = BindConfig{} }
 func (m *BindConfig) String() string { return proto.CompactTextString(m) }
 func (*BindConfig) ProtoMessage()    {}
 func (*BindConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6906417f87bcce55, []int{3}
+	return fileDescriptor_address_60ef22df5e919b6f, []int{3}
 }
-
 func (m *BindConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_BindConfig.Unmarshal(m, b)
 }
 func (m *BindConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_BindConfig.Marshal(b, m, deterministic)
 }
-func (m *BindConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BindConfig.Merge(m, src)
+func (dst *BindConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BindConfig.Merge(dst, src)
 }
 func (m *BindConfig) XXX_Size() int {
 	return xxx_messageInfo_BindConfig.Size(m)
@@ -425,17 +417,16 @@ func (m *Address) Reset()         { *m = Address{} }
 func (m *Address) String() string { return proto.CompactTextString(m) }
 func (*Address) ProtoMessage()    {}
 func (*Address) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6906417f87bcce55, []int{4}
+	return fileDescriptor_address_60ef22df5e919b6f, []int{4}
 }
-
 func (m *Address) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Address.Unmarshal(m, b)
 }
 func (m *Address) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Address.Marshal(b, m, deterministic)
 }
-func (m *Address) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Address.Merge(m, src)
+func (dst *Address) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Address.Merge(dst, src)
 }
 func (m *Address) XXX_Size() int {
 	return xxx_messageInfo_Address.Size(m)
@@ -573,17 +564,16 @@ func (m *CidrRange) Reset()         { *m = CidrRange{} }
 func (m *CidrRange) String() string { return proto.CompactTextString(m) }
 func (*CidrRange) ProtoMessage()    {}
 func (*CidrRange) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6906417f87bcce55, []int{5}
+	return fileDescriptor_address_60ef22df5e919b6f, []int{5}
 }
-
 func (m *CidrRange) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CidrRange.Unmarshal(m, b)
 }
 func (m *CidrRange) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CidrRange.Marshal(b, m, deterministic)
 }
-func (m *CidrRange) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CidrRange.Merge(m, src)
+func (dst *CidrRange) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CidrRange.Merge(dst, src)
 }
 func (m *CidrRange) XXX_Size() int {
 	return xxx_messageInfo_CidrRange.Size(m)
@@ -609,18 +599,20 @@ func (m *CidrRange) GetPrefixLen() *types.UInt32Value {
 }
 
 func init() {
-	proto.RegisterEnum("envoy.api.v2.core.SocketAddress_Protocol", SocketAddress_Protocol_name, SocketAddress_Protocol_value)
 	proto.RegisterType((*Pipe)(nil), "envoy.api.v2.core.Pipe")
 	proto.RegisterType((*SocketAddress)(nil), "envoy.api.v2.core.SocketAddress")
 	proto.RegisterType((*TcpKeepalive)(nil), "envoy.api.v2.core.TcpKeepalive")
 	proto.RegisterType((*BindConfig)(nil), "envoy.api.v2.core.BindConfig")
 	proto.RegisterType((*Address)(nil), "envoy.api.v2.core.Address")
 	proto.RegisterType((*CidrRange)(nil), "envoy.api.v2.core.CidrRange")
+	proto.RegisterEnum("envoy.api.v2.core.SocketAddress_Protocol", SocketAddress_Protocol_name, SocketAddress_Protocol_value)
 }
 
-func init() { proto.RegisterFile("envoy/api/v2/core/address.proto", fileDescriptor_6906417f87bcce55) }
+func init() {
+	proto.RegisterFile("envoy/api/v2/core/address.proto", fileDescriptor_address_60ef22df5e919b6f)
+}
 
-var fileDescriptor_6906417f87bcce55 = []byte{
+var fileDescriptor_address_60ef22df5e919b6f = []byte{
 	// 679 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x53, 0xcd, 0x6e, 0x13, 0x3b,
 	0x18, 0x8d, 0x33, 0xd3, 0x36, 0xf9, 0xd2, 0xe4, 0xa6, 0xd6, 0x95, 0x3a, 0x8a, 0x7a, 0x9b, 0x28,

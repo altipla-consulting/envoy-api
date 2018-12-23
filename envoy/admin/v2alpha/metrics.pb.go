@@ -3,11 +3,9 @@
 
 package envoy_admin_v2alpha
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -31,7 +29,6 @@ var SimpleMetric_Type_name = map[int32]string{
 	0: "COUNTER",
 	1: "GAUGE",
 }
-
 var SimpleMetric_Type_value = map[string]int32{
 	"COUNTER": 0,
 	"GAUGE":   1,
@@ -40,9 +37,8 @@ var SimpleMetric_Type_value = map[string]int32{
 func (x SimpleMetric_Type) String() string {
 	return proto.EnumName(SimpleMetric_Type_name, int32(x))
 }
-
 func (SimpleMetric_Type) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_680a736ec6584458, []int{0, 0}
+	return fileDescriptor_metrics_828511cae4ebd4d5, []int{0, 0}
 }
 
 // Proto representation of an Envoy Counter or Gauge value.
@@ -62,17 +58,16 @@ func (m *SimpleMetric) Reset()         { *m = SimpleMetric{} }
 func (m *SimpleMetric) String() string { return proto.CompactTextString(m) }
 func (*SimpleMetric) ProtoMessage()    {}
 func (*SimpleMetric) Descriptor() ([]byte, []int) {
-	return fileDescriptor_680a736ec6584458, []int{0}
+	return fileDescriptor_metrics_828511cae4ebd4d5, []int{0}
 }
-
 func (m *SimpleMetric) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SimpleMetric.Unmarshal(m, b)
 }
 func (m *SimpleMetric) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_SimpleMetric.Marshal(b, m, deterministic)
 }
-func (m *SimpleMetric) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SimpleMetric.Merge(m, src)
+func (dst *SimpleMetric) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SimpleMetric.Merge(dst, src)
 }
 func (m *SimpleMetric) XXX_Size() int {
 	return xxx_messageInfo_SimpleMetric.Size(m)
@@ -105,13 +100,15 @@ func (m *SimpleMetric) GetName() string {
 }
 
 func init() {
-	proto.RegisterEnum("envoy.admin.v2alpha.SimpleMetric_Type", SimpleMetric_Type_name, SimpleMetric_Type_value)
 	proto.RegisterType((*SimpleMetric)(nil), "envoy.admin.v2alpha.SimpleMetric")
+	proto.RegisterEnum("envoy.admin.v2alpha.SimpleMetric_Type", SimpleMetric_Type_name, SimpleMetric_Type_value)
 }
 
-func init() { proto.RegisterFile("envoy/admin/v2alpha/metrics.proto", fileDescriptor_680a736ec6584458) }
+func init() {
+	proto.RegisterFile("envoy/admin/v2alpha/metrics.proto", fileDescriptor_metrics_828511cae4ebd4d5)
+}
 
-var fileDescriptor_680a736ec6584458 = []byte{
+var fileDescriptor_metrics_828511cae4ebd4d5 = []byte{
 	// 183 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x4c, 0xcd, 0x2b, 0xcb,
 	0xaf, 0xd4, 0x4f, 0x4c, 0xc9, 0xcd, 0xcc, 0xd3, 0x2f, 0x33, 0x4a, 0xcc, 0x29, 0xc8, 0x48, 0xd4,

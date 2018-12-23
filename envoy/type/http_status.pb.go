@@ -3,12 +3,10 @@
 
 package envoy_type
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/lyft/protoc-gen-validate/validate"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/lyft/protoc-gen-validate/validate"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -146,7 +144,6 @@ var StatusCode_name = map[int32]string{
 	510: "NotExtended",
 	511: "NetworkAuthenticationRequired",
 }
-
 var StatusCode_value = map[string]int32{
 	"Empty":                         0,
 	"Continue":                      100,
@@ -210,9 +207,8 @@ var StatusCode_value = map[string]int32{
 func (x StatusCode) String() string {
 	return proto.EnumName(StatusCode_name, int32(x))
 }
-
 func (StatusCode) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_7544d7adacd3389b, []int{0}
+	return fileDescriptor_http_status_718eecc361dfc9db, []int{0}
 }
 
 // HTTP status.
@@ -228,17 +224,16 @@ func (m *HttpStatus) Reset()         { *m = HttpStatus{} }
 func (m *HttpStatus) String() string { return proto.CompactTextString(m) }
 func (*HttpStatus) ProtoMessage()    {}
 func (*HttpStatus) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7544d7adacd3389b, []int{0}
+	return fileDescriptor_http_status_718eecc361dfc9db, []int{0}
 }
-
 func (m *HttpStatus) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HttpStatus.Unmarshal(m, b)
 }
 func (m *HttpStatus) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_HttpStatus.Marshal(b, m, deterministic)
 }
-func (m *HttpStatus) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HttpStatus.Merge(m, src)
+func (dst *HttpStatus) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HttpStatus.Merge(dst, src)
 }
 func (m *HttpStatus) XXX_Size() int {
 	return xxx_messageInfo_HttpStatus.Size(m)
@@ -257,13 +252,15 @@ func (m *HttpStatus) GetCode() StatusCode {
 }
 
 func init() {
-	proto.RegisterEnum("envoy.type.StatusCode", StatusCode_name, StatusCode_value)
 	proto.RegisterType((*HttpStatus)(nil), "envoy.type.HttpStatus")
+	proto.RegisterEnum("envoy.type.StatusCode", StatusCode_name, StatusCode_value)
 }
 
-func init() { proto.RegisterFile("envoy/type/http_status.proto", fileDescriptor_7544d7adacd3389b) }
+func init() {
+	proto.RegisterFile("envoy/type/http_status.proto", fileDescriptor_http_status_718eecc361dfc9db)
+}
 
-var fileDescriptor_7544d7adacd3389b = []byte{
+var fileDescriptor_http_status_718eecc361dfc9db = []byte{
 	// 894 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x54, 0x49, 0x6f, 0x1c, 0x45,
 	0x14, 0x4e, 0x4f, 0xc5, 0x49, 0x5c, 0x71, 0x9c, 0x97, 0x8a, 0x13, 0x87, 0x10, 0x24, 0x2b, 0x27,
