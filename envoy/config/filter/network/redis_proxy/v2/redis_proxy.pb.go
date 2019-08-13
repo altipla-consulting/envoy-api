@@ -3,12 +3,15 @@
 
 package v2
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
-import _ "github.com/gogo/protobuf/gogoproto"
-import types "github.com/gogo/protobuf/types"
-import _ "github.com/lyft/protoc-gen-validate/validate"
+import (
+	fmt "fmt"
+	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
+	_ "github.com/envoyproxy/protoc-gen-validate/validate"
+	_ "github.com/gogo/protobuf/gogoproto"
+	types "github.com/gogo/protobuf/types"
+	proto "github.com/golang/protobuf/proto"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -19,7 +22,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type RedisProxy struct {
 	// The prefix to use when emitting :ref:`statistics <config_network_filters_redis_proxy_stats>`.
@@ -27,28 +30,75 @@ type RedisProxy struct {
 	// Name of cluster from cluster manager. See the :ref:`configuration section
 	// <arch_overview_redis_configuration>` of the architecture overview for recommendations on
 	// configuring the backing cluster.
-	Cluster string `protobuf:"bytes,2,opt,name=cluster,proto3" json:"cluster,omitempty"`
-	// Network settings for the connection pool to the upstream cluster.
-	Settings             *RedisProxy_ConnPoolSettings `protobuf:"bytes,3,opt,name=settings,proto3" json:"settings,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                     `json:"-"`
-	XXX_unrecognized     []byte                       `json:"-"`
-	XXX_sizecache        int32                        `json:"-"`
+	//
+	// .. attention::
+	//
+	//   This field is deprecated. Use a :ref:`catch_all
+	//   route<envoy_api_field_config.filter.network.redis_proxy.v2.RedisProxy.PrefixRoutes.catch_all_route>`
+	//   instead.
+	Cluster string `protobuf:"bytes,2,opt,name=cluster,proto3" json:"cluster,omitempty"` // Deprecated: Do not use.
+	// Network settings for the connection pool to the upstream clusters.
+	Settings *RedisProxy_ConnPoolSettings `protobuf:"bytes,3,opt,name=settings,proto3" json:"settings,omitempty"`
+	// Indicates that latency stat should be computed in microseconds. By default it is computed in
+	// milliseconds.
+	LatencyInMicros bool `protobuf:"varint,4,opt,name=latency_in_micros,json=latencyInMicros,proto3" json:"latency_in_micros,omitempty"`
+	// List of **unique** prefixes used to separate keys from different workloads to different
+	// clusters. Envoy will always favor the longest match first in case of overlap. A catch-all
+	// cluster can be used to forward commands when there is no match. Time complexity of the
+	// lookups are in O(min(longest key prefix, key length)).
+	//
+	// Example:
+	//
+	// .. code-block:: yaml
+	//
+	//    prefix_routes:
+	//      routes:
+	//        - prefix: "ab"
+	//          cluster: "cluster_a"
+	//        - prefix: "abc"
+	//          cluster: "cluster_b"
+	//
+	// When using the above routes, the following prefixes would be sent to:
+	//
+	// * 'get abc:users' would retrive the key 'abc:users' from cluster_b.
+	// * 'get ab:users' would retrive the key 'ab:users' from cluster_a.
+	// * 'get z:users' would return a NoUpstreamHost error. A :ref:`catch-all
+	//   route<envoy_api_field_config.filter.network.redis_proxy.v2.RedisProxy.PrefixRoutes.catch_all_route>`
+	//   would have retrieved the key from that cluster instead.
+	//
+	// See the :ref:`configuration section
+	// <arch_overview_redis_configuration>` of the architecture overview for recommendations on
+	// configuring the backing clusters.
+	PrefixRoutes *RedisProxy_PrefixRoutes `protobuf:"bytes,5,opt,name=prefix_routes,json=prefixRoutes,proto3" json:"prefix_routes,omitempty"`
+	// Authenticate Redis client connections locally by forcing downstream clients to issue a 'Redis
+	// AUTH command <https://redis.io/commands/auth>`_ with this password before enabling any other
+	// command. If an AUTH command's password matches this password, an "OK" response will be returned
+	// to the client. If the AUTH command password does not match this password, then an "ERR invalid
+	// password" error will be returned. If any other command is received before AUTH when this
+	// password is set, then a "NOAUTH Authentication required." error response will be sent to the
+	// client. If an AUTH command is received when the password is not set, then an "ERR Client sent
+	// AUTH, but no password is set" error will be returned.
+	DownstreamAuthPassword *core.DataSource `protobuf:"bytes,6,opt,name=downstream_auth_password,json=downstreamAuthPassword,proto3" json:"downstream_auth_password,omitempty"`
+	XXX_NoUnkeyedLiteral   struct{}         `json:"-"`
+	XXX_unrecognized       []byte           `json:"-"`
+	XXX_sizecache          int32            `json:"-"`
 }
 
 func (m *RedisProxy) Reset()         { *m = RedisProxy{} }
 func (m *RedisProxy) String() string { return proto.CompactTextString(m) }
 func (*RedisProxy) ProtoMessage()    {}
 func (*RedisProxy) Descriptor() ([]byte, []int) {
-	return fileDescriptor_redis_proxy_af67d9f0306fe2f9, []int{0}
+	return fileDescriptor_67e7179f1292d5ae, []int{0}
 }
+
 func (m *RedisProxy) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RedisProxy.Unmarshal(m, b)
 }
 func (m *RedisProxy) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RedisProxy.Marshal(b, m, deterministic)
 }
-func (dst *RedisProxy) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RedisProxy.Merge(dst, src)
+func (m *RedisProxy) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RedisProxy.Merge(m, src)
 }
 func (m *RedisProxy) XXX_Size() int {
 	return xxx_messageInfo_RedisProxy.Size(m)
@@ -66,6 +116,7 @@ func (m *RedisProxy) GetStatPrefix() string {
 	return ""
 }
 
+// Deprecated: Do not use.
 func (m *RedisProxy) GetCluster() string {
 	if m != nil {
 		return m.Cluster
@@ -80,6 +131,27 @@ func (m *RedisProxy) GetSettings() *RedisProxy_ConnPoolSettings {
 	return nil
 }
 
+func (m *RedisProxy) GetLatencyInMicros() bool {
+	if m != nil {
+		return m.LatencyInMicros
+	}
+	return false
+}
+
+func (m *RedisProxy) GetPrefixRoutes() *RedisProxy_PrefixRoutes {
+	if m != nil {
+		return m.PrefixRoutes
+	}
+	return nil
+}
+
+func (m *RedisProxy) GetDownstreamAuthPassword() *core.DataSource {
+	if m != nil {
+		return m.DownstreamAuthPassword
+	}
+	return nil
+}
+
 // Redis connection pool settings.
 type RedisProxy_ConnPoolSettings struct {
 	// Per-operation timeout in milliseconds. The timer starts when the first
@@ -88,7 +160,43 @@ type RedisProxy_ConnPoolSettings struct {
 	// The only exception to this behavior is when a connection to a backend is not yet established.
 	// In that case, the connect timeout on the cluster will govern the timeout until the connection
 	// is ready.
-	OpTimeout            *types.Duration `protobuf:"bytes,1,opt,name=op_timeout,json=opTimeout,proto3" json:"op_timeout,omitempty"`
+	OpTimeout *types.Duration `protobuf:"bytes,1,opt,name=op_timeout,json=opTimeout,proto3" json:"op_timeout,omitempty"`
+	// Use hash tagging on every redis key to guarantee that keys with the same hash tag will be
+	// forwarded to the same upstream. The hash key used for determining the upstream in a
+	// consistent hash ring configuration will be computed from the hash tagged key instead of the
+	// whole key. The algorithm used to compute the hash tag is identical to the `redis-cluster
+	// implementation <https://redis.io/topics/cluster-spec#keys-hash-tags>`_.
+	//
+	// Examples:
+	//
+	// * '{user1000}.following' and '{user1000}.followers' **will** be sent to the same upstream
+	// * '{user1000}.following' and '{user1001}.following' **might** be sent to the same upstream
+	EnableHashtagging bool `protobuf:"varint,2,opt,name=enable_hashtagging,json=enableHashtagging,proto3" json:"enable_hashtagging,omitempty"`
+	// Accept `moved and ask redirection
+	// <https://redis.io/topics/cluster-spec#redirection-and-resharding>`_ errors from upstream
+	// redis servers, and retry commands to the specified target server. The target server does not
+	// need to be known to the cluster manager. If the command cannot be redirected, then the
+	// original error is passed downstream unchanged. By default, this support is not enabled.
+	EnableRedirection bool `protobuf:"varint,3,opt,name=enable_redirection,json=enableRedirection,proto3" json:"enable_redirection,omitempty"`
+	// Maximum size of encoded request buffer before flush is triggered and encoded requests
+	// are sent upstream. If this is unset, the buffer flushes whenever it receives data
+	// and performs no batching.
+	// This feature makes it possible for multiple clients to send requests to Envoy and have
+	// them batched- for example if one is running several worker processes, each with its own
+	// Redis connection. There is no benefit to using this with a single downstream process.
+	// Recommended size (if enabled) is 1024 bytes.
+	MaxBufferSizeBeforeFlush uint32 `protobuf:"varint,4,opt,name=max_buffer_size_before_flush,json=maxBufferSizeBeforeFlush,proto3" json:"max_buffer_size_before_flush,omitempty"`
+	// The encoded request buffer is flushed N milliseconds after the first request has been
+	// encoded, unless the buffer size has already exceeded `max_buffer_size_before_flush`.
+	// If `max_buffer_size_before_flush` is not set, this flush timer is not used. Otherwise,
+	// the timer should be set according to the number of clients, overall request rate and
+	// desired maximum latency for a single command. For example, if there are many requests
+	// being batched together at a high rate, the buffer will likely be filled before the timer
+	// fires. Alternatively, if the request rate is lower the buffer will not be filled as often
+	// before the timer fires.
+	// If `max_buffer_size_before_flush` is set, but `buffer_flush_timeout` is not, the latter
+	// defaults to 3ms.
+	BufferFlushTimeout   *types.Duration `protobuf:"bytes,5,opt,name=buffer_flush_timeout,json=bufferFlushTimeout,proto3" json:"buffer_flush_timeout,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
 	XXX_unrecognized     []byte          `json:"-"`
 	XXX_sizecache        int32           `json:"-"`
@@ -98,16 +206,17 @@ func (m *RedisProxy_ConnPoolSettings) Reset()         { *m = RedisProxy_ConnPool
 func (m *RedisProxy_ConnPoolSettings) String() string { return proto.CompactTextString(m) }
 func (*RedisProxy_ConnPoolSettings) ProtoMessage()    {}
 func (*RedisProxy_ConnPoolSettings) Descriptor() ([]byte, []int) {
-	return fileDescriptor_redis_proxy_af67d9f0306fe2f9, []int{0, 0}
+	return fileDescriptor_67e7179f1292d5ae, []int{0, 0}
 }
+
 func (m *RedisProxy_ConnPoolSettings) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RedisProxy_ConnPoolSettings.Unmarshal(m, b)
 }
 func (m *RedisProxy_ConnPoolSettings) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RedisProxy_ConnPoolSettings.Marshal(b, m, deterministic)
 }
-func (dst *RedisProxy_ConnPoolSettings) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RedisProxy_ConnPoolSettings.Merge(dst, src)
+func (m *RedisProxy_ConnPoolSettings) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RedisProxy_ConnPoolSettings.Merge(m, src)
 }
 func (m *RedisProxy_ConnPoolSettings) XXX_Size() int {
 	return xxx_messageInfo_RedisProxy_ConnPoolSettings.Size(m)
@@ -125,36 +234,368 @@ func (m *RedisProxy_ConnPoolSettings) GetOpTimeout() *types.Duration {
 	return nil
 }
 
+func (m *RedisProxy_ConnPoolSettings) GetEnableHashtagging() bool {
+	if m != nil {
+		return m.EnableHashtagging
+	}
+	return false
+}
+
+func (m *RedisProxy_ConnPoolSettings) GetEnableRedirection() bool {
+	if m != nil {
+		return m.EnableRedirection
+	}
+	return false
+}
+
+func (m *RedisProxy_ConnPoolSettings) GetMaxBufferSizeBeforeFlush() uint32 {
+	if m != nil {
+		return m.MaxBufferSizeBeforeFlush
+	}
+	return 0
+}
+
+func (m *RedisProxy_ConnPoolSettings) GetBufferFlushTimeout() *types.Duration {
+	if m != nil {
+		return m.BufferFlushTimeout
+	}
+	return nil
+}
+
+type RedisProxy_PrefixRoutes struct {
+	// List of prefix routes.
+	Routes []*RedisProxy_PrefixRoutes_Route `protobuf:"bytes,1,rep,name=routes,proto3" json:"routes,omitempty"`
+	// Indicates that prefix matching should be case insensitive.
+	CaseInsensitive bool `protobuf:"varint,2,opt,name=case_insensitive,json=caseInsensitive,proto3" json:"case_insensitive,omitempty"`
+	// Optional catch-all route to forward commands that doesn't match any of the routes. The
+	// catch-all route becomes required when no routes are specified.
+	// .. attention::
+	//
+	//   This field is deprecated. Use a :ref:`catch_all
+	//   route<envoy_api_field_config.filter.network.redis_proxy.v2.RedisProxy.PrefixRoutes.catch_all_route>`
+	//   instead.
+	CatchAllCluster string `protobuf:"bytes,3,opt,name=catch_all_cluster,json=catchAllCluster,proto3" json:"catch_all_cluster,omitempty"` // Deprecated: Do not use.
+	// Optional catch-all route to forward commands that doesn't match any of the routes. The
+	// catch-all route becomes required when no routes are specified.
+	CatchAllRoute        *RedisProxy_PrefixRoutes_Route `protobuf:"bytes,4,opt,name=catch_all_route,json=catchAllRoute,proto3" json:"catch_all_route,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                       `json:"-"`
+	XXX_unrecognized     []byte                         `json:"-"`
+	XXX_sizecache        int32                          `json:"-"`
+}
+
+func (m *RedisProxy_PrefixRoutes) Reset()         { *m = RedisProxy_PrefixRoutes{} }
+func (m *RedisProxy_PrefixRoutes) String() string { return proto.CompactTextString(m) }
+func (*RedisProxy_PrefixRoutes) ProtoMessage()    {}
+func (*RedisProxy_PrefixRoutes) Descriptor() ([]byte, []int) {
+	return fileDescriptor_67e7179f1292d5ae, []int{0, 1}
+}
+
+func (m *RedisProxy_PrefixRoutes) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RedisProxy_PrefixRoutes.Unmarshal(m, b)
+}
+func (m *RedisProxy_PrefixRoutes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RedisProxy_PrefixRoutes.Marshal(b, m, deterministic)
+}
+func (m *RedisProxy_PrefixRoutes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RedisProxy_PrefixRoutes.Merge(m, src)
+}
+func (m *RedisProxy_PrefixRoutes) XXX_Size() int {
+	return xxx_messageInfo_RedisProxy_PrefixRoutes.Size(m)
+}
+func (m *RedisProxy_PrefixRoutes) XXX_DiscardUnknown() {
+	xxx_messageInfo_RedisProxy_PrefixRoutes.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RedisProxy_PrefixRoutes proto.InternalMessageInfo
+
+func (m *RedisProxy_PrefixRoutes) GetRoutes() []*RedisProxy_PrefixRoutes_Route {
+	if m != nil {
+		return m.Routes
+	}
+	return nil
+}
+
+func (m *RedisProxy_PrefixRoutes) GetCaseInsensitive() bool {
+	if m != nil {
+		return m.CaseInsensitive
+	}
+	return false
+}
+
+// Deprecated: Do not use.
+func (m *RedisProxy_PrefixRoutes) GetCatchAllCluster() string {
+	if m != nil {
+		return m.CatchAllCluster
+	}
+	return ""
+}
+
+func (m *RedisProxy_PrefixRoutes) GetCatchAllRoute() *RedisProxy_PrefixRoutes_Route {
+	if m != nil {
+		return m.CatchAllRoute
+	}
+	return nil
+}
+
+type RedisProxy_PrefixRoutes_Route struct {
+	// String prefix that must match the beginning of the keys. Envoy will always favor the
+	// longest match.
+	Prefix string `protobuf:"bytes,1,opt,name=prefix,proto3" json:"prefix,omitempty"`
+	// Indicates if the prefix needs to be removed from the key when forwarded.
+	RemovePrefix bool `protobuf:"varint,2,opt,name=remove_prefix,json=removePrefix,proto3" json:"remove_prefix,omitempty"`
+	// Upstream cluster to forward the command to.
+	Cluster string `protobuf:"bytes,3,opt,name=cluster,proto3" json:"cluster,omitempty"`
+	// Indicates that the route has a request mirroring policy.
+	RequestMirrorPolicy  []*RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy `protobuf:"bytes,4,rep,name=request_mirror_policy,json=requestMirrorPolicy,proto3" json:"request_mirror_policy,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                             `json:"-"`
+	XXX_unrecognized     []byte                                               `json:"-"`
+	XXX_sizecache        int32                                                `json:"-"`
+}
+
+func (m *RedisProxy_PrefixRoutes_Route) Reset()         { *m = RedisProxy_PrefixRoutes_Route{} }
+func (m *RedisProxy_PrefixRoutes_Route) String() string { return proto.CompactTextString(m) }
+func (*RedisProxy_PrefixRoutes_Route) ProtoMessage()    {}
+func (*RedisProxy_PrefixRoutes_Route) Descriptor() ([]byte, []int) {
+	return fileDescriptor_67e7179f1292d5ae, []int{0, 1, 0}
+}
+
+func (m *RedisProxy_PrefixRoutes_Route) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RedisProxy_PrefixRoutes_Route.Unmarshal(m, b)
+}
+func (m *RedisProxy_PrefixRoutes_Route) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RedisProxy_PrefixRoutes_Route.Marshal(b, m, deterministic)
+}
+func (m *RedisProxy_PrefixRoutes_Route) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RedisProxy_PrefixRoutes_Route.Merge(m, src)
+}
+func (m *RedisProxy_PrefixRoutes_Route) XXX_Size() int {
+	return xxx_messageInfo_RedisProxy_PrefixRoutes_Route.Size(m)
+}
+func (m *RedisProxy_PrefixRoutes_Route) XXX_DiscardUnknown() {
+	xxx_messageInfo_RedisProxy_PrefixRoutes_Route.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RedisProxy_PrefixRoutes_Route proto.InternalMessageInfo
+
+func (m *RedisProxy_PrefixRoutes_Route) GetPrefix() string {
+	if m != nil {
+		return m.Prefix
+	}
+	return ""
+}
+
+func (m *RedisProxy_PrefixRoutes_Route) GetRemovePrefix() bool {
+	if m != nil {
+		return m.RemovePrefix
+	}
+	return false
+}
+
+func (m *RedisProxy_PrefixRoutes_Route) GetCluster() string {
+	if m != nil {
+		return m.Cluster
+	}
+	return ""
+}
+
+func (m *RedisProxy_PrefixRoutes_Route) GetRequestMirrorPolicy() []*RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy {
+	if m != nil {
+		return m.RequestMirrorPolicy
+	}
+	return nil
+}
+
+// The router is capable of shadowing traffic from one cluster to another. The current
+// implementation is "fire and forget," meaning Envoy will not wait for the shadow cluster to
+// respond before returning the response from the primary cluster. All normal statistics are
+// collected for the shadow cluster making this feature useful for testing.
+type RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy struct {
+	// Specifies the cluster that requests will be mirrored to. The cluster must
+	// exist in the cluster manager configuration.
+	Cluster string `protobuf:"bytes,1,opt,name=cluster,proto3" json:"cluster,omitempty"`
+	// If not specified or the runtime key is not present, all requests to the target cluster
+	// will be mirrored.
+	//
+	// If specified, Envoy will lookup the runtime key to get the percentage of requests to the
+	// mirror.
+	//
+	// Parsing this field is implemented such that the runtime key's data may be represented
+	// as a :ref:`FractionalPercent <envoy_api_msg_type.FractionalPercent>` proto represented
+	// as JSON/YAML and may also be represented as an integer with the assumption that the value
+	// is an integral percentage out of 100. For instance, a runtime key lookup returning the
+	// value "42" would parse as a `FractionalPercent` whose numerator is 42 and denominator is
+	// HUNDRED.
+	RuntimeFraction *core.RuntimeFractionalPercent `protobuf:"bytes,2,opt,name=runtime_fraction,json=runtimeFraction,proto3" json:"runtime_fraction,omitempty"`
+	// Set this to TRUE to only mirror write commands, this is effectively replicating the
+	// writes in a "fire and forget" manner.
+	ExcludeReadCommands  bool     `protobuf:"varint,3,opt,name=exclude_read_commands,json=excludeReadCommands,proto3" json:"exclude_read_commands,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) Reset() {
+	*m = RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy{}
+}
+func (m *RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) String() string {
+	return proto.CompactTextString(m)
+}
+func (*RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) ProtoMessage() {}
+func (*RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) Descriptor() ([]byte, []int) {
+	return fileDescriptor_67e7179f1292d5ae, []int{0, 1, 0, 0}
+}
+
+func (m *RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy.Unmarshal(m, b)
+}
+func (m *RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy.Marshal(b, m, deterministic)
+}
+func (m *RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy.Merge(m, src)
+}
+func (m *RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) XXX_Size() int {
+	return xxx_messageInfo_RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy.Size(m)
+}
+func (m *RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) XXX_DiscardUnknown() {
+	xxx_messageInfo_RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy proto.InternalMessageInfo
+
+func (m *RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) GetCluster() string {
+	if m != nil {
+		return m.Cluster
+	}
+	return ""
+}
+
+func (m *RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) GetRuntimeFraction() *core.RuntimeFractionalPercent {
+	if m != nil {
+		return m.RuntimeFraction
+	}
+	return nil
+}
+
+func (m *RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy) GetExcludeReadCommands() bool {
+	if m != nil {
+		return m.ExcludeReadCommands
+	}
+	return false
+}
+
+// RedisProtocolOptions specifies Redis upstream protocol options. This object is used in
+// :ref:`extension_protocol_options<envoy_api_field_Cluster.extension_protocol_options>`, keyed
+// by the name `envoy.redis_proxy`.
+type RedisProtocolOptions struct {
+	// Upstream server password as defined by the `requirepass directive
+	// <https://redis.io/topics/config>`_ in the server's configuration file.
+	AuthPassword         *core.DataSource `protobuf:"bytes,1,opt,name=auth_password,json=authPassword,proto3" json:"auth_password,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *RedisProtocolOptions) Reset()         { *m = RedisProtocolOptions{} }
+func (m *RedisProtocolOptions) String() string { return proto.CompactTextString(m) }
+func (*RedisProtocolOptions) ProtoMessage()    {}
+func (*RedisProtocolOptions) Descriptor() ([]byte, []int) {
+	return fileDescriptor_67e7179f1292d5ae, []int{1}
+}
+
+func (m *RedisProtocolOptions) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RedisProtocolOptions.Unmarshal(m, b)
+}
+func (m *RedisProtocolOptions) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RedisProtocolOptions.Marshal(b, m, deterministic)
+}
+func (m *RedisProtocolOptions) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RedisProtocolOptions.Merge(m, src)
+}
+func (m *RedisProtocolOptions) XXX_Size() int {
+	return xxx_messageInfo_RedisProtocolOptions.Size(m)
+}
+func (m *RedisProtocolOptions) XXX_DiscardUnknown() {
+	xxx_messageInfo_RedisProtocolOptions.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RedisProtocolOptions proto.InternalMessageInfo
+
+func (m *RedisProtocolOptions) GetAuthPassword() *core.DataSource {
+	if m != nil {
+		return m.AuthPassword
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*RedisProxy)(nil), "envoy.config.filter.network.redis_proxy.v2.RedisProxy")
 	proto.RegisterType((*RedisProxy_ConnPoolSettings)(nil), "envoy.config.filter.network.redis_proxy.v2.RedisProxy.ConnPoolSettings")
+	proto.RegisterType((*RedisProxy_PrefixRoutes)(nil), "envoy.config.filter.network.redis_proxy.v2.RedisProxy.PrefixRoutes")
+	proto.RegisterType((*RedisProxy_PrefixRoutes_Route)(nil), "envoy.config.filter.network.redis_proxy.v2.RedisProxy.PrefixRoutes.Route")
+	proto.RegisterType((*RedisProxy_PrefixRoutes_Route_RequestMirrorPolicy)(nil), "envoy.config.filter.network.redis_proxy.v2.RedisProxy.PrefixRoutes.Route.RequestMirrorPolicy")
+	proto.RegisterType((*RedisProtocolOptions)(nil), "envoy.config.filter.network.redis_proxy.v2.RedisProtocolOptions")
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/network/redis_proxy/v2/redis_proxy.proto", fileDescriptor_redis_proxy_af67d9f0306fe2f9)
+	proto.RegisterFile("envoy/config/filter/network/redis_proxy/v2/redis_proxy.proto", fileDescriptor_67e7179f1292d5ae)
 }
 
-var fileDescriptor_redis_proxy_af67d9f0306fe2f9 = []byte{
-	// 324 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x90, 0x41, 0x4a, 0xc3, 0x40,
-	0x14, 0x86, 0x99, 0xb4, 0x6a, 0x3b, 0x05, 0x29, 0x41, 0xb0, 0x76, 0xa1, 0x45, 0x37, 0xa5, 0x8b,
-	0x19, 0x88, 0x5b, 0x57, 0x51, 0xd0, 0x65, 0x89, 0xae, 0x44, 0x28, 0x69, 0x3b, 0x19, 0x06, 0xe3,
-	0xbc, 0x30, 0x79, 0x89, 0xed, 0x15, 0x3c, 0x81, 0x67, 0x10, 0x4f, 0xe0, 0xca, 0x9b, 0xb8, 0xf6,
-	0x16, 0x92, 0x99, 0x44, 0x4b, 0x57, 0xee, 0x5e, 0xf2, 0xbf, 0xef, 0xff, 0xe7, 0xfd, 0xf4, 0x42,
-	0xe8, 0x12, 0xd6, 0x7c, 0x01, 0x3a, 0x51, 0x92, 0x27, 0x2a, 0x45, 0x61, 0xb8, 0x16, 0xf8, 0x0c,
-	0xe6, 0x91, 0x1b, 0xb1, 0x54, 0xf9, 0x2c, 0x33, 0xb0, 0x5a, 0xf3, 0x32, 0xd8, 0xfc, 0x64, 0x99,
-	0x01, 0x04, 0x7f, 0x62, 0x69, 0xe6, 0x68, 0xe6, 0x68, 0x56, 0xd3, 0x6c, 0x73, 0xbd, 0x0c, 0x86,
-	0xc7, 0x12, 0x40, 0xa6, 0x82, 0x5b, 0x72, 0x5e, 0x24, 0x7c, 0x59, 0x98, 0x18, 0x15, 0x68, 0xe7,
-	0x35, 0x3c, 0x2c, 0xe3, 0x54, 0x2d, 0x63, 0x14, 0xbc, 0x19, 0x6a, 0xe1, 0x40, 0x82, 0x04, 0x3b,
-	0xf2, 0x6a, 0x72, 0x7f, 0x4f, 0xdf, 0x3d, 0x4a, 0xa3, 0x2a, 0x61, 0x5a, 0x05, 0xf8, 0x13, 0xda,
-	0xcb, 0x31, 0xc6, 0x59, 0x66, 0x44, 0xa2, 0x56, 0x03, 0x32, 0x22, 0xe3, 0x6e, 0xd8, 0xfd, 0xf8,
-	0xfe, 0x6c, 0xb5, 0x8d, 0x37, 0x22, 0x11, 0xad, 0xd4, 0xa9, 0x15, 0xfd, 0x33, 0xba, 0xb7, 0x48,
-	0x8b, 0x1c, 0x85, 0x19, 0x78, 0xdb, 0x7b, 0x8d, 0xe2, 0x03, 0xed, 0xe4, 0x02, 0x51, 0x69, 0x99,
-	0x0f, 0x5a, 0x23, 0x32, 0xee, 0x05, 0xd7, 0xec, 0xff, 0xd7, 0xb2, 0xbf, 0xa7, 0xb1, 0x4b, 0xd0,
-	0x7a, 0x0a, 0x90, 0xde, 0xd6, 0x76, 0x21, 0xad, 0xe2, 0x76, 0x5e, 0x88, 0xd7, 0x27, 0xd1, 0x6f,
-	0xc8, 0xf0, 0x81, 0xf6, 0xb7, 0x37, 0xfd, 0x1b, 0x4a, 0x21, 0x9b, 0xa1, 0x7a, 0x12, 0x50, 0xa0,
-	0x3d, 0xaa, 0x17, 0x1c, 0x31, 0x57, 0x24, 0x6b, 0x8a, 0x64, 0x57, 0x75, 0x91, 0xe1, 0xfe, 0xeb,
-	0xd7, 0x09, 0xb1, 0xe6, 0x6f, 0xc4, 0xeb, 0x90, 0xa8, 0x0b, 0xd9, 0x9d, 0x63, 0xc3, 0xf6, 0xbd,
-	0x57, 0x06, 0xf3, 0x5d, 0xcb, 0x9c, 0xff, 0x04, 0x00, 0x00, 0xff, 0xff, 0xbb, 0x12, 0xda, 0x31,
-	0xf6, 0x01, 0x00, 0x00,
+var fileDescriptor_67e7179f1292d5ae = []byte{
+	// 865 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xdd, 0x6e, 0x23, 0x35,
+	0x14, 0x66, 0xf2, 0xb7, 0x59, 0x37, 0x51, 0x5a, 0xb7, 0xbb, 0x0c, 0x51, 0x61, 0xc3, 0x72, 0x13,
+	0x16, 0x31, 0x23, 0x85, 0x1b, 0x2e, 0x10, 0xd2, 0x4e, 0x57, 0x85, 0x5e, 0xac, 0xc8, 0xba, 0x08,
+	0xa4, 0x95, 0x90, 0xe5, 0x4c, 0xce, 0x4c, 0x2c, 0x66, 0xec, 0x59, 0xdb, 0x93, 0xa6, 0xfb, 0x08,
+	0x7b, 0x87, 0xb8, 0xe1, 0x19, 0x78, 0x0c, 0xc4, 0x05, 0x12, 0xef, 0x00, 0xef, 0xd1, 0x2b, 0x34,
+	0x1e, 0xe7, 0xa7, 0x50, 0x44, 0x85, 0x7a, 0x65, 0xfb, 0x7c, 0xe7, 0x9c, 0xcf, 0xe7, 0x17, 0x7d,
+	0x06, 0x62, 0x29, 0x2f, 0xc3, 0x58, 0x8a, 0x84, 0xa7, 0x61, 0xc2, 0x33, 0x03, 0x2a, 0x14, 0x60,
+	0x2e, 0xa4, 0xfa, 0x3e, 0x54, 0x30, 0xe7, 0x9a, 0x16, 0x4a, 0xae, 0x2e, 0xc3, 0xe5, 0x64, 0xf7,
+	0x19, 0x14, 0x4a, 0x1a, 0x89, 0x9f, 0x58, 0xeb, 0xa0, 0xb6, 0x0e, 0x6a, 0xeb, 0xc0, 0x59, 0x07,
+	0xbb, 0xea, 0xcb, 0xc9, 0xf0, 0xb8, 0x66, 0x62, 0x05, 0xaf, 0x7c, 0xc5, 0x52, 0x41, 0x38, 0x63,
+	0x1a, 0x6a, 0x4f, 0xc3, 0xf7, 0x52, 0x29, 0xd3, 0x0c, 0x42, 0xfb, 0x9a, 0x95, 0x49, 0x38, 0x2f,
+	0x15, 0x33, 0x5c, 0x0a, 0x87, 0xbf, 0xbd, 0x64, 0x19, 0x9f, 0x33, 0x03, 0xe1, 0xfa, 0xe2, 0x80,
+	0xa3, 0x54, 0xa6, 0xd2, 0x5e, 0xc3, 0xea, 0x56, 0x4b, 0x1f, 0xff, 0xd8, 0x43, 0x88, 0x54, 0xfc,
+	0xd3, 0x8a, 0x1e, 0x8f, 0xd1, 0x9e, 0x36, 0xcc, 0xd0, 0x42, 0x41, 0xc2, 0x57, 0xbe, 0x37, 0xf2,
+	0xc6, 0xf7, 0xa3, 0x7b, 0x57, 0x51, 0x4b, 0x35, 0x46, 0x1e, 0x41, 0x15, 0x36, 0xb5, 0x10, 0x3e,
+	0x46, 0xf7, 0xe2, 0xac, 0xd4, 0x06, 0x94, 0xdf, 0xb0, 0x5a, 0x0d, 0xdf, 0x23, 0x6b, 0x11, 0xce,
+	0x51, 0x57, 0x83, 0x31, 0x5c, 0xa4, 0xda, 0x6f, 0x8e, 0xbc, 0xf1, 0xde, 0xe4, 0x8b, 0xe0, 0xf6,
+	0x29, 0x08, 0xb6, 0x3f, 0x0a, 0x4e, 0xa4, 0x10, 0x53, 0x29, 0xb3, 0x73, 0xe7, 0x2e, 0xea, 0x5e,
+	0x45, 0xed, 0x37, 0x5e, 0x63, 0xdf, 0x23, 0x1b, 0x0a, 0xfc, 0x04, 0x1d, 0x64, 0xcc, 0x80, 0x88,
+	0x2f, 0x29, 0x17, 0x34, 0xe7, 0xb1, 0x92, 0xda, 0x6f, 0x8d, 0xbc, 0x71, 0x97, 0x0c, 0x1c, 0x70,
+	0x26, 0x9e, 0x5b, 0x31, 0x16, 0xa8, 0x5f, 0x47, 0x47, 0x95, 0x2c, 0x0d, 0x68, 0xbf, 0x6d, 0xff,
+	0x77, 0xf2, 0x3f, 0xff, 0x57, 0xa7, 0x83, 0x58, 0x57, 0x51, 0xeb, 0xb7, 0x3f, 0x1e, 0xbd, 0x45,
+	0x7a, 0xc5, 0x8e, 0x0c, 0x7f, 0x8b, 0xfc, 0xb9, 0xbc, 0x10, 0xda, 0x28, 0x60, 0x39, 0x65, 0xa5,
+	0x59, 0xd0, 0x82, 0x69, 0x7d, 0x21, 0xd5, 0xdc, 0xef, 0x58, 0xea, 0x77, 0x1d, 0x35, 0x2b, 0x78,
+	0xe5, 0xbc, 0xaa, 0x78, 0xf0, 0x8c, 0x19, 0x76, 0x2e, 0x4b, 0x15, 0x03, 0x79, 0xb8, 0x35, 0x7f,
+	0x5a, 0x9a, 0xc5, 0xd4, 0x19, 0x0f, 0x7f, 0x6f, 0xa0, 0xfd, 0xbf, 0x67, 0x07, 0x9f, 0x22, 0x24,
+	0x0b, 0x6a, 0x78, 0x0e, 0xb2, 0x34, 0xb6, 0x7e, 0x7b, 0x93, 0x77, 0x82, 0xba, 0x67, 0x82, 0x75,
+	0xcf, 0x04, 0xcf, 0x5c, 0xcf, 0x44, 0xbd, 0xab, 0xa8, 0xfd, 0xb3, 0xd7, 0xe8, 0x7a, 0x3f, 0xfd,
+	0xf9, 0xc8, 0x23, 0xf7, 0x65, 0xf1, 0x75, 0x6d, 0x89, 0x3f, 0x46, 0x18, 0x04, 0x9b, 0x65, 0x40,
+	0x17, 0x4c, 0x2f, 0x0c, 0x4b, 0x53, 0x2e, 0x52, 0x5b, 0xe9, 0x2e, 0x39, 0xa8, 0x91, 0x2f, 0xb7,
+	0xc0, 0x8e, 0x7a, 0x95, 0x29, 0x05, 0x71, 0xe5, 0xdd, 0x56, 0x7e, 0xa3, 0x4e, 0xb6, 0x00, 0xfe,
+	0x1c, 0x1d, 0xe7, 0x6c, 0x45, 0x67, 0x65, 0x92, 0x80, 0xa2, 0x9a, 0xbf, 0x06, 0x3a, 0x83, 0x44,
+	0x2a, 0xa0, 0x49, 0x56, 0xea, 0x85, 0x2d, 0x5d, 0x9f, 0xf8, 0x39, 0x5b, 0x45, 0x56, 0xe5, 0x9c,
+	0xbf, 0x86, 0xc8, 0x2a, 0x9c, 0x56, 0x38, 0x7e, 0x81, 0x8e, 0x9c, 0xad, 0xd5, 0xdf, 0xc4, 0xdb,
+	0xfe, 0xaf, 0x78, 0x5b, 0x36, 0x4e, 0x5c, 0x1b, 0x5b, 0x5f, 0x2e, 0xe0, 0xe1, 0x9b, 0x0e, 0xea,
+	0xed, 0xd6, 0x12, 0xa7, 0xa8, 0xe3, 0x1a, 0xc4, 0x1b, 0x35, 0xc7, 0x7b, 0x93, 0xb3, 0x3b, 0x68,
+	0x90, 0xc0, 0x1e, 0xae, 0x4d, 0x9c, 0x7b, 0xfc, 0x21, 0xda, 0x8f, 0x99, 0x06, 0xca, 0x85, 0x06,
+	0xa1, 0xb9, 0xe1, 0x4b, 0x70, 0x89, 0x1e, 0x54, 0xf2, 0xb3, 0xad, 0x18, 0x07, 0xe8, 0x20, 0x66,
+	0x26, 0x5e, 0x50, 0x96, 0x65, 0x74, 0x3d, 0x7e, 0xcd, 0xcd, 0xf8, 0x0d, 0x2c, 0xf8, 0x34, 0xcb,
+	0x4e, 0xdc, 0x18, 0xbe, 0x42, 0x83, 0xad, 0xbe, 0xa5, 0xb3, 0xa9, 0xbd, 0xcb, 0x60, 0x48, 0x7f,
+	0x4d, 0x6a, 0x9f, 0xc3, 0x5f, 0x9a, 0xa8, 0x6d, 0x6f, 0xf8, 0x21, 0xea, 0xec, 0xae, 0x11, 0xe2,
+	0x5e, 0xf8, 0x03, 0xd4, 0x57, 0x90, 0xcb, 0x25, 0xac, 0xb7, 0x4c, 0x1d, 0x6c, 0xaf, 0x16, 0xba,
+	0xf5, 0xf2, 0xfe, 0x76, 0xbd, 0x34, 0xaf, 0x2f, 0xa1, 0xcd, 0x8e, 0xf9, 0xc1, 0x43, 0x0f, 0x14,
+	0xbc, 0x2a, 0x41, 0x1b, 0x9a, 0x73, 0xa5, 0xa4, 0xa2, 0x85, 0xcc, 0x78, 0x7c, 0xe9, 0xb7, 0x6c,
+	0xc1, 0xbe, 0xbb, 0xb3, 0x18, 0x03, 0x52, 0xd3, 0x3c, 0xb7, 0x2c, 0x53, 0x4b, 0x42, 0x0e, 0xd5,
+	0x3f, 0x85, 0xc3, 0x5f, 0x3d, 0x74, 0x78, 0x83, 0xf2, 0x6e, 0x38, 0xde, 0xbf, 0x84, 0xf3, 0x0d,
+	0xda, 0x57, 0xa5, 0xa8, 0x3a, 0x99, 0x26, 0x8a, 0xd5, 0x03, 0xd4, 0xb0, 0xc5, 0xfa, 0xe8, 0x86,
+	0xfd, 0x40, 0x6a, 0xd5, 0x53, 0xa7, 0xc9, 0xb2, 0x29, 0xa8, 0x18, 0x84, 0x21, 0x03, 0x75, 0x1d,
+	0xc1, 0x13, 0xf4, 0x00, 0x56, 0x71, 0x56, 0xce, 0xab, 0xd9, 0x64, 0x73, 0x1a, 0xcb, 0x3c, 0x67,
+	0x62, 0xae, 0xdd, 0x74, 0x1e, 0x3a, 0x90, 0x00, 0x9b, 0x9f, 0x38, 0xe8, 0xf1, 0x4b, 0x74, 0xb4,
+	0x4e, 0x88, 0x91, 0xb1, 0xcc, 0xbe, 0x2a, 0x2a, 0x57, 0x1a, 0x47, 0xa8, 0x7f, 0x7d, 0x81, 0x79,
+	0xb7, 0x59, 0x60, 0x3d, 0xb6, 0xb3, 0xb6, 0xa2, 0x17, 0xe8, 0x53, 0x2e, 0x6b, 0x83, 0x3a, 0xfb,
+	0xb7, 0xaf, 0x52, 0x34, 0xd8, 0x96, 0xc9, 0x7e, 0x6d, 0xea, 0xbd, 0x6c, 0x2c, 0x27, 0xb3, 0x8e,
+	0x1d, 0xf4, 0x4f, 0xfe, 0x0a, 0x00, 0x00, 0xff, 0xff, 0x19, 0x65, 0x82, 0x10, 0xa4, 0x07, 0x00,
+	0x00,
 }

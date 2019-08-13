@@ -3,13 +3,15 @@
 
 package v2
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
-import _type "github.com/altipla-consulting/envoy-api/envoy/type"
-import _ "github.com/gogo/protobuf/gogoproto"
-import types "github.com/gogo/protobuf/types"
-import _ "github.com/lyft/protoc-gen-validate/validate"
+import (
+	fmt "fmt"
+	_type "github.com/altipla-consulting/envoy-api/envoy/type"
+	_ "github.com/envoyproxy/protoc-gen-validate/validate"
+	_ "github.com/gogo/protobuf/gogoproto"
+	types "github.com/gogo/protobuf/types"
+	proto "github.com/golang/protobuf/proto"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -20,18 +22,19 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type FaultDelay_FaultDelayType int32
 
 const (
-	// Fixed delay (step function).
+	// Unused and deprecated.
 	FaultDelay_FIXED FaultDelay_FaultDelayType = 0
 )
 
 var FaultDelay_FaultDelayType_name = map[int32]string{
 	0: "FIXED",
 }
+
 var FaultDelay_FaultDelayType_value = map[string]int32{
 	"FIXED": 0,
 }
@@ -39,20 +42,21 @@ var FaultDelay_FaultDelayType_value = map[string]int32{
 func (x FaultDelay_FaultDelayType) String() string {
 	return proto.EnumName(FaultDelay_FaultDelayType_name, int32(x))
 }
+
 func (FaultDelay_FaultDelayType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_fault_618a1dfa9c30f21f, []int{0, 0}
+	return fileDescriptor_d1b308afbc13f85b, []int{0, 0}
 }
 
 // Delay specification is used to inject latency into the
 // HTTP/gRPC/Mongo/Redis operation or delay proxying of TCP connections.
 type FaultDelay struct {
-	// Delay type to use (fixed|exponential|..). Currently, only fixed delay (step function) is
-	// supported.
-	Type FaultDelay_FaultDelayType `protobuf:"varint,1,opt,name=type,proto3,enum=envoy.config.filter.fault.v2.FaultDelay_FaultDelayType" json:"type,omitempty"`
+	// Unused and deprecated. Will be removed in the next release.
+	Type FaultDelay_FaultDelayType `protobuf:"varint,1,opt,name=type,proto3,enum=envoy.config.filter.fault.v2.FaultDelay_FaultDelayType" json:"type,omitempty"` // Deprecated: Do not use.
 	// Types that are valid to be assigned to FaultDelaySecifier:
 	//	*FaultDelay_FixedDelay
+	//	*FaultDelay_HeaderDelay_
 	FaultDelaySecifier isFaultDelay_FaultDelaySecifier `protobuf_oneof:"fault_delay_secifier"`
-	// The percentage of operations/connection requests on which the delay will be injected.
+	// The percentage of operations/connections/requests on which the delay will be injected.
 	Percentage           *_type.FractionalPercent `protobuf:"bytes,4,opt,name=percentage,proto3" json:"percentage,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`
 	XXX_unrecognized     []byte                   `json:"-"`
@@ -63,16 +67,17 @@ func (m *FaultDelay) Reset()         { *m = FaultDelay{} }
 func (m *FaultDelay) String() string { return proto.CompactTextString(m) }
 func (*FaultDelay) ProtoMessage()    {}
 func (*FaultDelay) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fault_618a1dfa9c30f21f, []int{0}
+	return fileDescriptor_d1b308afbc13f85b, []int{0}
 }
+
 func (m *FaultDelay) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FaultDelay.Unmarshal(m, b)
 }
 func (m *FaultDelay) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_FaultDelay.Marshal(b, m, deterministic)
 }
-func (dst *FaultDelay) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FaultDelay.Merge(dst, src)
+func (m *FaultDelay) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FaultDelay.Merge(m, src)
 }
 func (m *FaultDelay) XXX_Size() int {
 	return xxx_messageInfo_FaultDelay.Size(m)
@@ -83,6 +88,7 @@ func (m *FaultDelay) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_FaultDelay proto.InternalMessageInfo
 
+// Deprecated: Do not use.
 func (m *FaultDelay) GetType() FaultDelay_FaultDelayType {
 	if m != nil {
 		return m.Type
@@ -98,7 +104,13 @@ type FaultDelay_FixedDelay struct {
 	FixedDelay *types.Duration `protobuf:"bytes,3,opt,name=fixed_delay,json=fixedDelay,proto3,oneof"`
 }
 
+type FaultDelay_HeaderDelay_ struct {
+	HeaderDelay *FaultDelay_HeaderDelay `protobuf:"bytes,5,opt,name=header_delay,json=headerDelay,proto3,oneof"`
+}
+
 func (*FaultDelay_FixedDelay) isFaultDelay_FaultDelaySecifier() {}
+
+func (*FaultDelay_HeaderDelay_) isFaultDelay_FaultDelaySecifier() {}
 
 func (m *FaultDelay) GetFaultDelaySecifier() isFaultDelay_FaultDelaySecifier {
 	if m != nil {
@@ -114,6 +126,13 @@ func (m *FaultDelay) GetFixedDelay() *types.Duration {
 	return nil
 }
 
+func (m *FaultDelay) GetHeaderDelay() *FaultDelay_HeaderDelay {
+	if x, ok := m.GetFaultDelaySecifier().(*FaultDelay_HeaderDelay_); ok {
+		return x.HeaderDelay
+	}
+	return nil
+}
+
 func (m *FaultDelay) GetPercentage() *_type.FractionalPercent {
 	if m != nil {
 		return m.Percentage
@@ -121,91 +140,257 @@ func (m *FaultDelay) GetPercentage() *_type.FractionalPercent {
 	return nil
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*FaultDelay) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _FaultDelay_OneofMarshaler, _FaultDelay_OneofUnmarshaler, _FaultDelay_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*FaultDelay) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*FaultDelay_FixedDelay)(nil),
+		(*FaultDelay_HeaderDelay_)(nil),
 	}
 }
 
-func _FaultDelay_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*FaultDelay)
-	// fault_delay_secifier
-	switch x := m.FaultDelaySecifier.(type) {
-	case *FaultDelay_FixedDelay:
-		b.EncodeVarint(3<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.FixedDelay); err != nil {
-			return err
-		}
-	case nil:
-	default:
-		return fmt.Errorf("FaultDelay.FaultDelaySecifier has unexpected type %T", x)
+// Fault delays are controlled via an HTTP header (if applicable). See the
+// :ref:`http fault filter <config_http_filters_fault_injection_http_header>` documentation for
+// more information.
+type FaultDelay_HeaderDelay struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FaultDelay_HeaderDelay) Reset()         { *m = FaultDelay_HeaderDelay{} }
+func (m *FaultDelay_HeaderDelay) String() string { return proto.CompactTextString(m) }
+func (*FaultDelay_HeaderDelay) ProtoMessage()    {}
+func (*FaultDelay_HeaderDelay) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d1b308afbc13f85b, []int{0, 0}
+}
+
+func (m *FaultDelay_HeaderDelay) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FaultDelay_HeaderDelay.Unmarshal(m, b)
+}
+func (m *FaultDelay_HeaderDelay) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FaultDelay_HeaderDelay.Marshal(b, m, deterministic)
+}
+func (m *FaultDelay_HeaderDelay) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FaultDelay_HeaderDelay.Merge(m, src)
+}
+func (m *FaultDelay_HeaderDelay) XXX_Size() int {
+	return xxx_messageInfo_FaultDelay_HeaderDelay.Size(m)
+}
+func (m *FaultDelay_HeaderDelay) XXX_DiscardUnknown() {
+	xxx_messageInfo_FaultDelay_HeaderDelay.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FaultDelay_HeaderDelay proto.InternalMessageInfo
+
+// Describes a rate limit to be applied.
+type FaultRateLimit struct {
+	// Types that are valid to be assigned to LimitType:
+	//	*FaultRateLimit_FixedLimit_
+	//	*FaultRateLimit_HeaderLimit_
+	LimitType isFaultRateLimit_LimitType `protobuf_oneof:"limit_type"`
+	// The percentage of operations/connections/requests on which the rate limit will be injected.
+	Percentage           *_type.FractionalPercent `protobuf:"bytes,2,opt,name=percentage,proto3" json:"percentage,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`
+	XXX_unrecognized     []byte                   `json:"-"`
+	XXX_sizecache        int32                    `json:"-"`
+}
+
+func (m *FaultRateLimit) Reset()         { *m = FaultRateLimit{} }
+func (m *FaultRateLimit) String() string { return proto.CompactTextString(m) }
+func (*FaultRateLimit) ProtoMessage()    {}
+func (*FaultRateLimit) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d1b308afbc13f85b, []int{1}
+}
+
+func (m *FaultRateLimit) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FaultRateLimit.Unmarshal(m, b)
+}
+func (m *FaultRateLimit) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FaultRateLimit.Marshal(b, m, deterministic)
+}
+func (m *FaultRateLimit) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FaultRateLimit.Merge(m, src)
+}
+func (m *FaultRateLimit) XXX_Size() int {
+	return xxx_messageInfo_FaultRateLimit.Size(m)
+}
+func (m *FaultRateLimit) XXX_DiscardUnknown() {
+	xxx_messageInfo_FaultRateLimit.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FaultRateLimit proto.InternalMessageInfo
+
+type isFaultRateLimit_LimitType interface {
+	isFaultRateLimit_LimitType()
+}
+
+type FaultRateLimit_FixedLimit_ struct {
+	FixedLimit *FaultRateLimit_FixedLimit `protobuf:"bytes,1,opt,name=fixed_limit,json=fixedLimit,proto3,oneof"`
+}
+
+type FaultRateLimit_HeaderLimit_ struct {
+	HeaderLimit *FaultRateLimit_HeaderLimit `protobuf:"bytes,3,opt,name=header_limit,json=headerLimit,proto3,oneof"`
+}
+
+func (*FaultRateLimit_FixedLimit_) isFaultRateLimit_LimitType() {}
+
+func (*FaultRateLimit_HeaderLimit_) isFaultRateLimit_LimitType() {}
+
+func (m *FaultRateLimit) GetLimitType() isFaultRateLimit_LimitType {
+	if m != nil {
+		return m.LimitType
 	}
 	return nil
 }
 
-func _FaultDelay_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*FaultDelay)
-	switch tag {
-	case 3: // fault_delay_secifier.fixed_delay
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(types.Duration)
-		err := b.DecodeMessage(msg)
-		m.FaultDelaySecifier = &FaultDelay_FixedDelay{msg}
-		return true, err
-	default:
-		return false, nil
+func (m *FaultRateLimit) GetFixedLimit() *FaultRateLimit_FixedLimit {
+	if x, ok := m.GetLimitType().(*FaultRateLimit_FixedLimit_); ok {
+		return x.FixedLimit
+	}
+	return nil
+}
+
+func (m *FaultRateLimit) GetHeaderLimit() *FaultRateLimit_HeaderLimit {
+	if x, ok := m.GetLimitType().(*FaultRateLimit_HeaderLimit_); ok {
+		return x.HeaderLimit
+	}
+	return nil
+}
+
+func (m *FaultRateLimit) GetPercentage() *_type.FractionalPercent {
+	if m != nil {
+		return m.Percentage
+	}
+	return nil
+}
+
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*FaultRateLimit) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
+		(*FaultRateLimit_FixedLimit_)(nil),
+		(*FaultRateLimit_HeaderLimit_)(nil),
 	}
 }
 
-func _FaultDelay_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*FaultDelay)
-	// fault_delay_secifier
-	switch x := m.FaultDelaySecifier.(type) {
-	case *FaultDelay_FixedDelay:
-		s := proto.Size(x.FixedDelay)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
+// Describes a fixed/constant rate limit.
+type FaultRateLimit_FixedLimit struct {
+	// The limit supplied in KiB/s.
+	LimitKbps            uint64   `protobuf:"varint,1,opt,name=limit_kbps,json=limitKbps,proto3" json:"limit_kbps,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
+
+func (m *FaultRateLimit_FixedLimit) Reset()         { *m = FaultRateLimit_FixedLimit{} }
+func (m *FaultRateLimit_FixedLimit) String() string { return proto.CompactTextString(m) }
+func (*FaultRateLimit_FixedLimit) ProtoMessage()    {}
+func (*FaultRateLimit_FixedLimit) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d1b308afbc13f85b, []int{1, 0}
+}
+
+func (m *FaultRateLimit_FixedLimit) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FaultRateLimit_FixedLimit.Unmarshal(m, b)
+}
+func (m *FaultRateLimit_FixedLimit) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FaultRateLimit_FixedLimit.Marshal(b, m, deterministic)
+}
+func (m *FaultRateLimit_FixedLimit) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FaultRateLimit_FixedLimit.Merge(m, src)
+}
+func (m *FaultRateLimit_FixedLimit) XXX_Size() int {
+	return xxx_messageInfo_FaultRateLimit_FixedLimit.Size(m)
+}
+func (m *FaultRateLimit_FixedLimit) XXX_DiscardUnknown() {
+	xxx_messageInfo_FaultRateLimit_FixedLimit.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FaultRateLimit_FixedLimit proto.InternalMessageInfo
+
+func (m *FaultRateLimit_FixedLimit) GetLimitKbps() uint64 {
+	if m != nil {
+		return m.LimitKbps
+	}
+	return 0
+}
+
+// Rate limits are controlled via an HTTP header (if applicable). See the
+// :ref:`http fault filter <config_http_filters_fault_injection_http_header>` documentation for
+// more information.
+type FaultRateLimit_HeaderLimit struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FaultRateLimit_HeaderLimit) Reset()         { *m = FaultRateLimit_HeaderLimit{} }
+func (m *FaultRateLimit_HeaderLimit) String() string { return proto.CompactTextString(m) }
+func (*FaultRateLimit_HeaderLimit) ProtoMessage()    {}
+func (*FaultRateLimit_HeaderLimit) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d1b308afbc13f85b, []int{1, 1}
+}
+
+func (m *FaultRateLimit_HeaderLimit) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FaultRateLimit_HeaderLimit.Unmarshal(m, b)
+}
+func (m *FaultRateLimit_HeaderLimit) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FaultRateLimit_HeaderLimit.Marshal(b, m, deterministic)
+}
+func (m *FaultRateLimit_HeaderLimit) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FaultRateLimit_HeaderLimit.Merge(m, src)
+}
+func (m *FaultRateLimit_HeaderLimit) XXX_Size() int {
+	return xxx_messageInfo_FaultRateLimit_HeaderLimit.Size(m)
+}
+func (m *FaultRateLimit_HeaderLimit) XXX_DiscardUnknown() {
+	xxx_messageInfo_FaultRateLimit_HeaderLimit.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FaultRateLimit_HeaderLimit proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*FaultDelay)(nil), "envoy.config.filter.fault.v2.FaultDelay")
 	proto.RegisterEnum("envoy.config.filter.fault.v2.FaultDelay_FaultDelayType", FaultDelay_FaultDelayType_name, FaultDelay_FaultDelayType_value)
+	proto.RegisterType((*FaultDelay)(nil), "envoy.config.filter.fault.v2.FaultDelay")
+	proto.RegisterType((*FaultDelay_HeaderDelay)(nil), "envoy.config.filter.fault.v2.FaultDelay.HeaderDelay")
+	proto.RegisterType((*FaultRateLimit)(nil), "envoy.config.filter.fault.v2.FaultRateLimit")
+	proto.RegisterType((*FaultRateLimit_FixedLimit)(nil), "envoy.config.filter.fault.v2.FaultRateLimit.FixedLimit")
+	proto.RegisterType((*FaultRateLimit_HeaderLimit)(nil), "envoy.config.filter.fault.v2.FaultRateLimit.HeaderLimit")
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/filter/fault/v2/fault.proto", fileDescriptor_fault_618a1dfa9c30f21f)
+	proto.RegisterFile("envoy/config/filter/fault/v2/fault.proto", fileDescriptor_d1b308afbc13f85b)
 }
 
-var fileDescriptor_fault_618a1dfa9c30f21f = []byte{
-	// 336 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x50, 0xbf, 0x4a, 0xc3, 0x40,
-	0x18, 0xef, 0x25, 0xa9, 0xe8, 0x57, 0x28, 0x25, 0x14, 0x8c, 0xd5, 0x6a, 0xe9, 0x54, 0x1c, 0xee,
-	0x20, 0x0e, 0x4e, 0x2e, 0xa1, 0x16, 0x15, 0x07, 0x29, 0x82, 0xe2, 0x52, 0xae, 0xc9, 0x97, 0x70,
-	0x10, 0x72, 0x21, 0x26, 0xc1, 0xac, 0x3e, 0x85, 0xcf, 0xe0, 0xec, 0x20, 0x4e, 0x7d, 0x13, 0xe7,
-	0xbe, 0x85, 0xe4, 0x2e, 0xc5, 0xba, 0xb8, 0xfd, 0x92, 0xef, 0xf7, 0xf7, 0x60, 0x82, 0x49, 0x29,
-	0x2b, 0xe6, 0xcb, 0x24, 0x14, 0x11, 0x0b, 0x45, 0x9c, 0x63, 0xc6, 0x42, 0x5e, 0xc4, 0x39, 0x2b,
-	0x5d, 0x0d, 0x68, 0x9a, 0xc9, 0x5c, 0xda, 0x47, 0x8a, 0x49, 0x35, 0x93, 0x6a, 0x26, 0xd5, 0x84,
-	0xd2, 0x1d, 0x38, 0xda, 0x27, 0xaf, 0x52, 0x64, 0x29, 0x66, 0x3e, 0x26, 0x8d, 0x6e, 0x70, 0x1c,
-	0x49, 0x19, 0xc5, 0xc8, 0xd4, 0xd7, 0xb2, 0x08, 0x59, 0x50, 0x64, 0x3c, 0x17, 0x32, 0x69, 0xee,
-	0xfb, 0x25, 0x8f, 0x45, 0xc0, 0x73, 0x64, 0x1b, 0xd0, 0x1c, 0xfa, 0x91, 0x8c, 0xa4, 0x82, 0xac,
-	0x46, 0xfa, 0xef, 0xf8, 0xc3, 0x00, 0x98, 0xd5, 0xa9, 0x53, 0x8c, 0x79, 0x65, 0x3f, 0x80, 0x55,
-	0x67, 0x3a, 0x64, 0x44, 0x26, 0x5d, 0xf7, 0x9c, 0xfe, 0x57, 0x92, 0xfe, 0xea, 0xb6, 0xe0, 0x7d,
-	0x95, 0xa2, 0x07, 0x5f, 0xeb, 0x95, 0xd9, 0x7e, 0x25, 0x46, 0x8f, 0xcc, 0x95, 0xa1, 0x7d, 0x0b,
-	0x9d, 0x50, 0xbc, 0x60, 0xb0, 0x08, 0x6a, 0x92, 0x63, 0x8e, 0xc8, 0xa4, 0xe3, 0x1e, 0x50, 0x3d,
-	0x86, 0x6e, 0xc6, 0xd0, 0x69, 0x33, 0xc6, 0xeb, 0xbe, 0x7d, 0x9f, 0x10, 0xe5, 0xf2, 0x4e, 0x8c,
-	0xd3, 0xd6, 0x55, 0x6b, 0x0e, 0x4a, 0xaf, 0x6b, 0x5e, 0x00, 0x34, 0xaf, 0xc2, 0x23, 0x74, 0x2c,
-	0x65, 0x36, 0x6c, 0xca, 0xd6, 0x71, 0x74, 0x96, 0x71, 0xbf, 0xf6, 0xe1, 0xf1, 0x9d, 0xe6, 0xcd,
-	0xb7, 0x04, 0xe3, 0x43, 0xe8, 0xfe, 0x2d, 0x6c, 0xef, 0x41, 0x7b, 0x76, 0xfd, 0x78, 0x39, 0xed,
-	0xb5, 0xbc, 0x21, 0xf4, 0xd5, 0x42, 0xdd, 0x74, 0xf1, 0x8c, 0xbe, 0x08, 0x05, 0x66, 0x76, 0xfb,
-	0x73, 0xbd, 0x32, 0xc9, 0x8d, 0xb5, 0x6b, 0xf4, 0x4c, 0xcf, 0x7a, 0x32, 0x4a, 0x77, 0xb9, 0xa3,
-	0x7a, 0x9f, 0xfd, 0x04, 0x00, 0x00, 0xff, 0xff, 0xc0, 0x0c, 0xfc, 0x20, 0xf6, 0x01, 0x00, 0x00,
+var fileDescriptor_d1b308afbc13f85b = []byte{
+	// 490 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x53, 0x4d, 0x6f, 0xd3, 0x40,
+	0x10, 0x8d, 0x9d, 0x04, 0xe8, 0xb8, 0x54, 0xc5, 0xaa, 0x84, 0x49, 0xf9, 0xa8, 0x72, 0x40, 0x51,
+	0x0f, 0xbb, 0x92, 0xa9, 0x04, 0x17, 0x38, 0xac, 0x42, 0x14, 0x0a, 0x12, 0x91, 0xc5, 0x01, 0x2a,
+	0xa1, 0x68, 0x13, 0xaf, 0xdd, 0x15, 0x26, 0x6b, 0x39, 0x8e, 0x55, 0xff, 0x0d, 0x4e, 0xfc, 0x06,
+	0xfe, 0x14, 0x12, 0xbf, 0x02, 0xf5, 0x54, 0xed, 0xec, 0x3a, 0x49, 0x2f, 0x55, 0x7b, 0x9b, 0xf5,
+	0xcc, 0x7b, 0xfb, 0xde, 0x9b, 0x35, 0x0c, 0xc4, 0xa2, 0x52, 0x35, 0x9d, 0xab, 0x45, 0x22, 0x53,
+	0x9a, 0xc8, 0xac, 0x14, 0x05, 0x4d, 0xf8, 0x2a, 0x2b, 0x69, 0x15, 0x9a, 0x82, 0xe4, 0x85, 0x2a,
+	0x95, 0xff, 0x14, 0x27, 0x89, 0x99, 0x24, 0x66, 0x92, 0x98, 0x81, 0x2a, 0xec, 0x05, 0x86, 0xa7,
+	0xac, 0x73, 0x41, 0x73, 0x51, 0xcc, 0xc5, 0xc2, 0xe2, 0x7a, 0xcf, 0x53, 0xa5, 0xd2, 0x4c, 0x50,
+	0x3c, 0xcd, 0x56, 0x09, 0x8d, 0x57, 0x05, 0x2f, 0xa5, 0x5a, 0xd8, 0xfe, 0xe3, 0x8a, 0x67, 0x32,
+	0xe6, 0xa5, 0xa0, 0x4d, 0x61, 0x1b, 0x07, 0xa9, 0x4a, 0x15, 0x96, 0x54, 0x57, 0xe6, 0x6b, 0xff,
+	0x57, 0x1b, 0x60, 0xa4, 0x6f, 0x1d, 0x8a, 0x8c, 0xd7, 0xfe, 0x67, 0xe8, 0xe8, 0x3b, 0x03, 0xe7,
+	0xc8, 0x19, 0xec, 0x85, 0xaf, 0xc9, 0x4d, 0x22, 0xc9, 0x06, 0xb7, 0x55, 0x7e, 0xa9, 0x73, 0xc1,
+	0xdc, 0xc0, 0x89, 0x90, 0xc8, 0x3f, 0x05, 0x2f, 0x91, 0x17, 0x22, 0x9e, 0xc6, 0xba, 0x19, 0xb4,
+	0x8f, 0x9c, 0x81, 0x17, 0x3e, 0x21, 0xc6, 0x04, 0x69, 0x4c, 0x90, 0xa1, 0x35, 0xc1, 0x76, 0x2f,
+	0x59, 0xf7, 0x8f, 0xe3, 0x1e, 0xb7, 0x7e, 0xff, 0x7d, 0xe1, 0x8c, 0x5b, 0x11, 0x20, 0xda, 0x88,
+	0xfb, 0x06, 0xbb, 0xe7, 0x82, 0xc7, 0xa2, 0xb0, 0x64, 0x5d, 0x24, 0x3b, 0xb9, 0xb5, 0xc8, 0x31,
+	0x82, 0xb1, 0x1e, 0xb7, 0x22, 0xef, 0x7c, 0x73, 0xf4, 0xdf, 0x02, 0xd8, 0x98, 0x79, 0x2a, 0x82,
+	0x0e, 0x12, 0x3f, 0xb3, 0xc4, 0xda, 0x07, 0x19, 0x15, 0x7c, 0xae, 0x05, 0xf2, 0x6c, 0x62, 0xe6,
+	0xa2, 0x2d, 0x40, 0xef, 0x21, 0x78, 0x5b, 0xe4, 0xfd, 0x43, 0xd8, 0xbb, 0x1e, 0x88, 0xbf, 0x03,
+	0xdd, 0xd1, 0x87, 0xaf, 0xef, 0x87, 0xfb, 0x2d, 0x76, 0x08, 0x07, 0x28, 0xce, 0x98, 0x98, 0x2e,
+	0xc5, 0x5c, 0x26, 0x52, 0x14, 0x7e, 0xfb, 0x3f, 0x73, 0x4e, 0x3b, 0x0f, 0xdc, 0xfd, 0x76, 0xff,
+	0x9f, 0x6b, 0x09, 0x22, 0x5e, 0x8a, 0x4f, 0xf2, 0xa7, 0x2c, 0xfd, 0xb3, 0x26, 0xc7, 0x4c, 0x1f,
+	0x71, 0x3f, 0xde, 0xad, 0xf6, 0xb3, 0xa6, 0x20, 0x23, 0x8d, 0xc7, 0x72, 0x9d, 0xab, 0xe1, 0xfe,
+	0xbe, 0xce, 0xd5, 0x90, 0x9b, 0x25, 0xbd, 0xb9, 0x13, 0xb9, 0xb1, 0xdf, 0xb0, 0xdb, 0x6c, 0x0d,
+	0xfd, 0xf5, 0x6c, 0xdd, 0xbb, 0x66, 0x7b, 0x02, 0xb0, 0x51, 0xee, 0xbf, 0x04, 0x40, 0x91, 0xd3,
+	0x1f, 0xb3, 0x7c, 0x89, 0x31, 0x74, 0xd8, 0xfd, 0x4b, 0xd6, 0x09, 0xdd, 0x81, 0x13, 0xed, 0x60,
+	0xeb, 0xe3, 0x2c, 0x5f, 0x6e, 0x36, 0x82, 0x30, 0xf6, 0xa8, 0x81, 0xe1, 0xa3, 0xd4, 0x51, 0xb3,
+	0x77, 0x70, 0x2c, 0x95, 0x91, 0x91, 0x17, 0xea, 0xa2, 0xbe, 0xd1, 0x2e, 0x33, 0x3f, 0xc9, 0x44,
+	0xbf, 0xd7, 0x89, 0x73, 0xe6, 0x56, 0xe1, 0xec, 0x1e, 0x3e, 0xde, 0x57, 0x57, 0x01, 0x00, 0x00,
+	0xff, 0xff, 0x7e, 0xc0, 0x2e, 0x72, 0xf3, 0x03, 0x00, 0x00,
 }

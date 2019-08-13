@@ -3,13 +3,15 @@
 
 package v2
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
-import core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
-import matcher "github.com/altipla-consulting/envoy-api/envoy/type/matcher"
-import types "github.com/gogo/protobuf/types"
-import _ "github.com/lyft/protoc-gen-validate/validate"
+import (
+	fmt "fmt"
+	core "github.com/altipla-consulting/envoy-api/envoy/api/v2/core"
+	matcher "github.com/altipla-consulting/envoy-api/envoy/type/matcher"
+	_ "github.com/envoyproxy/protoc-gen-validate/validate"
+	types "github.com/gogo/protobuf/types"
+	proto "github.com/golang/protobuf/proto"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -20,7 +22,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // Configuration for pluggable stats sinks.
 type StatsSink struct {
@@ -50,16 +52,17 @@ func (m *StatsSink) Reset()         { *m = StatsSink{} }
 func (m *StatsSink) String() string { return proto.CompactTextString(m) }
 func (*StatsSink) ProtoMessage()    {}
 func (*StatsSink) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stats_c4645c51ae78ddf4, []int{0}
+	return fileDescriptor_51e6d6532209c486, []int{0}
 }
+
 func (m *StatsSink) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StatsSink.Unmarshal(m, b)
 }
 func (m *StatsSink) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_StatsSink.Marshal(b, m, deterministic)
 }
-func (dst *StatsSink) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StatsSink.Merge(dst, src)
+func (m *StatsSink) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsSink.Merge(m, src)
 }
 func (m *StatsSink) XXX_Size() int {
 	return xxx_messageInfo_StatsSink.Size(m)
@@ -114,78 +117,12 @@ func (m *StatsSink) GetTypedConfig() *types.Any {
 	return nil
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*StatsSink) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _StatsSink_OneofMarshaler, _StatsSink_OneofUnmarshaler, _StatsSink_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*StatsSink) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*StatsSink_Config)(nil),
 		(*StatsSink_TypedConfig)(nil),
 	}
-}
-
-func _StatsSink_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*StatsSink)
-	// config_type
-	switch x := m.ConfigType.(type) {
-	case *StatsSink_Config:
-		b.EncodeVarint(2<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.Config); err != nil {
-			return err
-		}
-	case *StatsSink_TypedConfig:
-		b.EncodeVarint(3<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.TypedConfig); err != nil {
-			return err
-		}
-	case nil:
-	default:
-		return fmt.Errorf("StatsSink.ConfigType has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _StatsSink_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*StatsSink)
-	switch tag {
-	case 2: // config_type.config
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(types.Struct)
-		err := b.DecodeMessage(msg)
-		m.ConfigType = &StatsSink_Config{msg}
-		return true, err
-	case 3: // config_type.typed_config
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(types.Any)
-		err := b.DecodeMessage(msg)
-		m.ConfigType = &StatsSink_TypedConfig{msg}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _StatsSink_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*StatsSink)
-	// config_type
-	switch x := m.ConfigType.(type) {
-	case *StatsSink_Config:
-		s := proto.Size(x.Config)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *StatsSink_TypedConfig:
-		s := proto.Size(x.TypedConfig)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
 }
 
 // Statistics configuration such as tagging.
@@ -205,9 +142,8 @@ type StatsConfig struct {
 	//   If any default tags are specified twice, the config will be considered
 	//   invalid.
 	//
-	// See `well_known_names.h
-	// <https://github.com/envoyproxy/envoy/blob/master/source/common/config/well_known_names.h>`_
-	// for a list of the default tags in Envoy.
+	// See :repo:`well_known_names.h <source/common/config/well_known_names.h>` for a list of the
+	// default tags in Envoy.
 	//
 	// If not provided, the value is assumed to be true.
 	UseAllDefaultTags *types.BoolValue `protobuf:"bytes,2,opt,name=use_all_default_tags,json=useAllDefaultTags,proto3" json:"use_all_default_tags,omitempty"`
@@ -224,16 +160,17 @@ func (m *StatsConfig) Reset()         { *m = StatsConfig{} }
 func (m *StatsConfig) String() string { return proto.CompactTextString(m) }
 func (*StatsConfig) ProtoMessage()    {}
 func (*StatsConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stats_c4645c51ae78ddf4, []int{1}
+	return fileDescriptor_51e6d6532209c486, []int{1}
 }
+
 func (m *StatsConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StatsConfig.Unmarshal(m, b)
 }
 func (m *StatsConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_StatsConfig.Marshal(b, m, deterministic)
 }
-func (dst *StatsConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StatsConfig.Merge(dst, src)
+func (m *StatsConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsConfig.Merge(m, src)
 }
 func (m *StatsConfig) XXX_Size() int {
 	return xxx_messageInfo_StatsConfig.Size(m)
@@ -281,16 +218,17 @@ func (m *StatsMatcher) Reset()         { *m = StatsMatcher{} }
 func (m *StatsMatcher) String() string { return proto.CompactTextString(m) }
 func (*StatsMatcher) ProtoMessage()    {}
 func (*StatsMatcher) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stats_c4645c51ae78ddf4, []int{2}
+	return fileDescriptor_51e6d6532209c486, []int{2}
 }
+
 func (m *StatsMatcher) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StatsMatcher.Unmarshal(m, b)
 }
 func (m *StatsMatcher) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_StatsMatcher.Marshal(b, m, deterministic)
 }
-func (dst *StatsMatcher) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StatsMatcher.Merge(dst, src)
+func (m *StatsMatcher) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsMatcher.Merge(m, src)
 }
 func (m *StatsMatcher) XXX_Size() int {
 	return xxx_messageInfo_StatsMatcher.Size(m)
@@ -351,96 +289,13 @@ func (m *StatsMatcher) GetInclusionList() *matcher.ListStringMatcher {
 	return nil
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*StatsMatcher) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _StatsMatcher_OneofMarshaler, _StatsMatcher_OneofUnmarshaler, _StatsMatcher_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*StatsMatcher) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*StatsMatcher_RejectAll)(nil),
 		(*StatsMatcher_ExclusionList)(nil),
 		(*StatsMatcher_InclusionList)(nil),
 	}
-}
-
-func _StatsMatcher_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*StatsMatcher)
-	// stats_matcher
-	switch x := m.StatsMatcher.(type) {
-	case *StatsMatcher_RejectAll:
-		t := uint64(0)
-		if x.RejectAll {
-			t = 1
-		}
-		b.EncodeVarint(1<<3 | proto.WireVarint)
-		b.EncodeVarint(t)
-	case *StatsMatcher_ExclusionList:
-		b.EncodeVarint(2<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.ExclusionList); err != nil {
-			return err
-		}
-	case *StatsMatcher_InclusionList:
-		b.EncodeVarint(3<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.InclusionList); err != nil {
-			return err
-		}
-	case nil:
-	default:
-		return fmt.Errorf("StatsMatcher.StatsMatcher has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _StatsMatcher_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*StatsMatcher)
-	switch tag {
-	case 1: // stats_matcher.reject_all
-		if wire != proto.WireVarint {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeVarint()
-		m.StatsMatcher = &StatsMatcher_RejectAll{x != 0}
-		return true, err
-	case 2: // stats_matcher.exclusion_list
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(matcher.ListStringMatcher)
-		err := b.DecodeMessage(msg)
-		m.StatsMatcher = &StatsMatcher_ExclusionList{msg}
-		return true, err
-	case 3: // stats_matcher.inclusion_list
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(matcher.ListStringMatcher)
-		err := b.DecodeMessage(msg)
-		m.StatsMatcher = &StatsMatcher_InclusionList{msg}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _StatsMatcher_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*StatsMatcher)
-	// stats_matcher
-	switch x := m.StatsMatcher.(type) {
-	case *StatsMatcher_RejectAll:
-		n += 1 // tag and wire
-		n += 1
-	case *StatsMatcher_ExclusionList:
-		s := proto.Size(x.ExclusionList)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *StatsMatcher_InclusionList:
-		s := proto.Size(x.InclusionList)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
 }
 
 // Designates a tag name and value pair. The value may be either a fixed value
@@ -450,9 +305,8 @@ func _StatsMatcher_OneofSizer(msg proto.Message) (n int) {
 type TagSpecifier struct {
 	// Attaches an identifier to the tag values to identify the tag being in the
 	// sink. Envoy has a set of default names and regexes to extract dynamic
-	// portions of existing stats, which can be found in `well_known_names.h
-	// <https://github.com/envoyproxy/envoy/blob/master/source/common/config/well_known_names.h>`_
-	// in the Envoy repository. If a :ref:`tag_name
+	// portions of existing stats, which can be found in :repo:`well_known_names.h
+	// <source/common/config/well_known_names.h>` in the Envoy repository. If a :ref:`tag_name
 	// <envoy_api_field_config.metrics.v2.TagSpecifier.tag_name>` is provided in the config and
 	// neither :ref:`regex <envoy_api_field_config.metrics.v2.TagSpecifier.regex>` or
 	// :ref:`fixed_value <envoy_api_field_config.metrics.v2.TagSpecifier.fixed_value>` were specified,
@@ -475,16 +329,17 @@ func (m *TagSpecifier) Reset()         { *m = TagSpecifier{} }
 func (m *TagSpecifier) String() string { return proto.CompactTextString(m) }
 func (*TagSpecifier) ProtoMessage()    {}
 func (*TagSpecifier) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stats_c4645c51ae78ddf4, []int{3}
+	return fileDescriptor_51e6d6532209c486, []int{3}
 }
+
 func (m *TagSpecifier) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TagSpecifier.Unmarshal(m, b)
 }
 func (m *TagSpecifier) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TagSpecifier.Marshal(b, m, deterministic)
 }
-func (dst *TagSpecifier) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TagSpecifier.Merge(dst, src)
+func (m *TagSpecifier) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TagSpecifier.Merge(m, src)
 }
 func (m *TagSpecifier) XXX_Size() int {
 	return xxx_messageInfo_TagSpecifier.Size(m)
@@ -539,70 +394,12 @@ func (m *TagSpecifier) GetFixedValue() string {
 	return ""
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*TagSpecifier) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _TagSpecifier_OneofMarshaler, _TagSpecifier_OneofUnmarshaler, _TagSpecifier_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*TagSpecifier) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*TagSpecifier_Regex)(nil),
 		(*TagSpecifier_FixedValue)(nil),
 	}
-}
-
-func _TagSpecifier_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*TagSpecifier)
-	// tag_value
-	switch x := m.TagValue.(type) {
-	case *TagSpecifier_Regex:
-		b.EncodeVarint(2<<3 | proto.WireBytes)
-		b.EncodeStringBytes(x.Regex)
-	case *TagSpecifier_FixedValue:
-		b.EncodeVarint(3<<3 | proto.WireBytes)
-		b.EncodeStringBytes(x.FixedValue)
-	case nil:
-	default:
-		return fmt.Errorf("TagSpecifier.TagValue has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _TagSpecifier_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*TagSpecifier)
-	switch tag {
-	case 2: // tag_value.regex
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeStringBytes()
-		m.TagValue = &TagSpecifier_Regex{x}
-		return true, err
-	case 3: // tag_value.fixed_value
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeStringBytes()
-		m.TagValue = &TagSpecifier_FixedValue{x}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _TagSpecifier_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*TagSpecifier)
-	// tag_value
-	switch x := m.TagValue.(type) {
-	case *TagSpecifier_Regex:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(len(x.Regex)))
-		n += len(x.Regex)
-	case *TagSpecifier_FixedValue:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(len(x.FixedValue)))
-		n += len(x.FixedValue)
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
 }
 
 // Stats configuration proto schema for built-in *envoy.statsd* sink. This sink does not support
@@ -648,16 +445,17 @@ func (m *StatsdSink) Reset()         { *m = StatsdSink{} }
 func (m *StatsdSink) String() string { return proto.CompactTextString(m) }
 func (*StatsdSink) ProtoMessage()    {}
 func (*StatsdSink) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stats_c4645c51ae78ddf4, []int{4}
+	return fileDescriptor_51e6d6532209c486, []int{4}
 }
+
 func (m *StatsdSink) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StatsdSink.Unmarshal(m, b)
 }
 func (m *StatsdSink) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_StatsdSink.Marshal(b, m, deterministic)
 }
-func (dst *StatsdSink) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StatsdSink.Merge(dst, src)
+func (m *StatsdSink) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsdSink.Merge(m, src)
 }
 func (m *StatsdSink) XXX_Size() int {
 	return xxx_messageInfo_StatsdSink.Size(m)
@@ -712,74 +510,12 @@ func (m *StatsdSink) GetPrefix() string {
 	return ""
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*StatsdSink) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _StatsdSink_OneofMarshaler, _StatsdSink_OneofUnmarshaler, _StatsdSink_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*StatsdSink) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*StatsdSink_Address)(nil),
 		(*StatsdSink_TcpClusterName)(nil),
 	}
-}
-
-func _StatsdSink_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*StatsdSink)
-	// statsd_specifier
-	switch x := m.StatsdSpecifier.(type) {
-	case *StatsdSink_Address:
-		b.EncodeVarint(1<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.Address); err != nil {
-			return err
-		}
-	case *StatsdSink_TcpClusterName:
-		b.EncodeVarint(2<<3 | proto.WireBytes)
-		b.EncodeStringBytes(x.TcpClusterName)
-	case nil:
-	default:
-		return fmt.Errorf("StatsdSink.StatsdSpecifier has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _StatsdSink_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*StatsdSink)
-	switch tag {
-	case 1: // statsd_specifier.address
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(core.Address)
-		err := b.DecodeMessage(msg)
-		m.StatsdSpecifier = &StatsdSink_Address{msg}
-		return true, err
-	case 2: // statsd_specifier.tcp_cluster_name
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeStringBytes()
-		m.StatsdSpecifier = &StatsdSink_TcpClusterName{x}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _StatsdSink_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*StatsdSink)
-	// statsd_specifier
-	switch x := m.StatsdSpecifier.(type) {
-	case *StatsdSink_Address:
-		s := proto.Size(x.Address)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *StatsdSink_TcpClusterName:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(len(x.TcpClusterName)))
-		n += len(x.TcpClusterName)
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
 }
 
 // Stats configuration proto schema for built-in *envoy.dog_statsd* sink.
@@ -803,16 +539,17 @@ func (m *DogStatsdSink) Reset()         { *m = DogStatsdSink{} }
 func (m *DogStatsdSink) String() string { return proto.CompactTextString(m) }
 func (*DogStatsdSink) ProtoMessage()    {}
 func (*DogStatsdSink) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stats_c4645c51ae78ddf4, []int{5}
+	return fileDescriptor_51e6d6532209c486, []int{5}
 }
+
 func (m *DogStatsdSink) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_DogStatsdSink.Unmarshal(m, b)
 }
 func (m *DogStatsdSink) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_DogStatsdSink.Marshal(b, m, deterministic)
 }
-func (dst *DogStatsdSink) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DogStatsdSink.Merge(dst, src)
+func (m *DogStatsdSink) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DogStatsdSink.Merge(m, src)
 }
 func (m *DogStatsdSink) XXX_Size() int {
 	return xxx_messageInfo_DogStatsdSink.Size(m)
@@ -854,59 +591,11 @@ func (m *DogStatsdSink) GetPrefix() string {
 	return ""
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*DogStatsdSink) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _DogStatsdSink_OneofMarshaler, _DogStatsdSink_OneofUnmarshaler, _DogStatsdSink_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*DogStatsdSink) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*DogStatsdSink_Address)(nil),
 	}
-}
-
-func _DogStatsdSink_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*DogStatsdSink)
-	// dog_statsd_specifier
-	switch x := m.DogStatsdSpecifier.(type) {
-	case *DogStatsdSink_Address:
-		b.EncodeVarint(1<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.Address); err != nil {
-			return err
-		}
-	case nil:
-	default:
-		return fmt.Errorf("DogStatsdSink.DogStatsdSpecifier has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _DogStatsdSink_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*DogStatsdSink)
-	switch tag {
-	case 1: // dog_statsd_specifier.address
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(core.Address)
-		err := b.DecodeMessage(msg)
-		m.DogStatsdSpecifier = &DogStatsdSink_Address{msg}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _DogStatsdSink_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*DogStatsdSink)
-	// dog_statsd_specifier
-	switch x := m.DogStatsdSpecifier.(type) {
-	case *DogStatsdSink_Address:
-		s := proto.Size(x.Address)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
 }
 
 // Stats configuration proto schema for built-in *envoy.stat_sinks.hystrix* sink.
@@ -928,7 +617,7 @@ type HystrixSink struct {
 	//
 	// rolling_window(ms) = stats_flush_interval(ms) * num_of_buckets
 	//
-	// More detailed explanation can be found in `Hystix wiki
+	// More detailed explanation can be found in `Hystrix wiki
 	// <https://github.com/Netflix/Hystrix/wiki/Metrics-and-Monitoring#hystrixrollingnumber>`_.
 	NumBuckets           int64    `protobuf:"varint,1,opt,name=num_buckets,json=numBuckets,proto3" json:"num_buckets,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -940,16 +629,17 @@ func (m *HystrixSink) Reset()         { *m = HystrixSink{} }
 func (m *HystrixSink) String() string { return proto.CompactTextString(m) }
 func (*HystrixSink) ProtoMessage()    {}
 func (*HystrixSink) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stats_c4645c51ae78ddf4, []int{6}
+	return fileDescriptor_51e6d6532209c486, []int{6}
 }
+
 func (m *HystrixSink) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HystrixSink.Unmarshal(m, b)
 }
 func (m *HystrixSink) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_HystrixSink.Marshal(b, m, deterministic)
 }
-func (dst *HystrixSink) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HystrixSink.Merge(dst, src)
+func (m *HystrixSink) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HystrixSink.Merge(m, src)
 }
 func (m *HystrixSink) XXX_Size() int {
 	return xxx_messageInfo_HystrixSink.Size(m)
@@ -978,52 +668,53 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("envoy/config/metrics/v2/stats.proto", fileDescriptor_stats_c4645c51ae78ddf4)
+	proto.RegisterFile("envoy/config/metrics/v2/stats.proto", fileDescriptor_51e6d6532209c486)
 }
 
-var fileDescriptor_stats_c4645c51ae78ddf4 = []byte{
-	// 683 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xcd, 0x6e, 0xd3, 0x4c,
-	0x14, 0x8d, 0xe3, 0xfe, 0xf9, 0x3a, 0xa9, 0xfa, 0x59, 0x55, 0xff, 0xf4, 0x41, 0x8b, 0x11, 0x52,
-	0xc4, 0xc2, 0x16, 0x41, 0x42, 0x62, 0x19, 0xb7, 0x0b, 0xab, 0x40, 0x17, 0x4e, 0xc5, 0x82, 0x8d,
-	0x35, 0xb5, 0x27, 0x66, 0xe8, 0xc4, 0xb6, 0x66, 0xc6, 0x21, 0x59, 0x20, 0xb1, 0xe0, 0x31, 0xd8,
-	0xf1, 0x12, 0x88, 0x55, 0xdf, 0x06, 0x55, 0xe2, 0x21, 0xd0, 0xfc, 0xa4, 0x0a, 0xa9, 0xb2, 0x40,
-	0x62, 0x17, 0xcf, 0x39, 0xe7, 0xde, 0x73, 0xee, 0x9d, 0x09, 0x3c, 0xc6, 0xe5, 0xa4, 0x9a, 0x85,
-	0x59, 0x55, 0x8e, 0x48, 0x11, 0x8e, 0xb1, 0x60, 0x24, 0xe3, 0xe1, 0xa4, 0x1f, 0x72, 0x81, 0x04,
-	0x0f, 0x6a, 0x56, 0x89, 0xca, 0xdb, 0x57, 0xa4, 0x40, 0x93, 0x02, 0x43, 0x0a, 0x26, 0xfd, 0xa3,
-	0x63, 0xad, 0x46, 0x35, 0x91, 0x92, 0xac, 0x62, 0x38, 0x44, 0x79, 0xce, 0x30, 0x37, 0xca, 0x39,
-	0x41, 0xcc, 0x6a, 0x1c, 0x8e, 0x91, 0xc8, 0xde, 0x63, 0x16, 0x72, 0xc1, 0x48, 0x59, 0x18, 0xc2,
-	0x61, 0x51, 0x55, 0x05, 0xc5, 0xa1, 0xfa, 0xba, 0x6a, 0x46, 0x21, 0x2a, 0x67, 0x06, 0xfa, 0x7f,
-	0x19, 0xe2, 0x82, 0x35, 0x99, 0x30, 0xe8, 0xc3, 0x65, 0xf4, 0x23, 0x43, 0x75, 0x8d, 0xd9, 0xbc,
-	0xf3, 0xfe, 0x04, 0x51, 0x92, 0x23, 0x81, 0xc3, 0xf9, 0x0f, 0x0d, 0xf8, 0x5f, 0x2d, 0x70, 0x86,
-	0x32, 0xdc, 0x90, 0x94, 0xd7, 0x9e, 0x07, 0x6b, 0x25, 0x1a, 0xe3, 0x03, 0xeb, 0xc4, 0xea, 0x39,
-	0x89, 0xfa, 0xed, 0x3d, 0x83, 0x0d, 0x1d, 0xf5, 0xa0, 0x7d, 0x62, 0xf5, 0xdc, 0xfe, 0x7e, 0xa0,
-	0x7b, 0x05, 0xf3, 0x5e, 0xc1, 0x50, 0x39, 0x89, 0x5b, 0x89, 0x21, 0x7a, 0x2f, 0xa1, 0x23, 0x33,
-	0xe6, 0xa9, 0x11, 0xda, 0x4a, 0xb8, 0x7b, 0x4f, 0x38, 0x28, 0x67, 0x71, 0x2b, 0x71, 0x15, 0xf7,
-	0x54, 0x51, 0xa3, 0x2e, 0xb8, 0x5a, 0x94, 0xca, 0x53, 0xff, 0x97, 0x05, 0xae, 0xb2, 0xa7, 0x61,
-	0xef, 0x0c, 0x40, 0xad, 0x22, 0x15, 0xa8, 0xe0, 0x07, 0xd6, 0x89, 0xdd, 0x73, 0xfb, 0x4f, 0x82,
-	0x15, 0x0b, 0x09, 0x2e, 0x51, 0x31, 0xac, 0x71, 0x46, 0x46, 0x04, 0xb3, 0xc4, 0x51, 0xc2, 0x4b,
-	0x54, 0x70, 0xef, 0x15, 0xec, 0x36, 0x1c, 0xa7, 0x88, 0xd2, 0x34, 0xc7, 0x23, 0xd4, 0x50, 0xa1,
-	0xeb, 0xe9, 0x80, 0x47, 0xf7, 0x7c, 0x46, 0x55, 0x45, 0xdf, 0x22, 0xda, 0xe0, 0xe4, 0xbf, 0x86,
-	0xe3, 0x01, 0xa5, 0x67, 0x5a, 0xa5, 0x8a, 0x9d, 0x43, 0x57, 0x5b, 0x32, 0x1b, 0x35, 0x69, 0x57,
-	0xbb, 0x52, 0x79, 0xde, 0x68, 0x72, 0xd2, 0xe1, 0x0b, 0x5f, 0xfe, 0x4f, 0x0b, 0x3a, 0x8b, 0xb0,
-	0x77, 0x0c, 0xc0, 0xf0, 0x07, 0x9c, 0x09, 0x69, 0x56, 0xad, 0x65, 0x2b, 0x6e, 0x25, 0x8e, 0x3e,
-	0x1b, 0x50, 0xea, 0x5d, 0xc0, 0x36, 0x9e, 0x66, 0xb4, 0xe1, 0xa4, 0x2a, 0x53, 0x4a, 0xb8, 0x30,
-	0x21, 0xe6, 0xed, 0xe5, 0x14, 0x03, 0xe3, 0x2c, 0x78, 0x4d, 0xb8, 0x18, 0xaa, 0xfb, 0x66, 0xea,
-	0xc7, 0xad, 0xa4, 0x7b, 0x27, 0x97, 0xa8, 0xac, 0x47, 0xca, 0x3f, 0xea, 0xd9, 0x7f, 0x59, 0xef,
-	0x4e, 0x2e, 0xd1, 0x68, 0x6f, 0x69, 0x3a, 0xde, 0xfa, 0xf7, 0xdb, 0x1b, 0xdb, 0xf2, 0x3f, 0x41,
-	0x67, 0x71, 0x3b, 0xde, 0x21, 0x6c, 0x09, 0x54, 0xa4, 0x0b, 0xb7, 0x6f, 0x53, 0xa0, 0xe2, 0x42,
-	0x5e, 0x40, 0x1f, 0xd6, 0x19, 0x2e, 0xf0, 0x54, 0x25, 0x73, 0x22, 0xf8, 0x71, 0x7b, 0x63, 0xaf,
-	0x33, 0xbb, 0xf7, 0x59, 0x8e, 0x42, 0x43, 0xde, 0x23, 0x70, 0x47, 0x64, 0x8a, 0xf3, 0x74, 0x22,
-	0xd7, 0xa4, 0x3c, 0x3b, 0x71, 0x2b, 0x01, 0x75, 0xa8, 0x56, 0x17, 0xb9, 0xe0, 0xc8, 0x0e, 0x8a,
-	0xe0, 0x7f, 0xb3, 0x00, 0xd4, 0xa0, 0x73, 0x75, 0xef, 0x5f, 0xc0, 0xa6, 0x79, 0xa9, 0xaa, 0xb9,
-	0xbc, 0x03, 0x3a, 0x2e, 0xaa, 0x89, 0x5c, 0x99, 0x7c, 0xcb, 0xc1, 0x40, 0x33, 0xe2, 0x56, 0x32,
-	0x27, 0x7b, 0x4f, 0x61, 0x47, 0x64, 0x75, 0x2a, 0x03, 0x0b, 0xcc, 0xb4, 0xfb, 0xb6, 0xe9, 0xbd,
-	0x2d, 0xb2, 0xfa, 0x54, 0x03, 0x2a, 0xc6, 0x1e, 0x6c, 0xd4, 0x0c, 0x8f, 0xc8, 0x54, 0xbb, 0x4b,
-	0xcc, 0x57, 0x74, 0x08, 0x3b, 0x6a, 0x42, 0x79, 0xca, 0xef, 0xa6, 0x61, 0x86, 0xf4, 0xc5, 0x82,
-	0xee, 0x59, 0x55, 0xfc, 0x03, 0xa3, 0xab, 0x9a, 0x3f, 0x80, 0xdd, 0xbc, 0x2a, 0xd2, 0x15, 0x06,
-	0xce, 0xd7, 0xb6, 0xda, 0x3b, 0xb6, 0x1f, 0x80, 0x1b, 0xcf, 0xe4, 0xff, 0xd4, 0x54, 0x79, 0x38,
-	0x06, 0xb7, 0x6c, 0xc6, 0xe9, 0x55, 0x93, 0x5d, 0x63, 0xa1, 0x7d, 0xd8, 0x09, 0x94, 0xcd, 0x38,
-	0xd2, 0x27, 0xd1, 0xda, 0xbb, 0xf6, 0xa4, 0x7f, 0xb5, 0xa1, 0x9e, 0xcf, 0xf3, 0xdf, 0x01, 0x00,
-	0x00, 0xff, 0xff, 0xfc, 0x85, 0x06, 0x93, 0x54, 0x05, 0x00, 0x00,
+var fileDescriptor_51e6d6532209c486 = []byte{
+	// 697 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0x4d, 0x6f, 0xd3, 0x4a,
+	0x14, 0x8d, 0xe3, 0x7e, 0xc4, 0xd7, 0x49, 0xd5, 0x67, 0x45, 0x2f, 0x6d, 0xdf, 0xd3, 0x6b, 0x5e,
+	0x50, 0xa5, 0x88, 0x85, 0x2d, 0x82, 0x84, 0xd4, 0x65, 0xdc, 0x2e, 0xac, 0x02, 0x55, 0xe5, 0x54,
+	0x2c, 0xd8, 0x58, 0x53, 0x7b, 0x62, 0x86, 0x3a, 0x1e, 0x6b, 0x66, 0x1c, 0x12, 0xb1, 0x41, 0xfc,
+	0x0e, 0x36, 0xfc, 0x38, 0x76, 0xfc, 0x00, 0xc4, 0x0a, 0xcd, 0x47, 0xaa, 0xd0, 0x92, 0x05, 0x12,
+	0xbb, 0x78, 0xce, 0x39, 0xf7, 0x9e, 0x73, 0xef, 0x4c, 0xe0, 0x11, 0x2e, 0xe7, 0x74, 0x19, 0xa4,
+	0xb4, 0x9c, 0x92, 0x3c, 0x98, 0x61, 0xc1, 0x48, 0xca, 0x83, 0xf9, 0x28, 0xe0, 0x02, 0x09, 0xee,
+	0x57, 0x8c, 0x0a, 0xea, 0xf5, 0x14, 0xc9, 0xd7, 0x24, 0xdf, 0x90, 0xfc, 0xf9, 0xe8, 0xe8, 0x58,
+	0xab, 0x51, 0x45, 0xa4, 0x24, 0xa5, 0x0c, 0x07, 0x28, 0xcb, 0x18, 0xe6, 0x46, 0xb9, 0x22, 0x88,
+	0x65, 0x85, 0x83, 0x19, 0x12, 0xe9, 0x1b, 0xcc, 0x02, 0x2e, 0x18, 0x29, 0x73, 0x43, 0x38, 0xcc,
+	0x29, 0xcd, 0x0b, 0x1c, 0xa8, 0xaf, 0x9b, 0x7a, 0x1a, 0xa0, 0x72, 0x69, 0xa0, 0x7f, 0xef, 0x43,
+	0x5c, 0xb0, 0x3a, 0x15, 0x06, 0xfd, 0xef, 0x3e, 0xfa, 0x8e, 0xa1, 0xaa, 0xc2, 0x6c, 0xd5, 0xb9,
+	0x37, 0x47, 0x05, 0xc9, 0x90, 0xc0, 0xc1, 0xea, 0x87, 0x06, 0x06, 0x9f, 0x2c, 0x70, 0x26, 0x32,
+	0xdc, 0x84, 0x94, 0xb7, 0x9e, 0x07, 0x5b, 0x25, 0x9a, 0xe1, 0x03, 0xab, 0x6f, 0x0d, 0x9d, 0x58,
+	0xfd, 0xf6, 0x9e, 0xc0, 0x8e, 0x8e, 0x7a, 0xd0, 0xec, 0x5b, 0x43, 0x77, 0xd4, 0xf3, 0x75, 0x2f,
+	0x7f, 0xd5, 0xcb, 0x9f, 0x28, 0x27, 0x51, 0x23, 0x36, 0x44, 0xef, 0x14, 0xda, 0x32, 0x63, 0x96,
+	0x18, 0xa1, 0xad, 0x84, 0xdd, 0x07, 0xc2, 0x71, 0xb9, 0x8c, 0x1a, 0xb1, 0xab, 0xb8, 0x67, 0x8a,
+	0x1a, 0x76, 0xc0, 0xd5, 0xa2, 0x44, 0x9e, 0x0e, 0xbe, 0x5a, 0xe0, 0x2a, 0x7b, 0x1a, 0xf6, 0xce,
+	0x01, 0xd4, 0x2a, 0x12, 0x81, 0x72, 0x7e, 0x60, 0xf5, 0xed, 0xa1, 0x3b, 0x3a, 0xf1, 0x37, 0x2c,
+	0xc4, 0xbf, 0x46, 0xf9, 0xa4, 0xc2, 0x29, 0x99, 0x12, 0xcc, 0x62, 0x47, 0x09, 0xaf, 0x51, 0xce,
+	0xbd, 0xe7, 0xd0, 0xad, 0x39, 0x4e, 0x50, 0x51, 0x24, 0x19, 0x9e, 0xa2, 0xba, 0x10, 0xba, 0x9e,
+	0x0e, 0x78, 0xf4, 0xc0, 0x67, 0x48, 0x69, 0xf1, 0x0a, 0x15, 0x35, 0x8e, 0xff, 0xaa, 0x39, 0x1e,
+	0x17, 0xc5, 0xb9, 0x56, 0xa9, 0x62, 0x17, 0xd0, 0xd1, 0x96, 0xcc, 0x46, 0x4d, 0xda, 0xcd, 0xae,
+	0x54, 0x9e, 0x97, 0x9a, 0x1c, 0xb7, 0xf9, 0xda, 0xd7, 0xe0, 0x8b, 0x05, 0xed, 0x75, 0xd8, 0x3b,
+	0x06, 0x60, 0xf8, 0x2d, 0x4e, 0x85, 0x34, 0xab, 0xd6, 0xd2, 0x8a, 0x1a, 0xb1, 0xa3, 0xcf, 0xc6,
+	0x45, 0xe1, 0x5d, 0xc2, 0x1e, 0x5e, 0xa4, 0x45, 0xcd, 0x09, 0x2d, 0x93, 0x82, 0x70, 0x61, 0x42,
+	0xac, 0xda, 0xcb, 0x29, 0xfa, 0xc6, 0x99, 0xff, 0x82, 0x70, 0x31, 0x51, 0xf7, 0xcd, 0xd4, 0x8f,
+	0x1a, 0x71, 0xe7, 0x4e, 0x2e, 0x51, 0x59, 0x8f, 0x94, 0x3f, 0xd5, 0xb3, 0x7f, 0xb3, 0xde, 0x9d,
+	0x5c, 0xa2, 0x61, 0xf7, 0xde, 0x74, 0x3c, 0xfb, 0x5b, 0x68, 0x0d, 0xde, 0x43, 0x7b, 0x7d, 0x37,
+	0xde, 0x21, 0xb4, 0x04, 0xca, 0x93, 0xb5, 0xbb, 0xb7, 0x2b, 0x50, 0x7e, 0x29, 0xaf, 0x5f, 0x1f,
+	0xb6, 0x19, 0xce, 0xf1, 0x42, 0xe5, 0x72, 0xc2, 0xd6, 0xf7, 0x70, 0x9b, 0xd9, 0xc3, 0x0f, 0x72,
+	0x0c, 0x1a, 0xf0, 0xfe, 0x07, 0x77, 0x4a, 0x16, 0x38, 0x4b, 0xe6, 0x72, 0x45, 0xca, 0xaf, 0x13,
+	0x35, 0x62, 0x50, 0x87, 0x6a, 0x6d, 0xa1, 0x0b, 0x8e, 0xac, 0xaf, 0x08, 0x83, 0xcf, 0x16, 0x80,
+	0x1a, 0x72, 0xa6, 0xee, 0xfc, 0x33, 0xd8, 0x35, 0xaf, 0x54, 0xb5, 0x96, 0xfb, 0xd7, 0x51, 0x51,
+	0x45, 0xe4, 0xba, 0xe4, 0x3b, 0xf6, 0xc7, 0x9a, 0x11, 0x35, 0xe2, 0x15, 0xd9, 0x7b, 0x0c, 0xfb,
+	0x22, 0xad, 0x12, 0x19, 0x56, 0x60, 0xa6, 0xbd, 0x37, 0x4d, 0xef, 0x3d, 0x91, 0x56, 0x67, 0x1a,
+	0x50, 0x21, 0xfe, 0x86, 0x9d, 0x8a, 0xe1, 0x29, 0x59, 0x68, 0x77, 0xb1, 0xf9, 0x0a, 0x7b, 0xb0,
+	0xaf, 0xa6, 0x93, 0x25, 0xfc, 0x6e, 0x16, 0x6a, 0x40, 0x1f, 0x2d, 0xe8, 0x9c, 0xd3, 0xfc, 0x0f,
+	0xd8, 0xdc, 0xd4, 0xfa, 0x1f, 0xe8, 0x66, 0x34, 0x4f, 0x7e, 0xd9, 0xfe, 0x62, 0xab, 0xd5, 0xdc,
+	0xb7, 0x07, 0x3e, 0xb8, 0xd1, 0x52, 0xfe, 0x3f, 0x2d, 0x94, 0x83, 0x63, 0x70, 0xcb, 0x7a, 0x96,
+	0xdc, 0xd4, 0xe9, 0x2d, 0x16, 0xda, 0x85, 0x1d, 0x43, 0x59, 0xcf, 0x42, 0x7d, 0x12, 0x9e, 0xc2,
+	0x09, 0xa1, 0xda, 0x55, 0xc5, 0xe8, 0x62, 0xb9, 0xe9, 0x05, 0x84, 0x7a, 0xfc, 0x57, 0xf2, 0x79,
+	0x5d, 0x59, 0xaf, 0x9b, 0xf3, 0xd1, 0xcd, 0x8e, 0x7a, 0x6b, 0x4f, 0x7f, 0x04, 0x00, 0x00, 0xff,
+	0xff, 0x43, 0x6b, 0xad, 0xf2, 0x81, 0x05, 0x00, 0x00,
 }

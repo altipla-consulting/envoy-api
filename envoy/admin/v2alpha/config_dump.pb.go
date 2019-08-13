@@ -3,13 +3,15 @@
 
 package envoy_admin_v2alpha
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
-import v21 "github.com/altipla-consulting/envoy-api/envoy/api/v2"
-import v2 "github.com/altipla-consulting/envoy-api/envoy/config/bootstrap/v2"
-import _ "github.com/gogo/protobuf/gogoproto"
-import types "github.com/gogo/protobuf/types"
+import (
+	fmt "fmt"
+	v21 "github.com/altipla-consulting/envoy-api/envoy/api/v2"
+	v2 "github.com/altipla-consulting/envoy-api/envoy/config/bootstrap/v2"
+	_ "github.com/gogo/protobuf/gogoproto"
+	types "github.com/gogo/protobuf/types"
+	proto "github.com/golang/protobuf/proto"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -20,7 +22,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // The :ref:`/config_dump <operations_admin_interface_config_dump>` admin endpoint uses this wrapper
 // message to maintain and serve arbitrary configuration information from any component in Envoy.
@@ -45,16 +47,17 @@ func (m *ConfigDump) Reset()         { *m = ConfigDump{} }
 func (m *ConfigDump) String() string { return proto.CompactTextString(m) }
 func (*ConfigDump) ProtoMessage()    {}
 func (*ConfigDump) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{0}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{0}
 }
+
 func (m *ConfigDump) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ConfigDump.Unmarshal(m, b)
 }
 func (m *ConfigDump) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ConfigDump.Marshal(b, m, deterministic)
 }
-func (dst *ConfigDump) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ConfigDump.Merge(dst, src)
+func (m *ConfigDump) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConfigDump.Merge(m, src)
 }
 func (m *ConfigDump) XXX_Size() int {
 	return xxx_messageInfo_ConfigDump.Size(m)
@@ -89,16 +92,17 @@ func (m *BootstrapConfigDump) Reset()         { *m = BootstrapConfigDump{} }
 func (m *BootstrapConfigDump) String() string { return proto.CompactTextString(m) }
 func (*BootstrapConfigDump) ProtoMessage()    {}
 func (*BootstrapConfigDump) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{1}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{1}
 }
+
 func (m *BootstrapConfigDump) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_BootstrapConfigDump.Unmarshal(m, b)
 }
 func (m *BootstrapConfigDump) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_BootstrapConfigDump.Marshal(b, m, deterministic)
 }
-func (dst *BootstrapConfigDump) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BootstrapConfigDump.Merge(dst, src)
+func (m *BootstrapConfigDump) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BootstrapConfigDump.Merge(m, src)
 }
 func (m *BootstrapConfigDump) XXX_Size() int {
 	return xxx_messageInfo_BootstrapConfigDump.Size(m)
@@ -155,16 +159,17 @@ func (m *ListenersConfigDump) Reset()         { *m = ListenersConfigDump{} }
 func (m *ListenersConfigDump) String() string { return proto.CompactTextString(m) }
 func (*ListenersConfigDump) ProtoMessage()    {}
 func (*ListenersConfigDump) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{2}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{2}
 }
+
 func (m *ListenersConfigDump) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListenersConfigDump.Unmarshal(m, b)
 }
 func (m *ListenersConfigDump) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ListenersConfigDump.Marshal(b, m, deterministic)
 }
-func (dst *ListenersConfigDump) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListenersConfigDump.Merge(dst, src)
+func (m *ListenersConfigDump) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListenersConfigDump.Merge(m, src)
 }
 func (m *ListenersConfigDump) XXX_Size() int {
 	return xxx_messageInfo_ListenersConfigDump.Size(m)
@@ -225,16 +230,17 @@ func (m *ListenersConfigDump_StaticListener) Reset()         { *m = ListenersCon
 func (m *ListenersConfigDump_StaticListener) String() string { return proto.CompactTextString(m) }
 func (*ListenersConfigDump_StaticListener) ProtoMessage()    {}
 func (*ListenersConfigDump_StaticListener) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{2, 0}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{2, 0}
 }
+
 func (m *ListenersConfigDump_StaticListener) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListenersConfigDump_StaticListener.Unmarshal(m, b)
 }
 func (m *ListenersConfigDump_StaticListener) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ListenersConfigDump_StaticListener.Marshal(b, m, deterministic)
 }
-func (dst *ListenersConfigDump_StaticListener) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListenersConfigDump_StaticListener.Merge(dst, src)
+func (m *ListenersConfigDump_StaticListener) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListenersConfigDump_StaticListener.Merge(m, src)
 }
 func (m *ListenersConfigDump_StaticListener) XXX_Size() int {
 	return xxx_messageInfo_ListenersConfigDump_StaticListener.Size(m)
@@ -279,16 +285,17 @@ func (m *ListenersConfigDump_DynamicListener) Reset()         { *m = ListenersCo
 func (m *ListenersConfigDump_DynamicListener) String() string { return proto.CompactTextString(m) }
 func (*ListenersConfigDump_DynamicListener) ProtoMessage()    {}
 func (*ListenersConfigDump_DynamicListener) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{2, 1}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{2, 1}
 }
+
 func (m *ListenersConfigDump_DynamicListener) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListenersConfigDump_DynamicListener.Unmarshal(m, b)
 }
 func (m *ListenersConfigDump_DynamicListener) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ListenersConfigDump_DynamicListener.Marshal(b, m, deterministic)
 }
-func (dst *ListenersConfigDump_DynamicListener) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListenersConfigDump_DynamicListener.Merge(dst, src)
+func (m *ListenersConfigDump_DynamicListener) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListenersConfigDump_DynamicListener.Merge(m, src)
 }
 func (m *ListenersConfigDump_DynamicListener) XXX_Size() int {
 	return xxx_messageInfo_ListenersConfigDump_DynamicListener.Size(m)
@@ -347,16 +354,17 @@ func (m *ClustersConfigDump) Reset()         { *m = ClustersConfigDump{} }
 func (m *ClustersConfigDump) String() string { return proto.CompactTextString(m) }
 func (*ClustersConfigDump) ProtoMessage()    {}
 func (*ClustersConfigDump) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{3}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{3}
 }
+
 func (m *ClustersConfigDump) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ClustersConfigDump.Unmarshal(m, b)
 }
 func (m *ClustersConfigDump) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ClustersConfigDump.Marshal(b, m, deterministic)
 }
-func (dst *ClustersConfigDump) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClustersConfigDump.Merge(dst, src)
+func (m *ClustersConfigDump) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ClustersConfigDump.Merge(m, src)
 }
 func (m *ClustersConfigDump) XXX_Size() int {
 	return xxx_messageInfo_ClustersConfigDump.Size(m)
@@ -410,16 +418,17 @@ func (m *ClustersConfigDump_StaticCluster) Reset()         { *m = ClustersConfig
 func (m *ClustersConfigDump_StaticCluster) String() string { return proto.CompactTextString(m) }
 func (*ClustersConfigDump_StaticCluster) ProtoMessage()    {}
 func (*ClustersConfigDump_StaticCluster) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{3, 0}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{3, 0}
 }
+
 func (m *ClustersConfigDump_StaticCluster) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ClustersConfigDump_StaticCluster.Unmarshal(m, b)
 }
 func (m *ClustersConfigDump_StaticCluster) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ClustersConfigDump_StaticCluster.Marshal(b, m, deterministic)
 }
-func (dst *ClustersConfigDump_StaticCluster) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClustersConfigDump_StaticCluster.Merge(dst, src)
+func (m *ClustersConfigDump_StaticCluster) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ClustersConfigDump_StaticCluster.Merge(m, src)
 }
 func (m *ClustersConfigDump_StaticCluster) XXX_Size() int {
 	return xxx_messageInfo_ClustersConfigDump_StaticCluster.Size(m)
@@ -464,16 +473,17 @@ func (m *ClustersConfigDump_DynamicCluster) Reset()         { *m = ClustersConfi
 func (m *ClustersConfigDump_DynamicCluster) String() string { return proto.CompactTextString(m) }
 func (*ClustersConfigDump_DynamicCluster) ProtoMessage()    {}
 func (*ClustersConfigDump_DynamicCluster) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{3, 1}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{3, 1}
 }
+
 func (m *ClustersConfigDump_DynamicCluster) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ClustersConfigDump_DynamicCluster.Unmarshal(m, b)
 }
 func (m *ClustersConfigDump_DynamicCluster) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_ClustersConfigDump_DynamicCluster.Marshal(b, m, deterministic)
 }
-func (dst *ClustersConfigDump_DynamicCluster) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClustersConfigDump_DynamicCluster.Merge(dst, src)
+func (m *ClustersConfigDump_DynamicCluster) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ClustersConfigDump_DynamicCluster.Merge(m, src)
 }
 func (m *ClustersConfigDump_DynamicCluster) XXX_Size() int {
 	return xxx_messageInfo_ClustersConfigDump_DynamicCluster.Size(m)
@@ -524,16 +534,17 @@ func (m *RoutesConfigDump) Reset()         { *m = RoutesConfigDump{} }
 func (m *RoutesConfigDump) String() string { return proto.CompactTextString(m) }
 func (*RoutesConfigDump) ProtoMessage()    {}
 func (*RoutesConfigDump) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{4}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{4}
 }
+
 func (m *RoutesConfigDump) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RoutesConfigDump.Unmarshal(m, b)
 }
 func (m *RoutesConfigDump) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RoutesConfigDump.Marshal(b, m, deterministic)
 }
-func (dst *RoutesConfigDump) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RoutesConfigDump.Merge(dst, src)
+func (m *RoutesConfigDump) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RoutesConfigDump.Merge(m, src)
 }
 func (m *RoutesConfigDump) XXX_Size() int {
 	return xxx_messageInfo_RoutesConfigDump.Size(m)
@@ -572,16 +583,17 @@ func (m *RoutesConfigDump_StaticRouteConfig) Reset()         { *m = RoutesConfig
 func (m *RoutesConfigDump_StaticRouteConfig) String() string { return proto.CompactTextString(m) }
 func (*RoutesConfigDump_StaticRouteConfig) ProtoMessage()    {}
 func (*RoutesConfigDump_StaticRouteConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{4, 0}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{4, 0}
 }
+
 func (m *RoutesConfigDump_StaticRouteConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RoutesConfigDump_StaticRouteConfig.Unmarshal(m, b)
 }
 func (m *RoutesConfigDump_StaticRouteConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RoutesConfigDump_StaticRouteConfig.Marshal(b, m, deterministic)
 }
-func (dst *RoutesConfigDump_StaticRouteConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RoutesConfigDump_StaticRouteConfig.Merge(dst, src)
+func (m *RoutesConfigDump_StaticRouteConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RoutesConfigDump_StaticRouteConfig.Merge(m, src)
 }
 func (m *RoutesConfigDump_StaticRouteConfig) XXX_Size() int {
 	return xxx_messageInfo_RoutesConfigDump_StaticRouteConfig.Size(m)
@@ -624,16 +636,17 @@ func (m *RoutesConfigDump_DynamicRouteConfig) Reset()         { *m = RoutesConfi
 func (m *RoutesConfigDump_DynamicRouteConfig) String() string { return proto.CompactTextString(m) }
 func (*RoutesConfigDump_DynamicRouteConfig) ProtoMessage()    {}
 func (*RoutesConfigDump_DynamicRouteConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_config_dump_b33027c8eabefd09, []int{4, 1}
+	return fileDescriptor_bd4e190b1a64d2aa, []int{4, 1}
 }
+
 func (m *RoutesConfigDump_DynamicRouteConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RoutesConfigDump_DynamicRouteConfig.Unmarshal(m, b)
 }
 func (m *RoutesConfigDump_DynamicRouteConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RoutesConfigDump_DynamicRouteConfig.Marshal(b, m, deterministic)
 }
-func (dst *RoutesConfigDump_DynamicRouteConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RoutesConfigDump_DynamicRouteConfig.Merge(dst, src)
+func (m *RoutesConfigDump_DynamicRouteConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RoutesConfigDump_DynamicRouteConfig.Merge(m, src)
 }
 func (m *RoutesConfigDump_DynamicRouteConfig) XXX_Size() int {
 	return xxx_messageInfo_RoutesConfigDump_DynamicRouteConfig.Size(m)
@@ -665,6 +678,194 @@ func (m *RoutesConfigDump_DynamicRouteConfig) GetLastUpdated() *types.Timestamp 
 	return nil
 }
 
+// Envoy's scoped RDS implementation fills this message with all currently loaded route
+// configuration scopes (defined via ScopedRouteConfigurationsSet protos). This message lists both
+// the scopes defined inline with the higher order object (i.e., the HttpConnectionManager) and the
+// dynamically obtained scopes via the SRDS API.
+type ScopedRoutesConfigDump struct {
+	// The statically loaded scoped route configs.
+	InlineScopedRouteConfigs []*ScopedRoutesConfigDump_InlineScopedRouteConfigs `protobuf:"bytes,1,rep,name=inline_scoped_route_configs,json=inlineScopedRouteConfigs,proto3" json:"inline_scoped_route_configs,omitempty"`
+	// The dynamically loaded scoped route configs.
+	DynamicScopedRouteConfigs []*ScopedRoutesConfigDump_DynamicScopedRouteConfigs `protobuf:"bytes,2,rep,name=dynamic_scoped_route_configs,json=dynamicScopedRouteConfigs,proto3" json:"dynamic_scoped_route_configs,omitempty"`
+	XXX_NoUnkeyedLiteral      struct{}                                            `json:"-"`
+	XXX_unrecognized          []byte                                              `json:"-"`
+	XXX_sizecache             int32                                               `json:"-"`
+}
+
+func (m *ScopedRoutesConfigDump) Reset()         { *m = ScopedRoutesConfigDump{} }
+func (m *ScopedRoutesConfigDump) String() string { return proto.CompactTextString(m) }
+func (*ScopedRoutesConfigDump) ProtoMessage()    {}
+func (*ScopedRoutesConfigDump) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bd4e190b1a64d2aa, []int{5}
+}
+
+func (m *ScopedRoutesConfigDump) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ScopedRoutesConfigDump.Unmarshal(m, b)
+}
+func (m *ScopedRoutesConfigDump) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ScopedRoutesConfigDump.Marshal(b, m, deterministic)
+}
+func (m *ScopedRoutesConfigDump) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ScopedRoutesConfigDump.Merge(m, src)
+}
+func (m *ScopedRoutesConfigDump) XXX_Size() int {
+	return xxx_messageInfo_ScopedRoutesConfigDump.Size(m)
+}
+func (m *ScopedRoutesConfigDump) XXX_DiscardUnknown() {
+	xxx_messageInfo_ScopedRoutesConfigDump.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ScopedRoutesConfigDump proto.InternalMessageInfo
+
+func (m *ScopedRoutesConfigDump) GetInlineScopedRouteConfigs() []*ScopedRoutesConfigDump_InlineScopedRouteConfigs {
+	if m != nil {
+		return m.InlineScopedRouteConfigs
+	}
+	return nil
+}
+
+func (m *ScopedRoutesConfigDump) GetDynamicScopedRouteConfigs() []*ScopedRoutesConfigDump_DynamicScopedRouteConfigs {
+	if m != nil {
+		return m.DynamicScopedRouteConfigs
+	}
+	return nil
+}
+
+type ScopedRoutesConfigDump_InlineScopedRouteConfigs struct {
+	// The name assigned to the scoped route configurations.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// The scoped route configurations.
+	ScopedRouteConfigs []*v21.ScopedRouteConfiguration `protobuf:"bytes,2,rep,name=scoped_route_configs,json=scopedRouteConfigs,proto3" json:"scoped_route_configs,omitempty"`
+	// The timestamp when the scoped route config set was last updated.
+	LastUpdated          *types.Timestamp `protobuf:"bytes,3,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *ScopedRoutesConfigDump_InlineScopedRouteConfigs) Reset() {
+	*m = ScopedRoutesConfigDump_InlineScopedRouteConfigs{}
+}
+func (m *ScopedRoutesConfigDump_InlineScopedRouteConfigs) String() string {
+	return proto.CompactTextString(m)
+}
+func (*ScopedRoutesConfigDump_InlineScopedRouteConfigs) ProtoMessage() {}
+func (*ScopedRoutesConfigDump_InlineScopedRouteConfigs) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bd4e190b1a64d2aa, []int{5, 0}
+}
+
+func (m *ScopedRoutesConfigDump_InlineScopedRouteConfigs) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ScopedRoutesConfigDump_InlineScopedRouteConfigs.Unmarshal(m, b)
+}
+func (m *ScopedRoutesConfigDump_InlineScopedRouteConfigs) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ScopedRoutesConfigDump_InlineScopedRouteConfigs.Marshal(b, m, deterministic)
+}
+func (m *ScopedRoutesConfigDump_InlineScopedRouteConfigs) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ScopedRoutesConfigDump_InlineScopedRouteConfigs.Merge(m, src)
+}
+func (m *ScopedRoutesConfigDump_InlineScopedRouteConfigs) XXX_Size() int {
+	return xxx_messageInfo_ScopedRoutesConfigDump_InlineScopedRouteConfigs.Size(m)
+}
+func (m *ScopedRoutesConfigDump_InlineScopedRouteConfigs) XXX_DiscardUnknown() {
+	xxx_messageInfo_ScopedRoutesConfigDump_InlineScopedRouteConfigs.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ScopedRoutesConfigDump_InlineScopedRouteConfigs proto.InternalMessageInfo
+
+func (m *ScopedRoutesConfigDump_InlineScopedRouteConfigs) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *ScopedRoutesConfigDump_InlineScopedRouteConfigs) GetScopedRouteConfigs() []*v21.ScopedRouteConfiguration {
+	if m != nil {
+		return m.ScopedRouteConfigs
+	}
+	return nil
+}
+
+func (m *ScopedRoutesConfigDump_InlineScopedRouteConfigs) GetLastUpdated() *types.Timestamp {
+	if m != nil {
+		return m.LastUpdated
+	}
+	return nil
+}
+
+type ScopedRoutesConfigDump_DynamicScopedRouteConfigs struct {
+	// The name assigned to the scoped route configurations.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// This is the per-resource version information. This version is currently taken from the
+	// :ref:`version_info <envoy_api_field_DiscoveryResponse.version_info>` field at the time that
+	// the scoped routes configuration was loaded.
+	VersionInfo string `protobuf:"bytes,2,opt,name=version_info,json=versionInfo,proto3" json:"version_info,omitempty"`
+	// The scoped route configurations.
+	ScopedRouteConfigs []*v21.ScopedRouteConfiguration `protobuf:"bytes,3,rep,name=scoped_route_configs,json=scopedRouteConfigs,proto3" json:"scoped_route_configs,omitempty"`
+	// The timestamp when the scoped route config set was last updated.
+	LastUpdated          *types.Timestamp `protobuf:"bytes,4,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) Reset() {
+	*m = ScopedRoutesConfigDump_DynamicScopedRouteConfigs{}
+}
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) String() string {
+	return proto.CompactTextString(m)
+}
+func (*ScopedRoutesConfigDump_DynamicScopedRouteConfigs) ProtoMessage() {}
+func (*ScopedRoutesConfigDump_DynamicScopedRouteConfigs) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bd4e190b1a64d2aa, []int{5, 1}
+}
+
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ScopedRoutesConfigDump_DynamicScopedRouteConfigs.Unmarshal(m, b)
+}
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ScopedRoutesConfigDump_DynamicScopedRouteConfigs.Marshal(b, m, deterministic)
+}
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ScopedRoutesConfigDump_DynamicScopedRouteConfigs.Merge(m, src)
+}
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) XXX_Size() int {
+	return xxx_messageInfo_ScopedRoutesConfigDump_DynamicScopedRouteConfigs.Size(m)
+}
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) XXX_DiscardUnknown() {
+	xxx_messageInfo_ScopedRoutesConfigDump_DynamicScopedRouteConfigs.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ScopedRoutesConfigDump_DynamicScopedRouteConfigs proto.InternalMessageInfo
+
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) GetVersionInfo() string {
+	if m != nil {
+		return m.VersionInfo
+	}
+	return ""
+}
+
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) GetScopedRouteConfigs() []*v21.ScopedRouteConfiguration {
+	if m != nil {
+		return m.ScopedRouteConfigs
+	}
+	return nil
+}
+
+func (m *ScopedRoutesConfigDump_DynamicScopedRouteConfigs) GetLastUpdated() *types.Timestamp {
+	if m != nil {
+		return m.LastUpdated
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*ConfigDump)(nil), "envoy.admin.v2alpha.ConfigDump")
 	proto.RegisterType((*BootstrapConfigDump)(nil), "envoy.admin.v2alpha.BootstrapConfigDump")
@@ -677,57 +878,70 @@ func init() {
 	proto.RegisterType((*RoutesConfigDump)(nil), "envoy.admin.v2alpha.RoutesConfigDump")
 	proto.RegisterType((*RoutesConfigDump_StaticRouteConfig)(nil), "envoy.admin.v2alpha.RoutesConfigDump.StaticRouteConfig")
 	proto.RegisterType((*RoutesConfigDump_DynamicRouteConfig)(nil), "envoy.admin.v2alpha.RoutesConfigDump.DynamicRouteConfig")
+	proto.RegisterType((*ScopedRoutesConfigDump)(nil), "envoy.admin.v2alpha.ScopedRoutesConfigDump")
+	proto.RegisterType((*ScopedRoutesConfigDump_InlineScopedRouteConfigs)(nil), "envoy.admin.v2alpha.ScopedRoutesConfigDump.InlineScopedRouteConfigs")
+	proto.RegisterType((*ScopedRoutesConfigDump_DynamicScopedRouteConfigs)(nil), "envoy.admin.v2alpha.ScopedRoutesConfigDump.DynamicScopedRouteConfigs")
 }
 
 func init() {
-	proto.RegisterFile("envoy/admin/v2alpha/config_dump.proto", fileDescriptor_config_dump_b33027c8eabefd09)
+	proto.RegisterFile("envoy/admin/v2alpha/config_dump.proto", fileDescriptor_bd4e190b1a64d2aa)
 }
 
-var fileDescriptor_config_dump_b33027c8eabefd09 = []byte{
-	// 709 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x95, 0x3d, 0x6f, 0xd3, 0x40,
-	0x18, 0xc7, 0x71, 0x9a, 0xb6, 0xf4, 0x49, 0x69, 0x8b, 0xd3, 0xa6, 0xa9, 0x97, 0x96, 0x0a, 0xa4,
-	0xb2, 0xd8, 0x52, 0x78, 0x5d, 0x18, 0xfa, 0x32, 0x80, 0xc4, 0x64, 0x40, 0x8c, 0xd6, 0x35, 0x76,
-	0xd2, 0x93, 0x12, 0x9f, 0xe5, 0x3b, 0x1b, 0x82, 0x90, 0x18, 0xf8, 0x10, 0x6c, 0x2c, 0x0c, 0xec,
-	0xac, 0xec, 0x88, 0x8d, 0x6f, 0xc0, 0x67, 0x41, 0xb9, 0x7b, 0xce, 0xf1, 0x4b, 0xa9, 0x92, 0x26,
-	0x5b, 0xf2, 0xdc, 0x73, 0xff, 0xdf, 0xff, 0xee, 0xfe, 0x4f, 0x02, 0xf7, 0x82, 0x30, 0x65, 0x23,
-	0x87, 0xf8, 0x43, 0x1a, 0x3a, 0x69, 0x87, 0x0c, 0xa2, 0x0b, 0xe2, 0x74, 0x59, 0xd8, 0xa3, 0x7d,
-	0xcf, 0x4f, 0x86, 0x91, 0x1d, 0xc5, 0x4c, 0x30, 0xb3, 0x29, 0xdb, 0x6c, 0xd9, 0x66, 0x63, 0x9b,
-	0xd5, 0xc2, 0xbd, 0x11, 0x75, 0xd2, 0x8e, 0xd3, 0xf5, 0xb9, 0x6a, 0x2e, 0xd5, 0x07, 0xff, 0xa9,
-	0xc7, 0x59, 0xfd, 0xbe, 0xaa, 0x2b, 0xaa, 0x73, 0xce, 0x98, 0xe0, 0x22, 0x26, 0xd1, 0xb8, 0x29,
-	0xfb, 0x82, 0xad, 0x7b, 0x7d, 0xc6, 0xfa, 0x83, 0xc0, 0x91, 0xdf, 0xce, 0x93, 0x9e, 0x43, 0xc2,
-	0x11, 0x2e, 0xed, 0x97, 0x97, 0x04, 0x1d, 0x06, 0x5c, 0x10, 0x7d, 0x06, 0x6b, 0xbb, 0xcf, 0xfa,
-	0x4c, 0x7e, 0x74, 0xc6, 0x9f, 0x54, 0xf5, 0xf0, 0x04, 0xe0, 0x54, 0x82, 0xcf, 0x92, 0x61, 0x64,
-	0x3e, 0x84, 0x55, 0x65, 0x83, 0xb7, 0x8d, 0x83, 0xa5, 0xa3, 0x46, 0x67, 0xdb, 0x56, 0xb2, 0xb6,
-	0x96, 0xb5, 0x8f, 0xc3, 0xd1, 0x49, 0xfd, 0xf7, 0xdf, 0xfd, 0x1b, 0xae, 0x6e, 0x3d, 0xfc, 0x6a,
-	0x40, 0xf3, 0x44, 0x3b, 0xcd, 0xa9, 0x3d, 0x87, 0xb5, 0xec, 0x00, 0x6d, 0xe3, 0xc0, 0x38, 0x6a,
-	0x74, 0xee, 0xda, 0xea, 0x26, 0xd5, 0x56, 0x7b, 0x72, 0xbe, 0xb4, 0x63, 0x67, 0x12, 0xa8, 0x3f,
-	0xd9, 0x6c, 0x3e, 0x83, 0xf5, 0x01, 0xe1, 0xc2, 0x4b, 0x22, 0x9f, 0x88, 0xc0, 0x6f, 0xd7, 0xa4,
-	0x98, 0x55, 0x31, 0xf7, 0x5a, 0x9f, 0xd9, 0x6d, 0x8c, 0xfb, 0xdf, 0xa8, 0xf6, 0xc3, 0x5f, 0x2b,
-	0xd0, 0x7c, 0x49, 0xb9, 0x08, 0xc2, 0x20, 0xe6, 0x39, 0x83, 0x77, 0x60, 0x3d, 0x0d, 0x62, 0x4e,
-	0x59, 0xe8, 0xd1, 0xb0, 0xc7, 0xa4, 0xc7, 0x35, 0xb7, 0x81, 0xb5, 0x17, 0x61, 0x8f, 0x99, 0x17,
-	0xb0, 0xc5, 0x05, 0x11, 0xb4, 0xeb, 0x0d, 0xb4, 0x40, 0xbb, 0x26, 0xaf, 0xe6, 0x89, 0x7d, 0x49,
-	0x28, 0xec, 0x4b, 0x30, 0xf6, 0x2b, 0x29, 0xa0, 0x57, 0xf0, 0x74, 0x9b, 0xbc, 0x50, 0xe5, 0xe6,
-	0x7b, 0x68, 0xfb, 0xa3, 0x90, 0x0c, 0x69, 0xd7, 0x23, 0x5d, 0x41, 0xd3, 0x20, 0x47, 0x5c, 0x92,
-	0xc4, 0xa7, 0x53, 0x13, 0xcf, 0x94, 0x50, 0x09, 0xd9, 0x42, 0xfd, 0x63, 0x29, 0x3f, 0x21, 0x7f,
-	0x80, 0x3d, 0x4d, 0x7e, 0x47, 0xe2, 0x21, 0x0d, 0xfb, 0x39, 0x74, 0x7d, 0x21, 0xe8, 0x5d, 0x04,
-	0xbc, 0x55, 0xfa, 0x13, 0xf6, 0x47, 0xb0, 0x34, 0xdb, 0x8f, 0x09, 0x0d, 0x8b, 0xf0, 0xe5, 0x85,
-	0xc0, 0xf5, 0xbd, 0x9e, 0x21, 0x20, 0xdb, 0x69, 0x7d, 0x36, 0x60, 0xa3, 0xf8, 0x3a, 0x66, 0x07,
-	0x6e, 0x6a, 0x3e, 0x66, 0xb6, 0xa5, 0xf1, 0x11, 0x1d, 0xc7, 0x54, 0x77, 0xba, 0x59, 0xdf, 0x9c,
-	0xf1, 0xb4, 0xbe, 0x1b, 0xb0, 0x59, 0x72, 0x3e, 0x4d, 0x34, 0xf3, 0x4e, 0x6b, 0xd7, 0x74, 0xba,
-	0x34, 0xdb, 0x20, 0xfd, 0x58, 0x06, 0xf3, 0x74, 0x90, 0x70, 0x31, 0xf3, 0x1c, 0xf9, 0x80, 0x81,
-	0xf7, 0xba, 0xb8, 0x1f, 0xc7, 0xe8, 0xd1, 0xa5, 0x8f, 0x5b, 0x85, 0xe0, 0x14, 0xe1, 0x02, 0xbe,
-	0xec, 0x06, 0xcf, 0x17, 0xb9, 0x29, 0x60, 0xb7, 0x34, 0x43, 0x19, 0x4d, 0x8d, 0xd0, 0xe3, 0x69,
-	0x69, 0xf8, 0x1e, 0x45, 0xdc, 0x4e, 0x61, 0x80, 0x32, 0x6a, 0x3a, 0x99, 0x5c, 0x3d, 0x3f, 0x19,
-	0xb6, 0xbe, 0x00, 0x6c, 0xab, 0x38, 0x3c, 0x7a, 0x9b, 0xf5, 0x09, 0x6e, 0x15, 0x2e, 0xc5, 0x74,
-	0x60, 0x15, 0xc1, 0x18, 0xdd, 0x9d, 0x62, 0x20, 0xb0, 0xcf, 0xd5, 0x5d, 0xf3, 0x06, 0xf7, 0x9b,
-	0x01, 0x1b, 0x45, 0xc7, 0xd3, 0x44, 0x21, 0xe7, 0xb2, 0x76, 0x2d, 0x97, 0x33, 0x86, 0xf6, 0x4f,
-	0x1d, 0xb6, 0x5c, 0x96, 0x88, 0x20, 0x1f, 0x59, 0x06, 0xdb, 0x98, 0xc7, 0x78, 0xbc, 0xe4, 0xe9,
-	0xbf, 0xbd, 0xab, 0x7e, 0xdb, 0xcb, 0x22, 0x18, 0x49, 0x59, 0x56, 0x55, 0x7c, 0x30, 0x93, 0x97,
-	0x17, 0xb8, 0x19, 0x83, 0x4e, 0x4f, 0x89, 0x78, 0xd5, 0x6f, 0x7b, 0x85, 0x88, 0xb7, 0x5d, 0x45,
-	0x36, 0xfd, 0xca, 0x0a, 0xb7, 0xbe, 0x18, 0x70, 0xbb, 0xe2, 0xd1, 0x3c, 0x85, 0xf5, 0xbc, 0x03,
-	0x8c, 0xca, 0x41, 0xf1, 0x11, 0x72, 0x1b, 0x92, 0x98, 0x08, 0xca, 0x42, 0xb7, 0x11, 0xe7, 0x44,
-	0xe6, 0x4c, 0xce, 0x4f, 0x03, 0xcc, 0xea, 0x59, 0xa6, 0x49, 0x4f, 0xd9, 0x7d, 0x6d, 0x11, 0xee,
-	0x67, 0x4b, 0xd4, 0xf9, 0x8a, 0x6c, 0x78, 0xf0, 0x2f, 0x00, 0x00, 0xff, 0xff, 0xb6, 0x5f, 0xdd,
-	0xab, 0x3e, 0x0a, 0x00, 0x00,
+var fileDescriptor_bd4e190b1a64d2aa = []byte{
+	// 874 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0x3d, 0x6f, 0xdb, 0x48,
+	0x10, 0x3d, 0x4a, 0xb2, 0x7d, 0x1e, 0xf9, 0x6c, 0xdf, 0x4a, 0x96, 0x65, 0xde, 0x01, 0xfe, 0xc0,
+	0xdd, 0xc1, 0xd7, 0x90, 0x80, 0xee, 0xe2, 0xa4, 0x49, 0x61, 0x59, 0x01, 0x62, 0x20, 0x85, 0x21,
+	0x27, 0x48, 0x3a, 0x82, 0x16, 0x29, 0x79, 0x01, 0x69, 0x97, 0xe0, 0x52, 0x8a, 0x15, 0x04, 0x48,
+	0x91, 0x2a, 0x40, 0xfa, 0x74, 0x69, 0x52, 0xa4, 0x4f, 0x9b, 0x3e, 0x49, 0x97, 0x7f, 0x90, 0x3f,
+	0xe0, 0x3f, 0x11, 0x68, 0x3f, 0x28, 0x7e, 0xc9, 0x90, 0x2c, 0x75, 0xd4, 0xcc, 0xec, 0x7b, 0x6f,
+	0x76, 0xde, 0x88, 0x84, 0xbf, 0x5d, 0x32, 0xa0, 0x43, 0xd3, 0x76, 0x7a, 0x98, 0x98, 0x83, 0x9a,
+	0xdd, 0xf5, 0x2e, 0x6d, 0xb3, 0x45, 0x49, 0x1b, 0x77, 0x2c, 0xa7, 0xdf, 0xf3, 0x0c, 0xcf, 0xa7,
+	0x01, 0x45, 0x25, 0x5e, 0x66, 0xf0, 0x32, 0x43, 0x96, 0xe9, 0x15, 0x79, 0xd6, 0xc3, 0xe6, 0xa0,
+	0x66, 0xb6, 0x1c, 0x26, 0x8a, 0x13, 0xf1, 0xee, 0x84, 0xb8, 0x1f, 0xc6, 0xb7, 0x63, 0x71, 0x36,
+	0x4e, 0xfc, 0x2b, 0x12, 0x42, 0x8e, 0x79, 0x41, 0x69, 0xc0, 0x02, 0xdf, 0xf6, 0x46, 0x55, 0xe1,
+	0x0f, 0x59, 0xba, 0xd3, 0xa1, 0xb4, 0xd3, 0x75, 0x4d, 0xfe, 0xeb, 0xa2, 0xdf, 0x36, 0x6d, 0x32,
+	0x94, 0xa9, 0xdd, 0x64, 0x2a, 0xc0, 0x3d, 0x97, 0x05, 0xb6, 0x6a, 0x4e, 0x2f, 0x77, 0x68, 0x87,
+	0xf2, 0x47, 0x73, 0xf4, 0x24, 0xa2, 0x07, 0x75, 0x80, 0x13, 0x4e, 0xdc, 0xe8, 0xf7, 0x3c, 0xf4,
+	0x3f, 0xac, 0x08, 0x19, 0xac, 0xaa, 0xed, 0xe5, 0x0f, 0x8b, 0xb5, 0xb2, 0x21, 0x60, 0x0d, 0x05,
+	0x6b, 0x1c, 0x93, 0x61, 0xbd, 0xf0, 0xed, 0xc7, 0xee, 0x2f, 0x4d, 0x55, 0x7a, 0xf0, 0x5e, 0x83,
+	0x52, 0x5d, 0x29, 0x8d, 0xa0, 0x3d, 0x84, 0xd5, 0xb0, 0x81, 0xaa, 0xb6, 0xa7, 0x1d, 0x16, 0x6b,
+	0x7f, 0x19, 0xe2, 0x8a, 0xc5, 0x51, 0x63, 0xdc, 0xdf, 0xa0, 0x66, 0x84, 0x10, 0x12, 0x7f, 0x7c,
+	0x18, 0xdd, 0x87, 0xb5, 0xae, 0xcd, 0x02, 0xab, 0xef, 0x39, 0x76, 0xe0, 0x3a, 0xd5, 0x1c, 0x07,
+	0xd3, 0x53, 0xe2, 0x1e, 0xab, 0x9e, 0x9b, 0xc5, 0x51, 0xfd, 0x13, 0x51, 0x7e, 0xf0, 0x65, 0x19,
+	0x4a, 0x8f, 0x30, 0x0b, 0x5c, 0xe2, 0xfa, 0x2c, 0x22, 0x70, 0x1f, 0xd6, 0x06, 0xae, 0xcf, 0x30,
+	0x25, 0x16, 0x26, 0x6d, 0xca, 0x35, 0xae, 0x36, 0x8b, 0x32, 0x76, 0x4a, 0xda, 0x14, 0x5d, 0xc2,
+	0x26, 0x0b, 0xec, 0x00, 0xb7, 0xac, 0xae, 0x02, 0xa8, 0xe6, 0xf8, 0xd5, 0xdc, 0x35, 0x32, 0xdc,
+	0x62, 0x64, 0xd0, 0x18, 0xe7, 0x1c, 0x40, 0x65, 0x64, 0x77, 0x1b, 0x2c, 0x16, 0x65, 0xe8, 0x0a,
+	0xaa, 0xce, 0x90, 0xd8, 0x3d, 0xdc, 0xb2, 0xec, 0x56, 0x80, 0x07, 0x6e, 0x84, 0x31, 0xcf, 0x19,
+	0xef, 0x4d, 0xcd, 0xd8, 0x10, 0x40, 0x09, 0xca, 0x8a, 0xc4, 0x3f, 0xe6, 0xf0, 0x63, 0xe6, 0x17,
+	0xb0, 0xa3, 0x98, 0x9f, 0xdb, 0x7e, 0x0f, 0x93, 0x4e, 0x84, 0xba, 0xb0, 0x10, 0xea, 0x6d, 0x49,
+	0xf0, 0x54, 0xe0, 0x8f, 0xb9, 0x5f, 0x82, 0xae, 0xb8, 0x1d, 0xdf, 0xc6, 0x24, 0x4e, 0xbe, 0xb4,
+	0x10, 0x72, 0x75, 0xaf, 0x0d, 0x49, 0x10, 0x9e, 0xd4, 0x5f, 0x6b, 0xb0, 0x1e, 0x9f, 0x0e, 0xaa,
+	0xc1, 0xaf, 0x8a, 0x5f, 0x7a, 0xb6, 0xa2, 0xe8, 0x3d, 0x3c, 0xb2, 0xa9, 0xaa, 0x6c, 0x86, 0x75,
+	0x73, 0xda, 0x53, 0xff, 0xa8, 0xc1, 0x46, 0x42, 0xf9, 0x34, 0xd6, 0x8c, 0x2a, 0xcd, 0xdd, 0x52,
+	0x69, 0x7e, 0xb6, 0x45, 0xfa, 0xb4, 0x04, 0xe8, 0xa4, 0xdb, 0x67, 0xc1, 0xcc, 0x7b, 0xe4, 0x80,
+	0x34, 0xbc, 0xd5, 0x92, 0xe7, 0xe5, 0x1a, 0xdd, 0xc9, 0x1c, 0x6e, 0x9a, 0x44, 0x6e, 0x91, 0x4c,
+	0xc8, 0xc9, 0xae, 0xb3, 0x68, 0x90, 0xa1, 0x00, 0xb6, 0x13, 0x3b, 0x14, 0xb2, 0x89, 0x15, 0x3a,
+	0x9a, 0x96, 0x4d, 0xce, 0x23, 0x4e, 0xb7, 0x15, 0x5b, 0xa0, 0x90, 0x75, 0x30, 0xde, 0x5c, 0xb5,
+	0x3f, 0x21, 0x6d, 0x61, 0x01, 0xb4, 0x95, 0xf8, 0xf2, 0xa8, 0x63, 0xfa, 0x2b, 0xf8, 0x2d, 0x76,
+	0x29, 0xc8, 0x84, 0x15, 0x49, 0x2c, 0xad, 0xbb, 0x15, 0x37, 0x84, 0xac, 0x6b, 0xaa, 0xaa, 0x79,
+	0x8d, 0xfb, 0x41, 0x83, 0xf5, 0xb8, 0xe2, 0x69, 0xac, 0x10, 0x51, 0x99, 0xbb, 0x95, 0xca, 0x19,
+	0x4d, 0xfb, 0xbd, 0x00, 0x9b, 0x4d, 0xda, 0x0f, 0xdc, 0xa8, 0x65, 0x29, 0x94, 0xa5, 0x1f, 0xfd,
+	0x51, 0xca, 0x52, 0xaf, 0xbd, 0x9b, 0xfe, 0xdb, 0x93, 0x20, 0xd2, 0x92, 0x3c, 0x2c, 0xa2, 0x72,
+	0x60, 0x88, 0x25, 0x13, 0x0c, 0xf9, 0xa0, 0xdc, 0x93, 0x60, 0xbc, 0xe9, 0xbf, 0x3d, 0xc5, 0x28,
+	0x6f, 0x3b, 0x4d, 0x59, 0x72, 0x52, 0x19, 0xa6, 0xbf, 0xd3, 0xe0, 0xf7, 0x94, 0x46, 0x74, 0x02,
+	0x6b, 0x51, 0x05, 0xd2, 0x2a, 0x7b, 0xf1, 0x21, 0x44, 0x0e, 0xf4, 0x7d, 0x3b, 0xc0, 0x94, 0x34,
+	0x8b, 0x7e, 0x04, 0x64, 0x4e, 0xe7, 0x7c, 0xd6, 0x00, 0xa5, 0x7b, 0x99, 0xc6, 0x3d, 0x49, 0xf5,
+	0xb9, 0x45, 0xa8, 0x9f, 0xd1, 0x51, 0xd7, 0x4b, 0x50, 0x39, 0x6f, 0x51, 0xcf, 0x75, 0x52, 0xbe,
+	0x7a, 0xa3, 0xc1, 0x1f, 0x98, 0x74, 0x31, 0x71, 0x2d, 0xc6, 0x2b, 0x12, 0xd3, 0x16, 0x9f, 0x55,
+	0x8d, 0xcc, 0x69, 0x67, 0x43, 0x1a, 0xa7, 0x1c, 0x2e, 0x92, 0x94, 0xe3, 0x55, 0x6f, 0x37, 0x3c,
+	0x21, 0x8f, 0xde, 0x6a, 0xf0, 0xa7, 0xf2, 0x5c, 0xa6, 0x18, 0x61, 0xf6, 0x07, 0xb3, 0x88, 0x91,
+	0x43, 0x9b, 0xa8, 0x46, 0x7d, 0x49, 0xa4, 0x0b, 0xf4, 0xaf, 0x1a, 0x54, 0x27, 0xf5, 0x82, 0x10,
+	0x14, 0x88, 0xdd, 0x73, 0xe5, 0xc4, 0xf9, 0x33, 0x7a, 0x06, 0xe5, 0x1b, 0x64, 0xff, 0x13, 0x1f,
+	0x79, 0x0a, 0x53, 0x0d, 0x1e, 0xb1, 0x34, 0xdb, 0x7c, 0xf3, 0xd7, 0xaf, 0x35, 0xd8, 0x99, 0x78,
+	0x11, 0x99, 0xad, 0x24, 0x8d, 0x9d, 0x4b, 0x1b, 0x7b, 0x52, 0xb7, 0xf9, 0x85, 0x77, 0x5b, 0x98,
+	0xa9, 0xdb, 0xfa, 0x11, 0xec, 0x63, 0x2a, 0xe8, 0x3d, 0x9f, 0x5e, 0x0d, 0xb3, 0xec, 0x52, 0xdf,
+	0x18, 0x7b, 0xe4, 0x6c, 0x84, 0x77, 0xa6, 0x5d, 0x2c, 0x73, 0xe0, 0xff, 0x7e, 0x06, 0x00, 0x00,
+	0xff, 0xff, 0x44, 0xce, 0x8b, 0x2e, 0x7d, 0x0d, 0x00, 0x00,
 }

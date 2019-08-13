@@ -82,7 +82,7 @@ do
     -Itmp/protoc-gen-validate \
     -Itmp/gogo-genproto/prometheus \
     -Itmp/gogo-genproto/googleapis \
-    -Itmp/opencensus-proto/src/opencensus/proto/trace/v1 \
+    -Itmp/opencensus-proto/src \
     -Itmp/protobuf \
     -I/opt/googleapis \
     --go_out=plugins=grpc,paths=source_relative${arg}:. \

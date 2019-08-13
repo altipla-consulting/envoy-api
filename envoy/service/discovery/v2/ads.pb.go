@@ -3,14 +3,13 @@
 
 package v2
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
-import v2 "github.com/altipla-consulting/envoy-api/envoy/api/v2"
-
 import (
-	context "golang.org/x/net/context"
+	context "context"
+	fmt "fmt"
+	v2 "github.com/altipla-consulting/envoy-api/envoy/api/v2"
+	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -22,7 +21,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // [#not-implemented-hide:] Not configuration. Workaround c++ protobuf issue with importing
 // services: https://github.com/google/protobuf/issues/4221
@@ -36,16 +35,17 @@ func (m *AdsDummy) Reset()         { *m = AdsDummy{} }
 func (m *AdsDummy) String() string { return proto.CompactTextString(m) }
 func (*AdsDummy) ProtoMessage()    {}
 func (*AdsDummy) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ads_3a64baa08e571ce8, []int{0}
+	return fileDescriptor_187fd5dcc2dab695, []int{0}
 }
+
 func (m *AdsDummy) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AdsDummy.Unmarshal(m, b)
 }
 func (m *AdsDummy) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AdsDummy.Marshal(b, m, deterministic)
 }
-func (dst *AdsDummy) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AdsDummy.Merge(dst, src)
+func (m *AdsDummy) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdsDummy.Merge(m, src)
 }
 func (m *AdsDummy) XXX_Size() int {
 	return xxx_messageInfo_AdsDummy.Size(m)
@@ -58,6 +58,29 @@ var xxx_messageInfo_AdsDummy proto.InternalMessageInfo
 
 func init() {
 	proto.RegisterType((*AdsDummy)(nil), "envoy.service.discovery.v2.AdsDummy")
+}
+
+func init() {
+	proto.RegisterFile("envoy/service/discovery/v2/ads.proto", fileDescriptor_187fd5dcc2dab695)
+}
+
+var fileDescriptor_187fd5dcc2dab695 = []byte{
+	// 236 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x90, 0xb1, 0x4e, 0xc3, 0x30,
+	0x10, 0x86, 0x31, 0x03, 0x42, 0x1e, 0x33, 0x41, 0x84, 0x40, 0x2a, 0x1d, 0x3a, 0x5d, 0x90, 0x99,
+	0x19, 0x5a, 0xe5, 0x01, 0xaa, 0x76, 0x63, 0x73, 0x93, 0x53, 0x64, 0x41, 0x7a, 0xc6, 0xe7, 0x58,
+	0xf8, 0x0d, 0x78, 0x59, 0xde, 0x01, 0x39, 0x86, 0x16, 0x01, 0x61, 0xbe, 0xef, 0xff, 0xff, 0xd3,
+	0x27, 0xe7, 0xb8, 0x0f, 0x14, 0x2b, 0x46, 0x17, 0x4c, 0x83, 0x55, 0x6b, 0xb8, 0xa1, 0x80, 0x2e,
+	0x56, 0x41, 0x55, 0xba, 0x65, 0xb0, 0x8e, 0x3c, 0x15, 0xe5, 0x48, 0xc1, 0x27, 0x05, 0x07, 0x0a,
+	0x82, 0x2a, 0xaf, 0x72, 0x83, 0xb6, 0x26, 0x65, 0x8e, 0xa7, 0x31, 0x39, 0x93, 0xf2, 0x7c, 0xd9,
+	0x72, 0x3d, 0xf4, 0x7d, 0x54, 0xef, 0x42, 0x96, 0xcb, 0xae, 0x73, 0xd8, 0x69, 0x8f, 0x6d, 0xfd,
+	0x45, 0x6e, 0x73, 0x6b, 0xb1, 0x93, 0x97, 0x5b, 0xef, 0x50, 0xf7, 0x47, 0x66, 0x83, 0x4c, 0x83,
+	0x6b, 0x90, 0x8b, 0x6b, 0xc8, 0x2f, 0x68, 0x6b, 0x20, 0x28, 0x38, 0x84, 0x37, 0xf8, 0x32, 0x20,
+	0xfb, 0xf2, 0x66, 0xf2, 0xce, 0x96, 0xf6, 0x8c, 0xb3, 0x93, 0x85, 0xb8, 0x13, 0xc5, 0x93, 0xbc,
+	0xa8, 0xf1, 0xd9, 0xeb, 0xbf, 0x26, 0x6e, 0x7f, 0x54, 0x24, 0xee, 0xd7, 0xce, 0xfc, 0x7f, 0xe8,
+	0xfb, 0xd8, 0xea, 0x41, 0x2e, 0x0c, 0x65, 0xde, 0x3a, 0x7a, 0x8d, 0x30, 0x6d, 0x71, 0x95, 0x2c,
+	0xad, 0x93, 0xb1, 0xb5, 0x78, 0x3c, 0x0d, 0xea, 0x4d, 0x88, 0xdd, 0xd9, 0x68, 0xf0, 0xfe, 0x23,
+	0x00, 0x00, 0xff, 0xff, 0x7e, 0x66, 0x01, 0x47, 0xa3, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -74,7 +97,7 @@ const _ = grpc.SupportPackageIsVersion4
 type AggregatedDiscoveryServiceClient interface {
 	// This is a gRPC-only API.
 	StreamAggregatedResources(ctx context.Context, opts ...grpc.CallOption) (AggregatedDiscoveryService_StreamAggregatedResourcesClient, error)
-	IncrementalAggregatedResources(ctx context.Context, opts ...grpc.CallOption) (AggregatedDiscoveryService_IncrementalAggregatedResourcesClient, error)
+	DeltaAggregatedResources(ctx context.Context, opts ...grpc.CallOption) (AggregatedDiscoveryService_DeltaAggregatedResourcesClient, error)
 }
 
 type aggregatedDiscoveryServiceClient struct {
@@ -116,31 +139,31 @@ func (x *aggregatedDiscoveryServiceStreamAggregatedResourcesClient) Recv() (*v2.
 	return m, nil
 }
 
-func (c *aggregatedDiscoveryServiceClient) IncrementalAggregatedResources(ctx context.Context, opts ...grpc.CallOption) (AggregatedDiscoveryService_IncrementalAggregatedResourcesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_AggregatedDiscoveryService_serviceDesc.Streams[1], "/envoy.service.discovery.v2.AggregatedDiscoveryService/IncrementalAggregatedResources", opts...)
+func (c *aggregatedDiscoveryServiceClient) DeltaAggregatedResources(ctx context.Context, opts ...grpc.CallOption) (AggregatedDiscoveryService_DeltaAggregatedResourcesClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_AggregatedDiscoveryService_serviceDesc.Streams[1], "/envoy.service.discovery.v2.AggregatedDiscoveryService/DeltaAggregatedResources", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &aggregatedDiscoveryServiceIncrementalAggregatedResourcesClient{stream}
+	x := &aggregatedDiscoveryServiceDeltaAggregatedResourcesClient{stream}
 	return x, nil
 }
 
-type AggregatedDiscoveryService_IncrementalAggregatedResourcesClient interface {
-	Send(*v2.IncrementalDiscoveryRequest) error
-	Recv() (*v2.IncrementalDiscoveryResponse, error)
+type AggregatedDiscoveryService_DeltaAggregatedResourcesClient interface {
+	Send(*v2.DeltaDiscoveryRequest) error
+	Recv() (*v2.DeltaDiscoveryResponse, error)
 	grpc.ClientStream
 }
 
-type aggregatedDiscoveryServiceIncrementalAggregatedResourcesClient struct {
+type aggregatedDiscoveryServiceDeltaAggregatedResourcesClient struct {
 	grpc.ClientStream
 }
 
-func (x *aggregatedDiscoveryServiceIncrementalAggregatedResourcesClient) Send(m *v2.IncrementalDiscoveryRequest) error {
+func (x *aggregatedDiscoveryServiceDeltaAggregatedResourcesClient) Send(m *v2.DeltaDiscoveryRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *aggregatedDiscoveryServiceIncrementalAggregatedResourcesClient) Recv() (*v2.IncrementalDiscoveryResponse, error) {
-	m := new(v2.IncrementalDiscoveryResponse)
+func (x *aggregatedDiscoveryServiceDeltaAggregatedResourcesClient) Recv() (*v2.DeltaDiscoveryResponse, error) {
+	m := new(v2.DeltaDiscoveryResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -151,7 +174,7 @@ func (x *aggregatedDiscoveryServiceIncrementalAggregatedResourcesClient) Recv() 
 type AggregatedDiscoveryServiceServer interface {
 	// This is a gRPC-only API.
 	StreamAggregatedResources(AggregatedDiscoveryService_StreamAggregatedResourcesServer) error
-	IncrementalAggregatedResources(AggregatedDiscoveryService_IncrementalAggregatedResourcesServer) error
+	DeltaAggregatedResources(AggregatedDiscoveryService_DeltaAggregatedResourcesServer) error
 }
 
 func RegisterAggregatedDiscoveryServiceServer(s *grpc.Server, srv AggregatedDiscoveryServiceServer) {
@@ -184,26 +207,26 @@ func (x *aggregatedDiscoveryServiceStreamAggregatedResourcesServer) Recv() (*v2.
 	return m, nil
 }
 
-func _AggregatedDiscoveryService_IncrementalAggregatedResources_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(AggregatedDiscoveryServiceServer).IncrementalAggregatedResources(&aggregatedDiscoveryServiceIncrementalAggregatedResourcesServer{stream})
+func _AggregatedDiscoveryService_DeltaAggregatedResources_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(AggregatedDiscoveryServiceServer).DeltaAggregatedResources(&aggregatedDiscoveryServiceDeltaAggregatedResourcesServer{stream})
 }
 
-type AggregatedDiscoveryService_IncrementalAggregatedResourcesServer interface {
-	Send(*v2.IncrementalDiscoveryResponse) error
-	Recv() (*v2.IncrementalDiscoveryRequest, error)
+type AggregatedDiscoveryService_DeltaAggregatedResourcesServer interface {
+	Send(*v2.DeltaDiscoveryResponse) error
+	Recv() (*v2.DeltaDiscoveryRequest, error)
 	grpc.ServerStream
 }
 
-type aggregatedDiscoveryServiceIncrementalAggregatedResourcesServer struct {
+type aggregatedDiscoveryServiceDeltaAggregatedResourcesServer struct {
 	grpc.ServerStream
 }
 
-func (x *aggregatedDiscoveryServiceIncrementalAggregatedResourcesServer) Send(m *v2.IncrementalDiscoveryResponse) error {
+func (x *aggregatedDiscoveryServiceDeltaAggregatedResourcesServer) Send(m *v2.DeltaDiscoveryResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *aggregatedDiscoveryServiceIncrementalAggregatedResourcesServer) Recv() (*v2.IncrementalDiscoveryRequest, error) {
-	m := new(v2.IncrementalDiscoveryRequest)
+func (x *aggregatedDiscoveryServiceDeltaAggregatedResourcesServer) Recv() (*v2.DeltaDiscoveryRequest, error) {
+	m := new(v2.DeltaDiscoveryRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -222,33 +245,11 @@ var _AggregatedDiscoveryService_serviceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 		{
-			StreamName:    "IncrementalAggregatedResources",
-			Handler:       _AggregatedDiscoveryService_IncrementalAggregatedResources_Handler,
+			StreamName:    "DeltaAggregatedResources",
+			Handler:       _AggregatedDiscoveryService_DeltaAggregatedResources_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},
 	},
 	Metadata: "envoy/service/discovery/v2/ads.proto",
-}
-
-func init() {
-	proto.RegisterFile("envoy/service/discovery/v2/ads.proto", fileDescriptor_ads_3a64baa08e571ce8)
-}
-
-var fileDescriptor_ads_3a64baa08e571ce8 = []byte{
-	// 221 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0xd0, 0xbd, 0x4a, 0x04, 0x31,
-	0x14, 0x05, 0x60, 0x63, 0xa1, 0x92, 0x32, 0x9d, 0x41, 0x56, 0x58, 0x2c, 0xd4, 0x22, 0x91, 0xf8,
-	0x04, 0x2b, 0xdb, 0xd8, 0xee, 0x76, 0x76, 0x99, 0xe4, 0x32, 0x04, 0xcc, 0x8f, 0xb9, 0x99, 0xc0,
-	0x14, 0xf6, 0xbe, 0xb5, 0xe2, 0x8c, 0xce, 0x8c, 0xa8, 0xb0, 0xf5, 0xfd, 0xce, 0x39, 0x21, 0xf4,
-	0x0a, 0x42, 0x8d, 0xbd, 0x44, 0xc8, 0xd5, 0x19, 0x90, 0xd6, 0xa1, 0x89, 0x15, 0x72, 0x2f, 0xab,
-	0x92, 0xda, 0xa2, 0x48, 0x39, 0x96, 0xc8, 0xf8, 0xa0, 0xc4, 0x97, 0x12, 0x93, 0x12, 0x55, 0xf1,
-	0x8b, 0xb1, 0x41, 0x27, 0xf7, 0x99, 0x99, 0x4f, 0x43, 0x72, 0x4d, 0xe9, 0xd9, 0xc6, 0xe2, 0xb6,
-	0xf3, 0xbe, 0x57, 0xef, 0x84, 0xf2, 0x4d, 0xdb, 0x66, 0x68, 0x75, 0x01, 0xbb, 0xfd, 0x96, 0xfb,
-	0xb1, 0x95, 0x35, 0xf4, 0x7c, 0x5f, 0x32, 0x68, 0x3f, 0x9b, 0x1d, 0x60, 0xec, 0xb2, 0x01, 0x64,
-	0x2b, 0x31, 0x3e, 0x41, 0x27, 0x27, 0xaa, 0x12, 0x53, 0x78, 0x07, 0x2f, 0x1d, 0x60, 0xe1, 0x97,
-	0xff, 0xde, 0x31, 0xc5, 0x80, 0xb0, 0x3e, 0xba, 0x26, 0x77, 0x84, 0xbd, 0xd2, 0xd5, 0x63, 0x30,
-	0x19, 0x3c, 0x84, 0xa2, 0x9f, 0xff, 0x1a, 0xba, 0xf9, 0x59, 0xb4, 0xd0, 0xbf, 0x36, 0x6f, 0x0f,
-	0xa1, 0xcb, 0xf9, 0x87, 0xd3, 0xa7, 0xe3, 0xaa, 0xde, 0x08, 0x69, 0x4e, 0x86, 0xdf, 0xb9, 0xff,
-	0x08, 0x00, 0x00, 0xff, 0xff, 0xc4, 0x78, 0xe4, 0x1b, 0x7f, 0x01, 0x00, 0x00,
 }
